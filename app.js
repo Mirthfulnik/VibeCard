@@ -3,6 +3,76 @@
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
 
+  // Hero carousel
+  const heroCarousel = document.querySelector('.hero__carousel');
+  const heroSlides = heroCarousel ? heroCarousel.querySelectorAll('.hero__slide') : [];
+
+  if (heroSlides.length) {
+    let currentSlide = 0;
+
+    const setActiveSlide = (index) => {
+      heroSlides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === index;
+        slide.classList.toggle('is-active', isActive);
+        slide.setAttribute('aria-hidden', (!isActive).toString());
+      });
+    };
+
+    setActiveSlide(currentSlide);
+
+    if (heroSlides.length > 1) {
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let intervalId = null;
+
+      const stopCarousel = () => {
+        if (intervalId !== null) {
+          window.clearInterval(intervalId);
+          intervalId = null;
+        }
+      };
+
+      const startCarousel = () => {
+        if (motionQuery.matches) {
+          return;
+        }
+
+        stopCarousel();
+
+        intervalId = window.setInterval(() => {
+          currentSlide = (currentSlide + 1) % heroSlides.length;
+          setActiveSlide(currentSlide);
+        }, 4500);
+      };
+
+      const handleMotionPreferenceChange = (event) => {
+        if (event.matches) {
+          stopCarousel();
+          currentSlide = 0;
+          setActiveSlide(currentSlide);
+        } else {
+          startCarousel();
+        }
+      };
+
+      if (!motionQuery.matches) {
+        startCarousel();
+      }
+
+      if (heroCarousel) {
+        heroCarousel.addEventListener('mouseenter', stopCarousel);
+        heroCarousel.addEventListener('mouseleave', startCarousel);
+        heroCarousel.addEventListener('focusin', stopCarousel);
+        heroCarousel.addEventListener('focusout', startCarousel);
+      }
+
+      if (typeof motionQuery.addEventListener === 'function') {
+        motionQuery.addEventListener('change', handleMotionPreferenceChange);
+      } else if (typeof motionQuery.addListener === 'function') {
+        motionQuery.addListener(handleMotionPreferenceChange);
+      }
+    }
+  }
+
   // Mobile navigation
   const burger = document.querySelector('.header__burger');
   const mobileMenu = document.querySelector('.mobile-menu');
@@ -28,76 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-  // Smooth scroll for anchor links
-  const anchorLinks = document.querySelectorAll('a[href^="#"]');
-  const header = document.querySelector('.header');
-
-  anchorLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-      const hash = link.getAttribute('href');
-      if (hash.length > 1) {
-        const target = document.querySelector(hash);
-        if (target) {
-          event.preventDefault();
-          const headerHeight = header ? header.offsetHeight : 0;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 12;
-
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
-    });
-  });
-
-  // FAQ accordion
-  const faqItems = document.querySelectorAll('.faq__item');
-
-  faqItems.forEach((item) => {
-    const question = item.querySelector('.faq__question');
-    if (!question) return;
-
-    question.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      faqItems.forEach((faq) => faq.classList.remove('active'));
-      if (!isActive) {
-        item.classList.add('active');
-      }
-    });
-  });
-
-  // Demo iframe switching
-  const demoButtons = document.querySelectorAll('.demo__btn');
-  const demoIframe = document.getElementById('demo-iframe');
-
-  demoButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      demoButtons.forEach((btn) => btn.classList.remove('active'));
-      button.classList.add('active');
-      const site = button.getAttribute('data-site');
-      if (demoIframe && site) {
-        demoIframe.src = site;
-      }
-    });
-  });
-
-  // Telegram modal
-  const telegramButtons = document.querySelectorAll('.telegram-btn');
-  const telegramModal = document.getElementById('telegram-modal');
-  const telegramLink = document.getElementById('telegram-link');
-
-  telegramButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      const url = button.getAttribute('data-url');
-      if (telegramModal && telegramLink && url) {
-        telegramLink.href = url;
-        showModal(telegramModal);
-      }
-    });
-  });
 
   // Privacy modal
   const privacyLink = document.querySelector('.privacy-link');
