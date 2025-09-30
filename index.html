@@ -3,461 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Card - Создаем вайб-визитки для экспертов</title>
-    <meta name="description" content="Профессиональные вайб-визитки для экспертов от 5 дней. Эстетичная презентация ваших кейсов на любом устройстве клиента.">
+    <title>Vibe Card — вайб-визитки для экспертов</title>
+    <meta name="description" content="Vibe Card — создаём стильные вайб-визитки за 5 дней. Презентация экспертов, демо-портфолио, тарифы, отзывы и ответы на популярные вопросы." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="header__nav">
-                <div class="header__logo">
-                    <span class="logo-text">Vibe Card</span>
-                </div>
-                <button class="mobile-menu-btn" aria-label="Открыть меню">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="mobile-menu">
-                    <a href="#hero" class="nav-link">Главная</a>
-                    <a href="#about" class="nav-link">О визитках</a>
-                    <a href="#process" class="nav-link">Процесс</a>
-                    <a href="#demo" class="nav-link">Демо</a>
-                    <a href="#pricing" class="nav-link">Тарифы</a>
-                    <a href="#contact" class="nav-link">Контакты</a>
-                </div>
+    <header class="header" id="top">
+        <div class="container header__container">
+            <a href="#top" class="header__brand" aria-label="Vibe Card">
+                <img src="logo.webp" alt="Логотип Vibe Card" class="header__logo">
+                <span class="header__brand-text">Vibe Card</span>
+            </a>
+            <nav class="header__nav" aria-label="Главная навигация">
+                <a class="header__link" href="#hero">Главная</a>
+                <a class="header__link" href="#value">Преимущества</a>
+                <a class="header__link" href="#process">Процесс</a>
+                <a class="header__link" href="#demo">Демо</a>
+                <a class="header__link" href="#pricing">Тарифы</a>
+                <a class="header__link" href="#faq">FAQ</a>
+            </nav>
+            <div class="header__cta">
+                <a href="#contact" class="header__cta-link">Связаться</a>
+            </div>
+            <button class="header__burger" type="button" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" aria-hidden="true">
+            <nav class="mobile-menu__nav">
+                <a class="mobile-menu__link" href="#hero">Главная</a>
+                <a class="mobile-menu__link" href="#value">Преимущества</a>
+                <a class="mobile-menu__link" href="#process">Процесс</a>
+                <a class="mobile-menu__link" href="#demo">Демо</a>
+                <a class="mobile-menu__link" href="#pricing">Тарифы</a>
+                <a class="mobile-menu__link" href="#faq">FAQ</a>
+                <a class="mobile-menu__link mobile-menu__link--cta" href="#contact">Связаться</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="container">
-            <div class="hero__content">
-                <h1 class="hero__title">Создаем вайб-визитки<br>для экспертов от 5 дней</h1>
-                <h2 class="hero__subtitle">Эстетичная презентация ваших кейсов<br>на любом устройстве клиента</h2>
-                <div class="hero__buttons">
-                    <button class="btn btn--primary btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov">Связаться</button>
-                    <button class="btn btn--outline btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov">Получить бриф</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Рассказывайте о себе клиентам и делитесь своими кейсами легко</h2>
-            <h3 class="about__subtitle">Вайб-визитка – это:</h3>
-            <div class="advantages">
-                <div class="advantage-card">
-                    <div class="advantage-card__icon">🔗</div>
-                    <h4 class="advantage-card__title">Всё о вас и вашей работе — в одной ссылке</h4>
-                </div>
-                <div class="advantage-card">
-                    <div class="advantage-card__icon">✨</div>
-                    <h4 class="advantage-card__title">Создание профессионального впечатления с одного касания</h4>
-                </div>
-                <div class="advantage-card">
-                    <div class="advantage-card__icon">💬</div>
-                    <h4 class="advantage-card__title">Лёгкий способ начать разговор с кем угодно</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Section -->
-    <section id="trust" class="trust">
-        <div class="container">
-            <h2 class="section-title">На 40% увеличивает уровень доверия к эксперту<br>наличие профессионального сайта</h2>
-            <div class="chat-demo">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="chat-header">
-                            <span>Полина. Форум VMK</span>
+    <main>
+        <section class="hero" id="hero">
+            <div class="container hero__container">
+                <div class="hero__copy">
+                    <div class="eyebrow">Визитка, которая продаёт ваш опыт</div>
+                    <h1 class="hero__title">Создаём вайб‑визитки для экспертов&nbsp;за 5&nbsp;дней</h1>
+                    <p class="hero__subtitle">Эстетичная упаковка ваших кейсов, которая мгновенно формирует доверие и помогает назначить созвон уже в первом диалоге.</p>
+                    <ul class="hero__bullets">
+                        <li>Маркетинговое интервью и упаковка смыслов</li>
+                        <li>Адаптивный дизайн для любого устройства</li>
+                        <li>Готовая аналитика и поддержка после запуска</li>
+                    </ul>
+                    <div class="hero__actions">
+                        <a class="btn btn--primary telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Обсудить задачу</a>
+                        <a class="btn btn--ghost telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Получить бриф</a>
+                    </div>
+                    <div class="hero__stats">
+                        <div class="stat">
+                            <span class="stat__value">5–10 дней</span>
+                            <span class="stat__label">от идеи до публикации</span>
                         </div>
-                        <div class="chat-messages">
-                            <div class="message message--received">
-                                <div class="message__bubble">Никита, привет! Пришлёте портфолио?</div>
+                        <div class="stat">
+                            <span class="stat__value">40%</span>
+                            <span class="stat__label">рост доверия клиентов</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__value">3 кейса</span>
+                            <span class="stat__label">доступны в демо</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__visual">
+                    <div class="hero__card">
+                        <img src="Adobe Express - file (29).png" alt="Пример вайб-визитки Vibe Card" class="hero__image">
+                        <div class="hero__badge">Экспертные проекты без шаблонов</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="value" id="value">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Рассказывайте о себе и делитесь кейсами легко</h2>
+                    <p class="section-description">Вайб-визитка — это одна ссылка, где эксперт презентует свой опыт, продукты и контакт.</p>
+                </div>
+                <div class="value__grid">
+                    <article class="value-card">
+                        <div class="value-card__icon">🔗</div>
+                        <h3>Всё о вас — в одной ссылке</h3>
+                        <p>Бриф, УТП, регалии и портфолио собраны в последовательную историю, которой удобно делиться с клиентами.</p>
+                    </article>
+                    <article class="value-card">
+                        <div class="value-card__icon">✨</div>
+                        <h3>Продуманная визуальная айдентика</h3>
+                        <p>Не используем шаблоны. Подбираем цвет, типографику и композицию под ваш характер и нишу.</p>
+                    </article>
+                    <article class="value-card">
+                        <div class="value-card__icon">💬</div>
+                        <h3>Старт диалога в один клик</h3>
+                        <p>Сразу ведём клиента в Telegram, CRM или на оплату. Настраиваем аналитику и проверяем конверсию.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="trust" aria-label="Аргументы доверия">
+            <div class="container trust__container">
+                <div class="trust__card">
+                    <h2>Наличие профессиональной визитки повышает доверие к эксперту на 40%</h2>
+                    <p>С Vibe Card вы получаете цифровую визитку, которая работает как мини‑сайт: клиент видит результаты, продукты и путь взаимодействия за пару скроллов.</p>
+                    <div class="trust__chat">
+                        <div class="chat">
+                            <div class="chat__header">Полина · Форум ВМК</div>
+                            <div class="chat__messages">
+                                <div class="chat__bubble chat__bubble--in">Никита, привет! Пришлёте портфолио?</div>
+                                <div class="chat__bubble chat__bubble--out">Здравствуйте! Конечно — <span>https://nikita-sinopalnikov-marketer.ru/</span></div>
+                                <div class="chat__bubble chat__bubble--in">Вау! Такой подачи ещё не видела.</div>
+                                <div class="chat__bubble chat__bubble--out">Давайте обсудим детали и созвонимся завтра в 10:00?</div>
+                                <div class="chat__bubble chat__bubble--in">👍</div>
                             </div>
-                            <div class="message message--sent">
-                                <div class="message__bubble">Здравствуйте! Конечно: https://nikita-sinopalnikov-marketer.ru/</div>
-                            </div>
-                            <div class="message message--received">
-                                <div class="message__bubble">Здорово! Еще не видела такую подачу!</div>
-                            </div>
-                            <div class="message message--sent">
-                                <div class="message__bubble">Давайте расскажу, как такое сделать, и обсудим дела. Созвонимся в 10:00?</div>
-                            </div>
-                            <div class="message message--received">
-                                <div class="message__bubble">👍</div>
-                            </div>
                         </div>
                     </div>
                 </div>
+                <ul class="trust__list">
+                    <li>Фокус на смыслы, а не на шаблонный дизайн</li>
+                    <li>Продуманная структура для любой экспертной ниши</li>
+                    <li>Разработка и поддержка на no-code и код-решениях</li>
+                    <li>Подключение аналитики и мультиязычность по запросу</li>
+                </ul>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Process Section -->
-    <section id="process" class="process">
-        <div class="container">
-            <h2 class="section-title">Через 5-10 дней вы уже сможете использовать вайб-визитку</h2>
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="process-step__number">1</div>
-                    <div class="process-step__content">
-                        <h3>Бриф</h3>
-                        <p>Проводим интервью и собираем ключевую маркетинговую информацию или помогаем ее сформулировать</p>
-                    </div>
+        <section class="process" id="process">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Через 5–10 дней вы уже используете свою вайб‑визитку</h2>
+                    <p class="section-description">Проводим интервью, упаковываем экспертность, запускаем визитку и сопровождаем после запуска.</p>
                 </div>
-                <div class="process-step">
-                    <div class="process-step__number">2</div>
-                    <div class="process-step__content">
-                        <h3>Проект</h3>
-                        <p>Упаковываем материал в формат вайб-визитки и согласуем с вами</p>
+                <div class="timeline">
+                    <div class="timeline__item">
+                        <div class="timeline__count">01</div>
+                        <div>
+                            <h3>Бриф</h3>
+                            <p>Проводим интервью, собираем маркетинговую информацию и помогаем сформулировать позиционирование.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="process-step">
-                    <div class="process-step__number">3</div>
-                    <div class="process-step__content">
-                        <h3>Разработка</h3>
-                        <p>Пишем код с помощью нейросетей и тестируем в закрытом контуре</p>
+                    <div class="timeline__item">
+                        <div class="timeline__count">02</div>
+                        <div>
+                            <h3>Проект</h3>
+                            <p>Формируем структуру, сценарий скролла и визуальное направление, согласуем с вами.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="process-step">
-                    <div class="process-step__number">4</div>
-                    <div class="process-step__content">
-                        <h3>Тест</h3>
-                        <p>Демонстрируем вам рабочий прототип и тестируем пользовательский дизайн</p>
+                    <div class="timeline__item">
+                        <div class="timeline__count">03</div>
+                        <div>
+                            <h3>Разработка</h3>
+                            <p>Создаём адаптивную визитку, интегрируем нужные сервисы и тестируем на разных устройствах.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="process-step">
-                    <div class="process-step__number">5</div>
-                    <div class="process-step__content">
-                        <h3>Запуск</h3>
-                        <p>Публикуем вайб-визитку «Vibe Card» и настраиваем аналитику</p>
+                    <div class="timeline__item">
+                        <div class="timeline__count">04</div>
+                        <div>
+                            <h3>Тест</h3>
+                            <p>Показываем прототип, проверяем сценарии и корректируем на основе обратной связи.</p>
+                        </div>
+                    </div>
+                    <div class="timeline__item">
+                        <div class="timeline__count">05</div>
+                        <div>
+                            <h3>Запуск</h3>
+                            <p>Публикуем визитку, подключаем аналитику и сопровождаем в течение гарантийного периода.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Demo Section -->
-    <section id="demo" class="demo">
-        <div class="container">
-            <h2 class="section-title">Попробуйте результат</h2>
-            <div class="demo-controls">
-                <button class="demo-btn active" data-site="https://nikita-sinopalnikov-marketer.ru/">Никита</button>
-                <button class="demo-btn" data-site="https://mirthfulnik.github.io/valentin-poslanchik/">Валентин</button>
-                <button class="demo-btn" data-site="https://anastasiakorob.github.io/anastasiya-korob-psiholog/">Анастасия</button>
-            </div>
-            <div class="demo-phone">
-                <div class="demo-phone__frame">
-                    <div class="demo-phone__screen">
-                        <iframe id="demo-iframe" src="https://nikita-sinopalnikov-marketer.ru/" frameborder="0"></iframe>
+        <section class="demo" id="demo">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Попробуйте результат прямо сейчас</h2>
+                    <p class="section-description">Выберите визитку и посмотрите, как выглядит экспертная упаковка ваших коллег.</p>
+                </div>
+                <div class="demo__controls">
+                    <button class="demo__btn active" data-site="https://nikita-sinopalnikov-marketer.ru/">Никита</button>
+                    <button class="demo__btn" data-site="https://mirthfulnik.github.io/valentin-poslanchik/">Валентин</button>
+                    <button class="demo__btn" data-site="https://anastasiakorob.github.io/anastasiya-korob-psiholog/">Анастасия</button>
+                </div>
+                <div class="demo__frame">
+                    <div class="demo__phone">
+                        <div class="demo__screen">
+                            <iframe id="demo-iframe" src="https://nikita-sinopalnikov-marketer.ru/" title="Демо визитки" loading="lazy"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Reviews Section -->
-    <section id="reviews" class="reviews">
-        <div class="container">
-            <h2 class="section-title">Честные отзывы экспертов</h2>
-            <div class="reviews-grid">
-                <div class="review-placeholder">
-                    <div class="review-placeholder__content">
-                        <div class="review-placeholder__avatar"></div>
-                        <div class="review-placeholder__text">
-                            <div class="review-placeholder__line"></div>
-                            <div class="review-placeholder__line"></div>
-                            <div class="review-placeholder__line short"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-placeholder">
-                    <div class="review-placeholder__content">
-                        <div class="review-placeholder__avatar"></div>
-                        <div class="review-placeholder__text">
-                            <div class="review-placeholder__line"></div>
-                            <div class="review-placeholder__line"></div>
-                            <div class="review-placeholder__line short"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-placeholder">
-                    <div class="review-placeholder__content">
-                        <div class="review-placeholder__avatar"></div>
-                        <div class="review-placeholder__text">
-                            <div class="review-placeholder__line"></div>
-                            <div class="review-placeholder__line"></div>
-                            <div class="review-placeholder__line short"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-placeholder">
-                    <div class="review-placeholder__content">
-                        <div class="review-placeholder__avatar"></div>
-                        <div class="review-placeholder__text">
-                            <div class="review-placeholder__line"></div>
-                            <div class="review-placeholder__line"></div>
-                            <div class="review-placeholder__line short"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Форматы работы зависят от вашего знания себя</h2>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="pricing-card__header">
-                        <h3>Базовый</h3>
-                        <div class="pricing-card__price">25000 ₽</div>
-                        <div class="pricing-card__duration">от 3 дней</div>
-                    </div>
-                    <div class="pricing-card__description">«Vibe Card» из вашего готового материала</div>
-                    <ul class="pricing-card__features">
-                        <li>Бриф-интервью</li>
-                        <li>Маркетинговая упаковка</li>
-                        <li>«Vibe Card» дизайн</li>
-                        <li>Адаптивная верстка</li>
-                        <li>Базовое SEO</li>
-                        <li>Подключение аналитики</li>
-                        <li>10 дней поддержки</li>
+        <section class="results" id="results">
+            <div class="container results__container">
+                <div class="results__copy">
+                    <h2>Через 5 дней у вас на руках рабочая визитка</h2>
+                    <p>Мы адаптируем материалы под ваши задачи, соберём сценарий работы с аудиторией и подготовим инструкции по обновлению блока.</p>
+                    <ul class="results__list">
+                        <li>Упакованные кейсы, продукты и отзывы</li>
+                        <li>Подключённые CTA и формы коммуникации</li>
+                        <li>Подготовленная аналитика и SEO-основа</li>
+                        <li>Руководство по дальнейшим обновлениям</li>
                     </ul>
                 </div>
-                <div class="pricing-card pricing-card--popular">
-                    <div class="pricing-card__badge">Популярный</div>
-                    <div class="pricing-card__header">
-                        <h3>Стандарт</h3>
-                        <div class="pricing-card__price">35000 ₽</div>
-                        <div class="pricing-card__duration">от 5 дней</div>
+                <div class="results__table">
+                    <div class="results__row">
+                        <div class="results__cell">
+                            <h3>Базовый</h3>
+                            <p>Ваши материалы + дизайн и разработка</p>
+                        </div>
+                        <div class="results__cell">
+                            <h3>Стандарт</h3>
+                            <p>Доработаем сценарий и упаковку смыслов</p>
+                        </div>
+                        <div class="results__cell">
+                            <h3>Plus</h3>
+                            <p>Создаём материалы с нуля и ведём проект</p>
+                        </div>
                     </div>
-                    <div class="pricing-card__description">Адаптируем ваш материал под «Vibe Card» формат</div>
-                    <ul class="pricing-card__features">
-                        <li>Бриф-интервью</li>
-                        <li>Маркетинговая упаковка</li>
-                        <li>«Vibe Card» дизайн</li>
-                        <li>Адаптивная верстка</li>
-                        <li>Базовое SEO</li>
-                        <li>Подключение аналитики</li>
-                        <li>20 дней поддержки</li>
-                    </ul>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-card__header">
-                        <h3>Стандарт plus</h3>
-                        <div class="pricing-card__price">45000 ₽</div>
-                        <div class="pricing-card__duration">от 7 дней</div>
+                    <div class="results__row">
+                        <div class="results__cell">Маркетинговое интервью</div>
+                        <div class="results__cell">Адаптивная верстка</div>
+                        <div class="results__cell">Поддержка до 30 дней</div>
                     </div>
-                    <div class="pricing-card__description">Создаем материал с нуля</div>
-                    <ul class="pricing-card__features">
-                        <li>Бриф-интервью</li>
-                        <li>Маркетинговая упаковка</li>
-                        <li>«Vibe Card» дизайн</li>
-                        <li>Адаптивная верстка</li>
-                        <li>Базовое SEO</li>
-                        <li>Подключение аналитики</li>
-                        <li>30 дней поддержки</li>
-                    </ul>
                 </div>
             </div>
-            <p class="pricing-disclaimer">*Не оферта</p>
-        </div>
-    </section>
+        </section>
 
-    <!-- Guarantees Section -->
-    <section id="guarantees" class="guarantees">
-        <div class="container">
-            <h2 class="section-title">Гарантии</h2>
-            <div class="guarantees-grid">
-                <div class="guarantee-item">
-                    <div class="guarantee-item__icon">📋</div>
-                    <h3>Работаем<br>по договору</h3>
+        <section class="reviews" id="reviews">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Честные отзывы экспертов</h2>
+                    <p class="section-description">Отзывы собираем в процессе. По клику можно увеличить и рассмотреть в деталях.</p>
                 </div>
-                <div class="guarantee-item">
-                    <div class="guarantee-item__icon">⏰</div>
-                    <h3>Соблюдаем<br>сроки</h3>
-                </div>
-                <div class="guarantee-item">
-                    <div class="guarantee-item__icon">✅</div>
-                    <h3>Контролируем<br>качество</h3>
+                <div class="reviews__grid">
+                    <button class="review-card" data-image="image.png">
+                        <img src="image.png" alt="Отзыв №1" loading="lazy">
+                    </button>
+                    <button class="review-card" data-image="image2.png">
+                        <img src="image2.png" alt="Отзыв №2" loading="lazy">
+                    </button>
+                    <button class="review-card" data-image="image3.png">
+                        <img src="image3.png" alt="Отзыв №3" loading="lazy">
+                    </button>
+                    <button class="review-card" data-image="image4.png">
+                        <img src="image4.png" alt="Отзыв №4" loading="lazy">
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Ваши вопросы – наши ответы</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Сколько времени занимает создание вайб-визитки?</span>
-                        <span class="faq-arrow">↓</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Стандартное время разработки составляет 5-10 рабочих дней с момента утверждения технического задания и утверждения материалов.</p>
-                    </div>
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Выберите формат работы</h2>
+                    <p class="section-description">Стоимость рассчитываем индивидуально под задачу. Ниже — ориентиры по наполнению и срокам.</p>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Что входит в стоимость разработки?</span>
-                        <span class="faq-arrow">↓</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>В стоимость входит: «Vibe Card» дизайн, адаптивная верстка, базовая SEO-настройка, подключение счетчика сервиса Яндекс.Метрика. Расходы на покупку домена и хостинга рассчитываются отдельно.</p>
-                    </div>
+                <div class="pricing__grid">
+                    <article class="pricing-card">
+                        <div class="pricing-card__label">Базовый</div>
+                        <div class="pricing-card__price">от 25&nbsp;000 ₽</div>
+                        <p class="pricing-card__description">Создаем визитку из ваших материалов</p>
+                        <ul>
+                            <li>Маркетинговый бриф</li>
+                            <li>Дизайн и адаптивная верстка</li>
+                            <li>Подключение аналитики</li>
+                            <li>10 дней поддержки</li>
+                        </ul>
+                    </article>
+                    <article class="pricing-card pricing-card--featured">
+                        <div class="pricing-card__label">Стандарт</div>
+                        <div class="pricing-card__price">от 35&nbsp;000 ₽</div>
+                        <p class="pricing-card__description">Помогаем структурировать смысл и сценарий</p>
+                        <ul>
+                            <li>Аудит экспертности и УТП</li>
+                            <li>Сценарий скролла и редактура</li>
+                            <li>Интеграции с сервисами</li>
+                            <li>20 дней поддержки</li>
+                        </ul>
+                        <span class="pricing-card__badge">Популярно</span>
+                    </article>
+                    <article class="pricing-card">
+                        <div class="pricing-card__label">Plus</div>
+                        <div class="pricing-card__price">от 45&nbsp;000 ₽</div>
+                        <p class="pricing-card__description">Создаем материалы с нуля и ведем запуск</p>
+                        <ul>
+                            <li>Интервью и раскадровка</li>
+                            <li>Контент, копирайт и визуал</li>
+                            <li>SEO и мультиязычность</li>
+                            <li>30 дней поддержки</li>
+                        </ul>
+                    </article>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Можно ли вносить правки в готовый сайт?</span>
-                        <span class="faq-arrow">↓</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Да, в течение гарантийного периода (10, 20 и 30 дней в зависимости от тарифа) мы бесплатно вносим необходимые корректировки. Дополнительные изменения обсуждаются отдельно.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Нужно ли мне покупать хостинг и домен?</span>
-                        <span class="faq-arrow">↓</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Домен и хостинг приобретаются отдельно. Мы поможем выбрать подходящие варианты и возьмем на себя все технические настройки.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Будет ли сайт отображаться на мобильных устройствах?</span>
-                        <span class="faq-arrow">↓</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Да, все наши сайты создаются с адаптивной версткой и корректно отображаются на компьютерах, планшетах и смартфонах.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Предоставляете ли вы техническую поддержку?</span>
-                        <span class="faq-arrow">↓</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Да, техническая поддержка входит в стоимость разработки. Срок поддержки зависит от выбранного тарифа: от 10 до 30 дней</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Можно ли интегрировать сайт с социальными сетями?</span>
-                        <span class="faq-arrow">↓</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Конечно! Мы можем интегрировать ваш сайт с популярными социальными сетями: ВКонтакте, Telegram и другими.</p>
-                    </div>
-                </div>
+                <p class="pricing__note">*Не является публичной офертой</p>
             </div>
-            <div class="faq-cta">
-                <button class="btn btn--primary telegram-btn" data-url="https://t.me/nikitasinopalnikov">Задать вопрос</button>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-avatar">
-                    <div class="avatar-placeholder"></div>
+        <section class="guarantees">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Берём ответственность за результат</h2>
                 </div>
-                <div class="contact-info">
-                    <blockquote class="contact-quote">
-                        «Я упаковываю ваш опыт в вайб-визитку – ваш образ становится ярче в глазах клиентов уже на следующей неделе»
-                    </blockquote>
-                    <div class="contact-author">
-                        <h3>Никита Синопальников</h3>
-                        <p>Вайб-разработчик и коммуникационный маркетолог</p>
+                <div class="guarantees__grid">
+                    <div class="guarantee-card">
+                        <div class="guarantee-card__icon">📋</div>
+                        <h3>Работаем по договору</h3>
+                        <p>Фиксируем этапы, сроки и результаты. Документально подтверждаем гарантию.</p>
+                    </div>
+                    <div class="guarantee-card">
+                        <div class="guarantee-card__icon">⏰</div>
+                        <h3>Соблюдаем сроки</h3>
+                        <p>Каждый этап прозрачный: вы видите прогресс и знаете точную дату релиза.</p>
+                    </div>
+                    <div class="guarantee-card">
+                        <div class="guarantee-card__icon">✅</div>
+                        <h3>Контролируем качество</h3>
+                        <p>Тестируем на устройствах, подключаем аналитику и даём рекомендации по развитию.</p>
                     </div>
                 </div>
             </div>
-            <div class="contact-cta">
-                <h2>Давайте начнем?</h2>
-                <div class="contact-buttons">
-                    <button class="btn btn--primary btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov">Связаться</button>
-                    <button class="btn btn--outline btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov">Получить бриф</button>
+        </section>
+
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Частые вопросы</h2>
+                </div>
+                <div class="faq__list">
+                    <article class="faq__item">
+                        <button class="faq__question" type="button">
+                            <span>Сколько времени занимает создание визитки?</span>
+                            <span class="faq__icon"></span>
+                        </button>
+                        <div class="faq__answer">
+                            Стандартное время разработки — 5–10 рабочих дней после согласования материалов и структуры.
+                        </div>
+                    </article>
+                    <article class="faq__item">
+                        <button class="faq__question" type="button">
+                            <span>Что входит в стоимость?</span>
+                            <span class="faq__icon"></span>
+                        </button>
+                        <div class="faq__answer">
+                            Дизайн, адаптивная верстка, подключение аналитики, базовая SEO-настройка и гарантийная поддержка.
+                        </div>
+                    </article>
+                    <article class="faq__item">
+                        <button class="faq__question" type="button">
+                            <span>Можно ли вносить правки?</span>
+                            <span class="faq__icon"></span>
+                        </button>
+                        <div class="faq__answer">
+                            В течение гарантийного периода вносим правки бесплатно. Дополнительные доработки обсуждаем отдельно.
+                        </div>
+                    </article>
+                    <article class="faq__item">
+                        <button class="faq__question" type="button">
+                            <span>Нужно ли покупать хостинг и домен?</span>
+                            <span class="faq__icon"></span>
+                        </button>
+                        <div class="faq__answer">
+                            Помогаем подобрать и подключить домен с хостингом. Расходы на регистрацию оплачиваются отдельно.
+                        </div>
+                    </article>
+                    <article class="faq__item">
+                        <button class="faq__question" type="button">
+                            <span>Как работает поддержка?</span>
+                            <span class="faq__icon"></span>
+                        </button>
+                        <div class="faq__answer">
+                            Поддерживаем проект в течение 10, 20 или 30 дней в зависимости от выбранного формата и решаем задачи по развитию.
+                        </div>
+                    </article>
+                </div>
+                <div class="faq__cta">
+                    <a class="btn btn--primary telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Задать вопрос</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <section class="contact" id="contact">
+            <div class="container contact__container">
+                <div class="contact__card">
+                    <div class="contact__avatar">
+                        <img src="photo.webp" alt="Никита Синопальников" loading="lazy">
+                    </div>
+                    <div class="contact__content">
+                        <h2>Давайте создадим вашу визитку</h2>
+                        <p>Я упаковываю опыт экспертов, чтобы ваши клиенты принимали решение быстрее. Расскажите, какие задачи стоят перед вами — и мы предложим сценарий.</p>
+                        <div class="contact__cta">
+                            <a class="btn btn--primary btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Связаться</a>
+                            <a class="btn btn--ghost btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Получить бриф</a>
+                        </div>
+                        <div class="contact__meta">Вайб-разработчик и коммуникационный маркетолог</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <span class="logo-text">Vibe Card</span>
-                </div>
-                <div class="footer-links">
-                    <a href="https://t.me/+alx6mct28mQzOTA6" target="_blank">Мой Телеграм-канал: «Уже летим 🚀»</a>
-                    <a href="#" class="privacy-link">Политика конфиденциальности</a>
-                </div>
+        <div class="container footer__container">
+            <div class="footer__brand">
+                <img src="logo.webp" alt="Логотип Vibe Card" class="footer__logo">
+                <span>Vibe Card</span>
+            </div>
+            <div class="footer__links">
+                <a href="https://t.me/+alx6mct28mQzOTA6" target="_blank" rel="noopener">Телеграм‑канал «Уже летим 🚀»</a>
+                <a href="#" class="privacy-link">Политика конфиденциальности</a>
             </div>
         </div>
     </footer>
 
-    <!-- Telegram Modal -->
-    <div class="modal hidden" id="telegram-modal">
+    <div class="modal hidden" id="telegram-modal" role="dialog" aria-modal="true" aria-labelledby="telegram-title">
         <div class="modal__overlay"></div>
         <div class="modal__content">
-            <button class="modal__close" aria-label="Закрыть">&times;</button>
+            <button class="modal__close" aria-label="Закрыть модальное окно">&times;</button>
             <div class="modal__body">
-                <h3>Связаться в Telegram</h3>
-                <p>Я отвечу на все ваши вопросы в Telegram. Переходим в мессенджер?</p>
+                <h3 id="telegram-title">Связаться в Telegram</h3>
+                <p>Откроем Telegram и продолжим обсуждение задачи? Ответим на вопросы и пришлём бриф.</p>
                 <div class="modal__buttons">
-                    <a href="#" class="btn btn--primary" target="_blank" id="telegram-link">Перейти в Telegram</a>
-                    <button class="btn btn--secondary modal-close-btn">Отмена</button>
+                    <a href="#" class="btn btn--primary" target="_blank" rel="noopener" id="telegram-link">Перейти в Telegram</a>
+                    <button class="btn btn--ghost modal-close-btn" type="button">Отмена</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Privacy Modal -->
-    <div class="modal hidden" id="privacy-modal">
+    <div class="modal hidden" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
         <div class="modal__overlay"></div>
         <div class="modal__content modal__content--large">
-            <button class="modal__close" aria-label="Закрыть">&times;</button>
+            <button class="modal__close" aria-label="Закрыть модальное окно">&times;</button>
             <div class="modal__body">
-                <h3>Политика конфиденциальности</h3>
+                <h3 id="privacy-title">Политика конфиденциальности</h3>
                 <div class="privacy-content">
                     <p><strong>Политика в отношении обработки персональных данных</strong></p>
-                    <p>Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности, предпринимаемые Синопальниковым Никитой Сергеевичем (самозанятый) (далее — Оператор).</p>
-                    
-                    <h4>1. Общие положения</h4>
-                    <p>1.1. Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных.</p>
-                    <p>1.2. Настоящая политика Оператора (далее — Политика) применяется ко всей информации, которую Оператор может получить о посетителях веб-сайта https://www.vibecard.ru/.</p>
-                    
-                    <h4>2. Основные понятия, используемые в Политике</h4>
-                    <p>2.1. Автоматизированная обработка персональных данных — обработка с помощью средств вычислительной техники.</p>
-                    <p>2.2. Блокирование персональных данных — временное прекращение обработки (за исключением случаев, если обработка необходима для уточнения персональных данных).</p>
-                    <p>2.3. Веб-сайт — совокупность графических и информационных материалов, а также программ для ЭВМ и баз данных, обеспечивающих их доступность в сети интернет по сетевому адресу https://www.vibecard.ru/.</p>
-                    
-                    <h4>6. Цели обработки персональных данных</h4>
-                    <p>Цель обработки: информирование Пользователя посредством отправки электронных писем, предоставление доступа Пользователю к сервисам и информации, содержащейся на веб-сайте.</p>
-                    <p>Персональные данные: фамилия, имя, отчество; электронный адрес; номера телефонов; иные данные, предоставленные Пользователем.</p>
-                    
-                    <h4>12. Заключительные положения</h4>
-                    <p>12.1. Пользователь может получить любые разъяснения по интересующим вопросам, обратившись к Оператору по электронной почте.</p>
-                    <p>12.2. В данном документе будут отражены любые изменения политики обработки персональных данных Оператором. Политика действует бессрочно до замены ее новой версией.</p>
-                    <p>12.3. Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу https://www.vibecard.ru/.</p>
+                    <p>Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности.</p>
+                    <p>Оператор: Синопальников Никита Сергеевич (самозанятый).</p>
+                    <p>Политика применяется ко всей информации, которую оператор может получить о посетителях сайта https://www.vibecard.ru/.</p>
+                    <p>Цель обработки персональных данных — информирование пользователя посредством мессенджеров и отправки электронных писем, а также предоставление доступа к сервисам и информации сайта.</p>
+                    <p>Персональные данные, которые обрабатываются: фамилия, имя, отчество, номер телефона, адрес электронной почты, дополнительные данные, указанные пользователем.</p>
+                    <p>Пользователь может получить разъяснения по вопросам обработки персональных данных, обратившись к оператору по электронному адресу. Изменения политики вступают в силу с момента публикации новой версии.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
+        <div class="modal__overlay"></div>
+        <div class="modal__content modal__content--image">
+            <button class="modal__close" aria-label="Закрыть модальное окно">&times;</button>
+            <div class="modal__body modal__body--image">
+                <img src="" alt="Просмотр отзыва" id="review-modal-image">
             </div>
         </div>
     </div>
