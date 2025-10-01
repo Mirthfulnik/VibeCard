@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
-        depth: 220,
-        modifier: 1.1,
+        depth: 160,
+        modifier: 0.9,
         slideShadows: false,
       },
       pagination: paginationEl
@@ -38,12 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
       breakpoints: {
         0: {
           coverflowEffect: {
-            depth: 140,
+            depth: 120,
           },
         },
         768: {
           coverflowEffect: {
-            depth: 220,
+            depth: 160,
           },
         },
       },
