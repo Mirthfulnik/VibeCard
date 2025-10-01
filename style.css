@@ -334,7 +334,7 @@ section {
   --hero-frame-padding: clamp(4px, 0.8vw, 8px);
   padding: var(--hero-frame-padding);
   border-radius: var(--radius-xl);
-  background: linear-gradient(180deg, #ffffff 0%, #f4f6fb 100%);
+  background: linear-gradient(180deg, rgba(11, 17, 32, 0.94) 0%, rgba(15, 23, 42, 0.94) 100%);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
