@@ -1,6 +1,3 @@
-+26
--12
-
 // Vibe Card Landing Page interactions
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,89 +5,111 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hero carousel
   const heroCarousel = document.querySelector('.hero__carousel');
-  const heroSlides = heroCarousel ? Array.from(heroCarousel.querySelectorAll('.hero-slide')) : [];
 
-  if (heroSlides.length) {
-    let currentSlide = 0;
-    const totalSlides = heroSlides.length;
+  if (heroCarousel && typeof Swiper !== 'undefined') {
+    const paginationEl = heroCarousel.querySelector('.hero__pagination');
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    const getOffset = (index) => {
-      let offset = index - currentSlide;
-      if (offset > totalSlides / 2) {
-        offset -= totalSlides;
-      } else if (offset < -totalSlides / 2) {
-        offset += totalSlides;
+    const heroSwiper = new Swiper(heroCarousel, {
+      loop: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      spaceBetween: 0,
+      grabCursor: true,
+      effect: 'coverflow',
+      speed: 800,
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 220,
+        modifier: 1.1,
+        slideShadows: false,
+      },
+      pagination: paginationEl
+        ? {
+            el: paginationEl,
+            clickable: true,
+          }
+        : undefined,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        0: {
+          coverflowEffect: {
+            depth: 140,
+          },
+        },
+        768: {
+          coverflowEffect: {
+            depth: 220,
+          },
+        },
+      },
+    });
+
+    const stopAutoplay = () => {
+      if (heroSwiper.autoplay) {
+        heroSwiper.autoplay.stop();
       }
-      return offset;
     };
 
-    const updateSlides = () => {
-      heroSlides.forEach((slide, index) => {
-        const offset = getOffset(index);
-        slide.dataset.position = offset;
-        slide.style.setProperty('--offset', offset);
-        slide.setAttribute('aria-hidden', (offset !== 0).toString());
-        slide.classList.toggle('is-active', offset === 0);
-        slide.style.zIndex = String(totalSlides - Math.abs(offset));
-      });
+    const startAutoplay = () => {
+      if (heroSwiper.autoplay) {
+        heroSwiper.autoplay.start();
+      }
     };
 
-    updateSlides();
+    if (motionQuery.matches) {
+      stopAutoplay();
+    } else {
+      startAutoplay();
+    }
 
-    if (totalSlides > 1) {
-      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-      let intervalId = null;
+    const handleMotionPreferenceChange = (event) => {
+      if (event.matches) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    };
 
-      const stopCarousel = () => {
-        if (intervalId !== null) {
-          window.clearInterval(intervalId);
-          intervalId = null;
+    if (typeof motionQuery.addEventListener === 'function') {
+      motionQuery.addEventListener('change', handleMotionPreferenceChange);
+    } else if (typeof motionQuery.addListener === 'function') {
+      motionQuery.addListener(handleMotionPreferenceChange);
+    }
+
+    if (heroSwiper.autoplay) {
+      const handleMouseEnter = () => stopAutoplay();
+      const handleMouseLeave = () => {
+        if (!motionQuery.matches) {
+          startAutoplay();
         }
       };
 
-      const startCarousel = () => {
-        if (motionQuery.matches) {
-          return;
-        }
-
-        stopCarousel();
-
-        intervalId = window.setInterval(() => {
-          currentSlide = (currentSlide + 1) % totalSlides;
-          updateSlides();
-        }, 4000);
-      };
-
-      const handleMotionPreferenceChange = (event) => {
-        if (event.matches) {
-          stopCarousel();
-          currentSlide = 0;
-          updateSlides();
-        } else {
-          startCarousel();
-        }
-      };
-
-      if (!motionQuery.matches) {
-        startCarousel();
-      }
-
-      if (heroCarousel) {
-        heroCarousel.addEventListener('mouseenter', stopCarousel);
-        heroCarousel.addEventListener('mouseleave', startCarousel);
-        heroCarousel.addEventListener('focusin', stopCarousel);
-        heroCarousel.addEventListener('focusout', startCarousel);
-      }
-
-      if (typeof motionQuery.addEventListener === 'function') {
-        motionQuery.addEventListener('change', handleMotionPreferenceChange);
-      } else if (typeof motionQuery.addListener === 'function') {
-        motionQuery.addListener(handleMotionPreferenceChange);
-      }
+      heroCarousel.addEventListener('mouseenter', handleMouseEnter);
+      heroCarousel.addEventListener('mouseleave', handleMouseLeave);
+      heroCarousel.addEventListener('focusin', handleMouseEnter);
+      heroCarousel.addEventListener('focusout', handleMouseLeave);
     }
   }
 
   // Mobile navigation
+  const burger = document.querySelector('.header__burger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+  if (burger && mobileMenu) {
+    burger.addEventListener('click', () => {
+      const isActive = burger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isActive);
+      burger.setAttribute('aria-expanded', String(isActive));
+      mobileMenu.setAttribute('aria-hidden', String(!isActive));
+      body.style.overflow = isActive ? 'hidden' : '';
+    });
+
     mobileLinks.forEach((link) => {
       link.addEventListener('click', () => {
         burger.classList.remove('active');
