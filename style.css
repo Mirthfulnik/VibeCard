@@ -331,7 +331,7 @@ section {
 .hero__carousel {
   position: relative;
   width: clamp(260px, 32vw, 380px);
-  --hero-frame-padding: clamp(8px, 1.2vw, 14px);
+  --hero-frame-padding: clamp(4px, 0.8vw, 8px);
   padding: var(--hero-frame-padding);
   border-radius: var(--radius-xl);
   background: linear-gradient(180deg, #ffffff 0%, #f4f6fb 100%);
