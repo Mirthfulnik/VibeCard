@@ -1235,10 +1235,38 @@ section {
 
   .hero__container {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "hero-title"
+      "hero-visual"
+      "hero-subtitle"
+      "hero-stats"
+      "hero-actions";
+    gap: clamp(24px, 7vw, 36px);
+  }
+
+  .hero__copy {
+    display: contents;
+  }
+
+  .hero__title {
+    grid-area: hero-title;
+  }
+
+  .hero__subtitle {
+    grid-area: hero-subtitle;
+  }
+
+  .hero__stats {
+    grid-area: hero-stats;
+  }
+
+  .hero__actions {
+    grid-area: hero-actions;
   }
 
   .hero__visual {
-    order: 1;
+    grid-area: hero-visual;
+    justify-content: center;
   }
 
   .trust__container {
