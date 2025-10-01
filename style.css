@@ -337,6 +337,22 @@ section {
   overflow: visible;
 }
 
+@media (min-width: 1024px) {
+  .hero__container {
+    gap: clamp(56px, 8vw, 120px);
+  }
+
+  .hero__visual {
+    justify-content: flex-end;
+    padding-left: clamp(40px, 8vw, 120px);
+    overflow: hidden;
+  }
+
+  .hero__carousel {
+    width: clamp(260px, 30vw, 360px);
+    max-width: 100%;
+  }
+}
 .hero__carousel .swiper-wrapper {
   align-items: center;
 }
