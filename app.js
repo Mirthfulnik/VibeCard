@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         intervalId = window.setInterval(() => {
           currentSlide = (currentSlide + 1) % heroSlides.length;
           setActiveSlide(currentSlide);
-        }, 4500);
+        }, 3000);
       };
 
       const handleMotionPreferenceChange = (event) => {
