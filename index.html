@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,20 +34,7 @@
                 <span></span>
             </button>
         </div>
-        <div class="mobile-menu" aria-hidden="true">
-            <nav class="mobile-menu__nav">
-                <a class="mobile-menu__link" href="#hero">Главная</a>
-                <a class="mobile-menu__link" href="#value">Преимущества</a>
-                <a class="mobile-menu__link" href="#process">Процесс</a>
-                <a class="mobile-menu__link" href="#demo">Демо</a>
-                <a class="mobile-menu__link" href="#pricing">Тарифы</a>
-                <a class="mobile-menu__link" href="#faq">FAQ</a>
-                <a class="mobile-menu__link mobile-menu__link--cta" href="#contact">Связаться</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
+@@ -50,74 +51,75 @@
         <section class="hero" id="hero">
             <div class="container hero__container">
                 <div class="hero__copy">
@@ -72,23 +60,23 @@
                     </div>
                 </div>
                 <div class="hero__visual">
-                            <div class="hero__carousel" aria-live="polite">
-                        <div class="hero__slides">
-                                                        <article class="hero-slide is-active">
+                    <div class="hero__carousel swiper" aria-live="polite">
+                        <div class="swiper-wrapper">
+                            <article class="hero-slide swiper-slide">
                                 <img src="FirstScreen1.png" alt="Визитка эксперта Анастасии Короб" class="hero-slide__image">
                                 <div class="hero-slide__content">
                                     <h3 class="hero-slide__title">Анастасия Короб</h3>
                                     <p class="hero-slide__meta">Срок изготовления: 3 дня</p>
                                 </div>
                             </article>
-                            <article class="hero-slide">
+                            <article class="hero-slide swiper-slide">
                                 <img src="FirstScreen2.png" alt="Визитка эксперта Валентина Посланчика" class="hero-slide__image" loading="lazy">
                                 <div class="hero-slide__content">
                                     <h3 class="hero-slide__title">Валентин Посланчик</h3>
                                     <p class="hero-slide__meta">Срок изготовления: 5 дней</p>
                                 </div>
                             </article>
-                            <article class="hero-slide">
+                            <article class="hero-slide swiper-slide">
                                 <img src="FirstScreen3.png" alt="Визитка эксперта Анастасии Короб" class="hero-slide__image" loading="lazy">
                                 <div class="hero-slide__content">
                                     <h3 class="hero-slide__title">Анастасия Короб</h3>
@@ -96,6 +84,7 @@
                                 </div>
                             </article>
                         </div>
+                        <div class="hero__pagination"></div>
                     </div>
                 </div>
             </div>
@@ -486,6 +475,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
