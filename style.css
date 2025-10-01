@@ -213,7 +213,7 @@ section {
 }
 
 .hero {
-  padding-top: clamp(120px, 18vw, 180px);
+  padding-top: clamp(72px, 11vw, 140px);
 }
 
 .hero__container {
