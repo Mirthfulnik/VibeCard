@@ -1,3 +1,6 @@
++26
+-12
+
 // Vibe Card Landing Page interactions
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -5,22 +8,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hero carousel
   const heroCarousel = document.querySelector('.hero__carousel');
-  const heroSlides = heroCarousel ? heroCarousel.querySelectorAll('.hero__slide') : [];
+  const heroSlides = heroCarousel ? Array.from(heroCarousel.querySelectorAll('.hero-slide')) : [];
 
   if (heroSlides.length) {
     let currentSlide = 0;
+    const totalSlides = heroSlides.length;
 
-    const setActiveSlide = (index) => {
-      heroSlides.forEach((slide, slideIndex) => {
-        const isActive = slideIndex === index;
-        slide.classList.toggle('is-active', isActive);
-        slide.setAttribute('aria-hidden', (!isActive).toString());
+    const getOffset = (index) => {
+      let offset = index - currentSlide;
+      if (offset > totalSlides / 2) {
+        offset -= totalSlides;
+      } else if (offset < -totalSlides / 2) {
+        offset += totalSlides;
+      }
+      return offset;
+    };
+
+    const updateSlides = () => {
+      heroSlides.forEach((slide, index) => {
+        const offset = getOffset(index);
+        slide.dataset.position = offset;
+        slide.style.setProperty('--offset', offset);
+        slide.setAttribute('aria-hidden', (offset !== 0).toString());
+        slide.classList.toggle('is-active', offset === 0);
+        slide.style.zIndex = String(totalSlides - Math.abs(offset));
       });
     };
 
-    setActiveSlide(currentSlide);
+    updateSlides();
 
-    if (heroSlides.length > 1) {
+    if (totalSlides > 1) {
       const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       let intervalId = null;
 
@@ -39,16 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
         stopCarousel();
 
         intervalId = window.setInterval(() => {
-          currentSlide = (currentSlide + 1) % heroSlides.length;
-          setActiveSlide(currentSlide);
-        }, 3000);
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateSlides();
+        }, 4000);
       };
 
       const handleMotionPreferenceChange = (event) => {
         if (event.matches) {
           stopCarousel();
           currentSlide = 0;
-          setActiveSlide(currentSlide);
+          updateSlides();
         } else {
           startCarousel();
         }
@@ -74,20 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Mobile navigation
-  const burger = document.querySelector('.header__burger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileLinks = document.querySelectorAll('.mobile-menu__link');
-
-  if (burger && mobileMenu) {
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('active');
-      mobileMenu.classList.toggle('open');
-      const expanded = burger.classList.contains('active');
-      burger.setAttribute('aria-expanded', expanded);
-      mobileMenu.setAttribute('aria-hidden', !expanded);
-      body.style.overflow = expanded ? 'hidden' : '';
-    });
-
     mobileLinks.forEach((link) => {
       link.addEventListener('click', () => {
         burger.classList.remove('active');
