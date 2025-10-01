@@ -95,7 +95,12 @@ section {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--color-accent), #9466ff);
+  background: rgba(8, 12, 24, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top-left-radius: clamp(16px, 3vw, 24px);
+  border-top-right-radius: clamp(16px, 3vw, 24px);
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
   box-shadow: 0 14px 35px rgba(124, 92, 255, 0.25);
 }
 
