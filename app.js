@@ -131,7 +131,7 @@ const handleMouseEnter = () => stopAutoplay();
     const destroyValueSwiper = () => {
       if (!valueSwiper) return;
       valueSwiper.destroy(true, true);
-      valueSwiper = null;
+     valueSwiper = null;
       if (typeof valueSliderEl.scrollTo === 'function') {
         valueSliderEl.scrollTo({ left: 0, behavior: 'auto' });
       } else {
@@ -156,127 +156,171 @@ const handleMouseEnter = () => stopAutoplay();
     }
   }
 // Demo preview controls
-  const demoSection = document.querySelector('.demo');
-  const demoIframe = document.getElementById('demo-iframe');
-  const demoButtons = demoSection ? demoSection.querySelectorAll('.demo__btn') : [];
-  const demoOverlay = demoSection ? demoSection.querySelector('.demo__overlay') : null;
-  let demoInteractionTimeout;
+  const demoCarouselEl = document.querySelector('.demo__carousel');
 
-  const disableDemoInteraction = () => {
-    if (!demoIframe || !demoOverlay) return;
-    demoIframe.style.pointerEvents = 'none';
-    demoOverlay.classList.remove('is-interacting');
-    clearTimeout(demoInteractionTimeout);
-  };
+  if (demoCarouselEl && typeof Swiper !== 'undefined') {
+    const paginationEl = demoCarouselEl.querySelector('.demo__pagination');
+    const demoSlides = Array.from(demoCarouselEl.querySelectorAll('.demo-slide'));
+    const overlayControllers = new Map();
 
-  const enableDemoInteraction = (duration = 800) => {
-    if (!demoIframe || !demoOverlay) return;
-    demoOverlay.classList.add('is-interacting');
-    demoIframe.style.pointerEvents = 'auto';
-    clearTimeout(demoInteractionTimeout);
-    demoInteractionTimeout = window.setTimeout(() => {
-      disableDemoInteraction();
-    }, duration);
-  };
-
-  const setActiveDemo = (button) => {
-    if (!button || !demoIframe) return;
-    const targetUrl = button.getAttribute('data-site');
-    if (!targetUrl) return;
-
-    demoButtons.forEach((btn) => btn.classList.toggle('active', btn === button));
-
-    if (demoIframe.src !== targetUrl) {
-      demoIframe.src = targetUrl;
-    }
-
-    disableDemoInteraction();
-  };
-
-  if (demoButtons.length && demoIframe) {
-    demoButtons.forEach((button) => {
-      button.addEventListener('click', () => setActiveDemo(button));
-      button.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          setActiveDemo(button);
-        }
-      });
-    });
-  }
-
-  if (demoIframe) {
-    demoIframe.addEventListener('load', () => {
-      disableDemoInteraction();
-    });
-  }
-
-  if (demoOverlay && demoIframe) {
-    disableDemoInteraction();
-
-    const handleWheel = (event) => {
-      enableDemoInteraction();
-      try {
-        demoIframe.contentWindow.scrollBy({ top: event.deltaY, left: 0, behavior: 'auto' });
-      } catch (error) {
-        // Ignore cross-origin access errors
-      }
-      event.preventDefault();
+    const ensureFrameLoaded = (slide) => {
+      if (!slide) return;
+      const iframe = slide.querySelector('.demo-preview__frame');
+      if (!iframe || iframe.dataset.loaded === 'true') return;
+      const site = slide.getAttribute('data-site');
+      if (!site) return;
+      iframe.src = site;
+      iframe.dataset.loaded = 'true';
     };
 
-    demoOverlay.addEventListener('wheel', handleWheel, { passive: false });
+    const createOverlayController = (slide) => {
+      const iframe = slide.querySelector('.demo-preview__frame');
+      const overlay = slide.querySelector('.demo-preview__overlay');
+      if (!iframe || !overlay) return null;
 
-    demoOverlay.addEventListener('click', (event) => {
-      event.preventDefault();
-    });
+      let interactionTimeout;
 
-    demoOverlay.addEventListener('mouseleave', () => {
-      disableDemoInteraction();
-    });
+      const disable = () => {
+        iframe.style.pointerEvents = 'none';
+        overlay.classList.remove('is-interacting');
+        clearTimeout(interactionTimeout);
+      };
 
-    demoOverlay.addEventListener(
-      'touchstart',
-      () => {
-        enableDemoInteraction(1500);
-      },
-      { passive: true }
-    );
+      const enable = (duration = 900) => {
+        overlay.classList.add('is-interacting');
+        iframe.style.pointerEvents = 'auto';
+        clearTimeout(interactionTimeout);
+        interactionTimeout = window.setTimeout(() => {
+          disable();
+        }, duration);
+      };
 
-    demoOverlay.addEventListener(
-      'touchmove',
-      (event) => {
-        enableDemoInteraction(1500);
+      const handleWheel = (event) => {
+        enable();
+        try {
+          iframe.contentWindow.scrollBy({ top: event.deltaY, left: 0, behavior: 'auto' });
+        } catch (error) {
+          // Ignore cross-origin access errors
+        }
         event.preventDefault();
-      },
-      { passive: false }
-    );
+      };
 
-    demoOverlay.addEventListener(
-      'touchend',
-      () => {
-        disableDemoInteraction();
-      },
-      { passive: true }
-    );
+      overlay.addEventListener('wheel', handleWheel, { passive: false });
 
-    demoOverlay.addEventListener(
-      'touchcancel',
-      () => {
-        disableDemoInteraction();
-      },
-      { passive: true }
-    );
-
-    demoOverlay.addEventListener('pointerdown', (event) => {
-      if (event.pointerType === 'mouse') {
+      overlay.addEventListener('click', (event) => {
         event.preventDefault();
+      });
+
+      overlay.addEventListener('mouseleave', () => {
+        disable();
+      });
+
+      overlay.addEventListener(
+        'touchstart',
+        () => {
+          enable(1500);
+        },
+        { passive: true }
+      );
+
+      overlay.addEventListener(
+        'touchmove',
+        (event) => {
+          enable(1500);
+          event.preventDefault();
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener(
+        'touchend',
+        () => {
+          disable();
+        },
+        { passive: true }
+      );
+
+      overlay.addEventListener(
+        'touchcancel',
+        () => {
+          disable();
+        },
+        { passive: true }
+      );
+
+      overlay.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse') {
+          event.preventDefault();
+        }
+      });
+
+      overlay.addEventListener('pointerup', (event) => {
+        if (event.pointerType === 'mouse') {
+          disable();
+        }
+      });
+
+      disable();
+
+      return { disable, enable };
+    };
+
+    const getOverlayController = (slide) => {
+      if (!slide) return null;
+      if (overlayControllers.has(slide)) {
+        return overlayControllers.get(slide);
       }
+      const controller = createOverlayController(slide);
+      if (controller) {
+        overlayControllers.set(slide, controller);
+      }
+      return controller;
+    };
+
+    const handleActiveSlide = (index) => {
+      const targetSlides = [index, index - 1, index + 1]
+        .map((idx) => demoSlides[idx])
+        .filter(Boolean);
+
+      targetSlides.forEach((slide) => {
+        ensureFrameLoaded(slide);
+        const controller = getOverlayController(slide);
+        controller?.disable();
+      });
+    };
+
+    const demoSwiper = new Swiper(demoCarouselEl, {
+      slidesPerView: 1.02,
+      centeredSlides: true,
+      spaceBetween: 24,
+      pagination: paginationEl
+        ? {
+            el: paginationEl,
+            clickable: true,
+          }
+        : undefined,
+      breakpoints: {
+        0: {
+          spaceBetween: 18,
+        },
+        768: {
+          slidesPerView: 1.05,
+          spaceBetween: 26,
+        },
+        1024: {
+          slidesPerView: 1.2,
+          spaceBetween: 32,
+        },
+      },
+      on: {
+        init(swiper) {
+          handleActiveSlide(swiper.activeIndex);
+        },
+      },
     });
 
-    demoOverlay.addEventListener('pointerup', (event) => {
-      if (event.pointerType === 'mouse') {
-        disableDemoInteraction();
-      }
+    demoSwiper.on('slideChange', (swiper) => {
+      handleActiveSlide(swiper.activeIndex);
     });
   }
 
