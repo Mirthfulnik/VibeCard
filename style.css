@@ -1238,8 +1238,8 @@ section {
     grid-template-columns: 1fr;
     grid-template-areas:
       "hero-title"
-      "hero-visual"
       "hero-subtitle"
+      "hero-visual"
       "hero-stats"
       "hero-actions";
     gap: clamp(24px, 7vw, 36px);
