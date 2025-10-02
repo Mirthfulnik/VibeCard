@@ -525,7 +525,9 @@ section {
   }
 
   .value__grid {
-    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
   }
 
   .value__slider .swiper-slide {
