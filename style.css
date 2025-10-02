@@ -473,11 +473,19 @@ section {
   pointer-events: none;
 }
 
+.value__slider {
+  position: relative;
+}
+
 .value__grid {
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 28px;
+}
+
+.value__pagination {
+  display: none;
 }
 
 .value-card {
@@ -508,6 +516,28 @@ section {
 .value-card p {
   margin: 0;
   color: var(--color-text-muted);
+}
+
+@media (max-width: 768px) {
+  .value__slider {
+    margin-inline: -16px;
+    padding: 0 16px 32px;
+  }
+
+  .value__grid {
+    display: block;
+  }
+
+  .value__slider .swiper-slide {
+    height: auto;
+  }
+
+  .value__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
 }
 
 .trust__container {
