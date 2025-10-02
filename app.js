@@ -152,6 +152,130 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileBreakpoint.addListener(handleValueSlider);
     }
   }
+// Demo preview controls
+  const demoSection = document.querySelector('.demo');
+  const demoIframe = document.getElementById('demo-iframe');
+  const demoButtons = demoSection ? demoSection.querySelectorAll('.demo__btn') : [];
+  const demoOverlay = demoSection ? demoSection.querySelector('.demo__overlay') : null;
+  let demoInteractionTimeout;
+
+  const disableDemoInteraction = () => {
+    if (!demoIframe || !demoOverlay) return;
+    demoIframe.style.pointerEvents = 'none';
+    demoOverlay.classList.remove('is-interacting');
+    clearTimeout(demoInteractionTimeout);
+  };
+
+  const enableDemoInteraction = (duration = 800) => {
+    if (!demoIframe || !demoOverlay) return;
+    demoOverlay.classList.add('is-interacting');
+    demoIframe.style.pointerEvents = 'auto';
+    clearTimeout(demoInteractionTimeout);
+    demoInteractionTimeout = window.setTimeout(() => {
+      disableDemoInteraction();
+    }, duration);
+  };
+
+  const setActiveDemo = (button) => {
+    if (!button || !demoIframe) return;
+    const targetUrl = button.getAttribute('data-site');
+    if (!targetUrl) return;
+
+    demoButtons.forEach((btn) => btn.classList.toggle('active', btn === button));
+
+    if (demoIframe.src !== targetUrl) {
+      demoIframe.src = targetUrl;
+    }
+
+    disableDemoInteraction();
+  };
+
+  if (demoButtons.length && demoIframe) {
+    demoButtons.forEach((button) => {
+      button.addEventListener('click', () => setActiveDemo(button));
+      button.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          setActiveDemo(button);
+        }
+      });
+    });
+  }
+
+  if (demoIframe) {
+    demoIframe.addEventListener('load', () => {
+      disableDemoInteraction();
+    });
+  }
+
+  if (demoOverlay && demoIframe) {
+    disableDemoInteraction();
+
+    const handleWheel = (event) => {
+      enableDemoInteraction();
+      try {
+        demoIframe.contentWindow.scrollBy({ top: event.deltaY, left: 0, behavior: 'auto' });
+      } catch (error) {
+        // Ignore cross-origin access errors
+      }
+      event.preventDefault();
+    };
+
+    demoOverlay.addEventListener('wheel', handleWheel, { passive: false });
+
+    demoOverlay.addEventListener('click', (event) => {
+      event.preventDefault();
+    });
+
+    demoOverlay.addEventListener('mouseleave', () => {
+      disableDemoInteraction();
+    });
+
+    demoOverlay.addEventListener(
+      'touchstart',
+      () => {
+        enableDemoInteraction(1500);
+      },
+      { passive: true }
+    );
+
+    demoOverlay.addEventListener(
+      'touchmove',
+      (event) => {
+        enableDemoInteraction(1500);
+        event.preventDefault();
+      },
+      { passive: false }
+    );
+
+    demoOverlay.addEventListener(
+      'touchend',
+      () => {
+        disableDemoInteraction();
+      },
+      { passive: true }
+    );
+
+    demoOverlay.addEventListener(
+      'touchcancel',
+      () => {
+        disableDemoInteraction();
+      },
+      { passive: true }
+    );
+
+    demoOverlay.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse') {
+        event.preventDefault();
+      }
+    });
+
+    demoOverlay.addEventListener('pointerup', (event) => {
+      if (event.pointerType === 'mouse') {
+        disableDemoInteraction();
+      }
+    });
+  }
 
   // Mobile navigation
   const burger = document.querySelector('.header__burger');
@@ -317,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Reveal on scroll
   const revealElements = document.querySelectorAll(
-    '.value-card, .timeline__item, .pricing-card, .guarantee-card, .review-card, .results__cell, .stat'
+    '.value-card, .timeline__item, .pricing-card, .guarantee-card, .review-card, .stat'
   );
 
   const observer = new IntersectionObserver(
