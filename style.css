@@ -521,17 +521,26 @@ section {
 @media (max-width: 768px) {
   .value__slider {
     margin-inline: -16px;
-    padding: 0 16px 32px;
+    padding: 0 16px 40px;
+    overflow: visible;
   }
 
   .value__grid {
+    display: flex;
+    align-items: stretch;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 24px;
+    gap: 0;
   }
 
   .value__slider .swiper-slide {
+    display: flex;
     height: auto;
+    width: 80%;
+    max-width: 320px;
+  }
+
+  .value-card {
+    width: 100%;
   }
 
   .value__pagination {
