@@ -638,7 +638,6 @@ section {
   gap: 6px;
   opacity: 0;
   transform: translateY(16px);
-  animation: bubbleIn 0.6s ease forwards;
 }
 
 .chat__bubble--out {
@@ -662,24 +661,34 @@ section {
   font-weight: 600;
 }
 
-.chat__messages .chat__bubble:nth-child(1) {
+.chat--active .chat__messages .chat__bubble {
+  animation: bubbleIn 0.6s ease forwards;
+}
+
+.chat--active .chat__messages .chat__bubble:nth-child(1) {
   animation-delay: 0.2s;
 }
 
-.chat__messages .chat__bubble:nth-child(2) {
+.chat--active .chat__messages .chat__bubble:nth-child(2) {
   animation-delay: 1s;
 }
 
-.chat__messages .chat__bubble:nth-child(3) {
+.chat--active .chat__messages .chat__bubble:nth-child(3) {
   animation-delay: 1.8s;
 }
 
-.chat__messages .chat__bubble:nth-child(4) {
+.chat--active .chat__messages .chat__bubble:nth-child(4) {
   animation-delay: 2.6s;
 }
 
-.chat__messages .chat__bubble:nth-child(5) {
+.chat--active .chat__messages .chat__bubble:nth-child(5) {
   animation-delay: 3.4s;
+}
+
+.chat--reduced .chat__messages .chat__bubble {
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 
 @keyframes bubbleIn {
@@ -707,15 +716,7 @@ section {
   margin-left: clamp(12px, 4vw, 40px);
   display: grid;
   gap: 32px;
-  position: relative;
-}
 
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: -24px;
-  top: -40px;
-  width: 160px;
   height: 160px;
   background: radial-gradient(circle, rgba(124, 92, 255, 0.32), transparent 65%);
   z-index: -1;
