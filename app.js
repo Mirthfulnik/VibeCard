@@ -204,6 +204,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Chat conversation animation
+  const chatEl = document.querySelector('.chat');
+
+  if (chatEl) {
+    const chatMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let chatActivated = false;
+    let chatObserver;
+
+    const setChatState = () => {
+      if (!chatActivated) return;
+
+      if (chatMotionQuery.matches) {
+        chatEl.classList.add('chat--reduced');
+        chatEl.classList.remove('chat--active');
+      } else {
+        chatEl.classList.remove('chat--reduced');
+        chatEl.classList.remove('chat--active');
+        void chatEl.offsetWidth;
+        chatEl.classList.add('chat--active');
+      }
+    };
+
+    const activateChat = () => {
+      if (chatActivated) {
+        setChatState();
+        return;
+      }
+
+      chatActivated = true;
+      setChatState();
+    };
+
+    const createChatObserver = () => {
+      if (chatObserver || chatMotionQuery.matches) return;
+
+      chatObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              activateChat();
+              observer.disconnect();
+              chatObserver = null;
+            }
+          });
+        },
+        { threshold: 0.6 }
+      );
+
+      chatObserver.observe(chatEl);
+    };
+
+    if (chatMotionQuery.matches) {
+      activateChat();
+    } else {
+      createChatObserver();
+    }
+
+    const handleChatMotionChange = (event) => {
+      if (event.matches) {
+        activateChat();
+        if (chatObserver) {
+          chatObserver.disconnect();
+          chatObserver = null;
+        }
+      } else if (chatActivated) {
+        setChatState();
+      } else {
+        createChatObserver();
+      }
+    };
+
+    if (typeof chatMotionQuery.addEventListener === 'function') {
+      chatMotionQuery.addEventListener('change', handleChatMotionChange);
+    } else if (typeof chatMotionQuery.addListener === 'function') {
+      chatMotionQuery.addListener(handleChatMotionChange);
+    }
+  }
+
   const modals = document.querySelectorAll('.modal');
 
   modals.forEach((modal) => {
