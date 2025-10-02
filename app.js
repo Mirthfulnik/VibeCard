@@ -96,6 +96,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Value slider (mobile only)
+  const valueSliderEl = document.querySelector('.value__slider');
+
+  if (valueSliderEl && typeof Swiper !== 'undefined') {
+    const paginationEl = valueSliderEl.querySelector('.value__pagination');
+    const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+    let valueSwiper;
+
+    const initValueSwiper = () => {
+      if (valueSwiper) return;
+      valueSwiper = new Swiper(valueSliderEl, {
+        slidesPerView: 1.1,
+        spaceBetween: 16,
+        centeredSlides: true,
+        watchOverflow: true,
+        pagination: paginationEl
+          ? {
+              el: paginationEl,
+              clickable: true,
+            }
+          : undefined,
+        breakpoints: {
+          0: {
+            slidesPerView: 1.05,
+            spaceBetween: 16,
+          },
+          480: {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+          },
+        },
+      });
+    };
+
+    const destroyValueSwiper = () => {
+      if (!valueSwiper) return;
+      valueSwiper.destroy(true, true);
+      valueSwiper = null;
+    };
+
+    const handleValueSlider = (event) => {
+      if (event.matches) {
+        initValueSwiper();
+      } else {
+        destroyValueSwiper();
+      }
+    };
+
+    handleValueSlider(mobileBreakpoint);
+
+    if (typeof mobileBreakpoint.addEventListener === 'function') {
+      mobileBreakpoint.addEventListener('change', handleValueSlider);
+    } else if (typeof mobileBreakpoint.addListener === 'function') {
+      mobileBreakpoint.addListener(handleValueSlider);
+    }
+  }
+
   // Mobile navigation
   const burger = document.querySelector('.header__burger');
   const mobileMenu = document.querySelector('.mobile-menu');
