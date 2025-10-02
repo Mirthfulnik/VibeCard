@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (heroSwiper.autoplay) {
-      const handleMouseEnter = () => stopAutoplay();
+const handleMouseEnter = () => stopAutoplay();
       const handleMouseLeave = () => {
         if (!motionQuery.matches) {
           startAutoplay();
@@ -107,9 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const initValueSwiper = () => {
       if (valueSwiper) return;
       valueSwiper = new Swiper(valueSliderEl, {
-        slidesPerView: 1.1,
-        spaceBetween: 16,
+        slidesPerView: 'auto',
         centeredSlides: true,
+        spaceBetween: 18,
         watchOverflow: true,
         pagination: paginationEl
           ? {
@@ -119,11 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
           : undefined,
         breakpoints: {
           0: {
-            slidesPerView: 1.05,
             spaceBetween: 16,
           },
           480: {
-            slidesPerView: 1.2,
             spaceBetween: 20,
           },
         },
@@ -134,6 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!valueSwiper) return;
       valueSwiper.destroy(true, true);
       valueSwiper = null;
+      if (typeof valueSliderEl.scrollTo === 'function') {
+        valueSliderEl.scrollTo({ left: 0, behavior: 'auto' });
+      } else {
+        valueSliderEl.scrollLeft = 0;
+      }
     };
 
     const handleValueSlider = (event) => {
