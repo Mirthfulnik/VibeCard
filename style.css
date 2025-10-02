@@ -351,6 +351,7 @@ section {
   .hero__carousel {
     width: clamp(260px, 30vw, 360px);
     max-width: 100%;
+    overflow: hidden;
   }
 }
 .hero__carousel .swiper-wrapper {
