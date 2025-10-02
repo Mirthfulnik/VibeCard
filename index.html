@@ -142,52 +142,48 @@
                     <h2 class="section-title">Оцените удобство Vibe Card других экспертов</h2>
                     <p class="section-description">Выберите визитку и посмотрите, как выглядит экспертная упаковка ваших коллег.</p>
                 </div>
-                <div class="demo__carousel swiper" aria-live="polite">
-                    <div class="swiper-wrapper">
-                        <article class="demo-slide swiper-slide" data-site="https://nikita-sinopalnikov-marketer.ru/">
-                            <header class="demo-slide__header">
-                                <h3 class="demo-slide__title">Никита Синопальников</h3>
-                                <p class="demo-slide__meta">Коммуникационный маркетолог · 3 дня на запуск</p>
-                            </header>
-                            <div class="demo-preview">
-                                <div class="demo-preview__screen">
-                                    <iframe class="demo-preview__frame" title="Визитка Никиты" loading="lazy" sandbox="allow-scripts"></iframe>
-                                    <div class="demo-preview__overlay" aria-hidden="true">
-                                        <span class="demo-preview__hint">Прокрутите, чтобы посмотреть визитку</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="demo-slide swiper-slide" data-site="https://mirthfulnik.github.io/valentin-poslanchik/">
-                            <header class="demo-slide__header">
-                                <h3 class="demo-slide__title">Валентин Посланчик</h3>
-                                <p class="demo-slide__meta">Юрист по предпринимательскому праву · 5 дней на запуск</p>
-                            </header>
-                            <div class="demo-preview">
-                                <div class="demo-preview__screen">
-                                    <iframe class="demo-preview__frame" title="Визитка Валентина" loading="lazy" sandbox="allow-scripts"></iframe>
-                                    <div class="demo-preview__overlay" aria-hidden="true">
-                                        <span class="demo-preview__hint">Свайпните вверх, чтобы листать</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="demo-slide swiper-slide" data-site="https://anastasiakorob.github.io/anastasiya-korob-psiholog/">
-                            <header class="demo-slide__header">
-                                <h3 class="demo-slide__title">Анастасия Короб</h3>
-                                <p class="demo-slide__meta">Психотерапевт · 7 дней на запуск</p>
-                            </header>
-                            <div class="demo-preview">
-                                <div class="demo-preview__screen">
-                                    <iframe class="demo-preview__frame" title="Визитка Анастасии" loading="lazy" sandbox="allow-scripts"></iframe>
-                                    <div class="demo-preview__overlay" aria-hidden="true">
-                                        <span class="demo-preview__hint">Свайпните вверх, чтобы листать</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                <div class="demo__viewer" aria-live="polite">
+                    <div class="demo__controls" role="tablist" aria-label="Выбор визитки">
+                        <button class="demo__control is-active" type="button" role="tab" aria-selected="true" tabindex="0"
+                            id="demo-tab-nikita" aria-controls="demo-panel"
+                            data-site="https://nikita-sinopalnikov-marketer.ru/"
+                            data-title="Никита Синопальников"
+                            data-meta="Коммуникационный маркетолог · 3 дня на запуск"
+                            data-hint="Прокрутите, чтобы посмотреть визитку">
+                            Никита
+                        </button>
+                        <button class="demo__control" type="button" role="tab" aria-selected="false" tabindex="-1"
+                            id="demo-tab-valentin" aria-controls="demo-panel"
+                            data-site="https://mirthfulnik.github.io/valentin-poslanchik/"
+                            data-title="Валентин Посланчик"
+                            data-meta="Юрист по предпринимательскому праву · 5 дней на запуск"
+                            data-hint="Прокрутите, чтобы посмотреть визитку">
+                            Валентин
+                        </button>
+                        <button class="demo__control" type="button" role="tab" aria-selected="false" tabindex="-1"
+                            id="demo-tab-anastasia" aria-controls="demo-panel"
+                            data-site="https://anastasiakorob.github.io/anastasiya-korob-psiholog/"
+                            data-title="Анастасия Короб"
+                            data-meta="Психотерапевт · 7 дней на запуск"
+                            data-hint="Прокрутите, чтобы посмотреть визитку">
+                            Анастасия
+                        </button>
                     </div>
-                    <div class="demo__pagination"></div>
+                    <article class="demo-card" role="tabpanel" id="demo-panel" aria-labelledby="demo-tab-nikita">
+                        <header class="demo-card__header">
+                            <h3 class="demo-card__title">Никита Синопальников</h3>
+                            <p class="demo-card__meta">Коммуникационный маркетолог · 3 дня на запуск</p>
+                        </header>
+                        <div class="demo-preview">
+                            <div class="demo-preview__screen">
+                                <iframe class="demo-preview__frame" title="Визитка эксперта" loading="lazy"
+                                    sandbox="allow-scripts"></iframe>
+                                <div class="demo-preview__overlay" aria-hidden="true">
+                                    <span class="demo-preview__hint">Прокрутите, чтобы посмотреть визитку</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
