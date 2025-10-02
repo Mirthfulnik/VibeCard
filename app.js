@@ -155,173 +155,149 @@ const handleMouseEnter = () => stopAutoplay();
       mobileBreakpoint.addListener(handleValueSlider);
     }
   }
-// Demo preview controls
-  const demoCarouselEl = document.querySelector('.demo__carousel');
+  // Demo preview controls
+  const demoViewerEl = document.querySelector('.demo__viewer');
 
-  if (demoCarouselEl && typeof Swiper !== 'undefined') {
-    const paginationEl = demoCarouselEl.querySelector('.demo__pagination');
-    const demoSlides = Array.from(demoCarouselEl.querySelectorAll('.demo-slide'));
-    const overlayControllers = new Map();
+  if (demoViewerEl) {
+    const controls = Array.from(demoViewerEl.querySelectorAll('.demo__control'));
+    const frame = demoViewerEl.querySelector('.demo-preview__frame');
+    const overlay = demoViewerEl.querySelector('.demo-preview__overlay');
+    const hintEl = demoViewerEl.querySelector('.demo-preview__hint');
+    const titleEl = demoViewerEl.querySelector('.demo-card__title');
+    const metaEl = demoViewerEl.querySelector('.demo-card__meta');
+    const panelEl = demoViewerEl.querySelector('.demo-card');
+    let interactionTimeout;
 
-    const ensureFrameLoaded = (slide) => {
-      if (!slide) return;
-      const iframe = slide.querySelector('.demo-preview__frame');
-      if (!iframe || iframe.dataset.loaded === 'true') return;
-      const site = slide.getAttribute('data-site');
-      if (!site) return;
-      iframe.src = site;
-      iframe.dataset.loaded = 'true';
+    const disableInteraction = () => {
+      if (!frame || !overlay) return;
+      frame.style.pointerEvents = 'none';
+      overlay.classList.remove('is-interacting');
+      window.clearTimeout(interactionTimeout);
     };
 
-    const createOverlayController = (slide) => {
-      const iframe = slide.querySelector('.demo-preview__frame');
-      const overlay = slide.querySelector('.demo-preview__overlay');
-      if (!iframe || !overlay) return null;
+    const enableInteraction = (duration = 1500) => {
+      if (!frame || !overlay) return;
+      overlay.classList.add('is-interacting');
+      frame.style.pointerEvents = 'auto';
+      window.clearTimeout(interactionTimeout);
+      interactionTimeout = window.setTimeout(() => {
+        disableInteraction();
+      }, duration);
+    };
 
-      let interactionTimeout;
-
-      const disable = () => {
-        iframe.style.pointerEvents = 'none';
-        overlay.classList.remove('is-interacting');
-        clearTimeout(interactionTimeout);
-      };
-
-      const enable = (duration = 900) => {
-        overlay.classList.add('is-interacting');
-        iframe.style.pointerEvents = 'auto';
-        clearTimeout(interactionTimeout);
-        interactionTimeout = window.setTimeout(() => {
-          disable();
-        }, duration);
-      };
-
-      const handleWheel = (event) => {
-        enable();
+    if (overlay) {
+      overlay.addEventListener('wheel', (event) => {
+        enableInteraction();
         try {
-          iframe.contentWindow.scrollBy({ top: event.deltaY, left: 0, behavior: 'auto' });
+          frame?.contentWindow?.scrollBy({ top: event.deltaY, left: 0, behavior: 'auto' });
         } catch (error) {
           // Ignore cross-origin access errors
         }
         event.preventDefault();
-      };
-
-      overlay.addEventListener('wheel', handleWheel, { passive: false });
-
-      overlay.addEventListener('click', (event) => {
-        event.preventDefault();
-      });
-
-      overlay.addEventListener('mouseleave', () => {
-        disable();
-      });
-
-      overlay.addEventListener(
-        'touchstart',
-        () => {
-          enable(1500);
-        },
-        { passive: true }
-      );
-
-      overlay.addEventListener(
-        'touchmove',
-        (event) => {
-          enable(1500);
-          event.preventDefault();
-        },
-        { passive: false }
-      );
-
-      overlay.addEventListener(
-        'touchend',
-        () => {
-          disable();
-        },
-        { passive: true }
-      );
-
-      overlay.addEventListener(
-        'touchcancel',
-        () => {
-          disable();
-        },
-        { passive: true }
-      );
+      }, { passive: false });
 
       overlay.addEventListener('pointerdown', (event) => {
         if (event.pointerType === 'mouse') {
           event.preventDefault();
         }
+        enableInteraction();
       });
 
-      overlay.addEventListener('pointerup', (event) => {
-        if (event.pointerType === 'mouse') {
-          disable();
+      overlay.addEventListener('mouseleave', () => {
+        disableInteraction();
+      });
+
+      overlay.addEventListener('touchstart', () => {
+        enableInteraction(2000);
+      }, { passive: true });
+
+      overlay.addEventListener('touchmove', (event) => {
+        enableInteraction(2000);
+        event.preventDefault();
+      }, { passive: false });
+
+      overlay.addEventListener('touchend', () => {
+        enableInteraction(1500);
+      }, { passive: true });
+
+      overlay.addEventListener('touchcancel', () => {
+        disableInteraction();
+      }, { passive: true });
+    }
+
+    const getActiveControl = () => controls.find((button) => button.classList.contains('is-active'));
+
+    const enforceSameHost = () => {
+      const activeControl = getActiveControl();
+      if (!frame || !activeControl) return;
+      const site = activeControl.getAttribute('data-site');
+      if (!site) return;
+      try {
+        const expectedHost = new URL(site).host;
+        const currentHost = new URL(frame.src).host;
+        if (currentHost && currentHost !== expectedHost) {
+          frame.src = site;
         }
+      } catch (error) {
+        frame.src = site;
+      }
+    };
+
+    const setActiveControl = (button) => {
+      if (!button || !frame || !titleEl || !metaEl) return;
+      controls.forEach((control) => {
+        const isActive = control === button;
+        control.classList.toggle('is-active', isActive);
+        control.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        control.setAttribute('tabindex', isActive ? '0' : '-1');
       });
 
-      disable();
+      if (panelEl && button.id) {
+        panelEl.setAttribute('aria-labelledby', button.id);
+      }
 
-      return { disable, enable };
+      const site = button.getAttribute('data-site');
+      const title = button.getAttribute('data-title');
+      const meta = button.getAttribute('data-meta');
+      const hint = button.getAttribute('data-hint');
+
+      if (title) {
+        titleEl.textContent = title;
+        frame.setAttribute('title', `Визитка ${title}`);
+      }
+
+      if (meta) {
+        metaEl.textContent = meta;
+      }
+
+      if (hint && hintEl) {
+        hintEl.textContent = hint;
+      }
+
+      if (site && frame.src !== site) {
+        frame.src = site;
+      }
+
+      disableInteraction();
     };
 
-    const getOverlayController = (slide) => {
-      if (!slide) return null;
-      if (overlayControllers.has(slide)) {
-        return overlayControllers.get(slide);
-      }
-      const controller = createOverlayController(slide);
-      if (controller) {
-        overlayControllers.set(slide, controller);
-      }
-      return controller;
-    };
-
-    const handleActiveSlide = (index) => {
-      const targetSlides = [index, index - 1, index + 1]
-        .map((idx) => demoSlides[idx])
-        .filter(Boolean);
-
-      targetSlides.forEach((slide) => {
-        ensureFrameLoaded(slide);
-        const controller = getOverlayController(slide);
-        controller?.disable();
+    controls.forEach((button) => {
+      button.addEventListener('click', () => {
+        setActiveControl(button);
       });
-    };
-
-    const demoSwiper = new Swiper(demoCarouselEl, {
-      slidesPerView: 1.02,
-      centeredSlides: true,
-      spaceBetween: 24,
-      pagination: paginationEl
-        ? {
-            el: paginationEl,
-            clickable: true,
-          }
-        : undefined,
-      breakpoints: {
-        0: {
-          spaceBetween: 18,
-        },
-        768: {
-          slidesPerView: 1.05,
-          spaceBetween: 26,
-        },
-        1024: {
-          slidesPerView: 1.2,
-          spaceBetween: 32,
-        },
-      },
-      on: {
-        init(swiper) {
-          handleActiveSlide(swiper.activeIndex);
-        },
-      },
     });
 
-    demoSwiper.on('slideChange', (swiper) => {
-      handleActiveSlide(swiper.activeIndex);
-    });
+    if (frame) {
+      frame.addEventListener('load', enforceSameHost);
+    }
+
+    const initialControl = getActiveControl() || controls[0];
+    if (initialControl) {
+      if (!initialControl.hasAttribute('tabindex')) {
+        initialControl.setAttribute('tabindex', '0');
+      }
+      setActiveControl(initialControl);
+    }
   }
 
   // Mobile navigation
