@@ -813,7 +813,7 @@ section {
   position: absolute;
   left: -11px;
   top: 6px;
-  width: 16px;
+width: 16px;
   height: 16px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
@@ -838,11 +838,45 @@ section {
   color: var(--color-text-muted);
 }
 
-.demo__carousel {
-  padding-bottom: 48px;
+.demo__viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.demo-slide {
+.demo__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.demo__control {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.35);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 15px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.demo__control:is(:hover, :focus-visible) {
+  border-color: rgba(124, 92, 255, 0.6);
+  background: rgba(124, 92, 255, 0.18);
+  color: #fff;
+}
+
+.demo__control.is-active {
+  border-color: rgba(124, 92, 255, 0.85);
+  background: rgba(124, 92, 255, 0.28);
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.18);
+}
+
+.demo-card {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -850,19 +884,19 @@ section {
   margin: 0 auto;
 }
 
-.demo-slide__header {
+.demo-card__header {
   display: flex;
   flex-direction: column;
   gap: 6px;
   text-align: center;
 }
 
-.demo-slide__title {
+.demo-card__title {
   margin: 0;
   font-size: clamp(20px, 4vw, 26px);
 }
 
-.demo-slide__meta {
+.demo-card__meta {
   margin: 0;
   font-size: 15px;
   color: var(--color-text-muted);
@@ -888,14 +922,7 @@ section {
   height: clamp(540px, 70vh, 860px);
   border: 0;
   border-radius: 24px;
-  background: #0b1120;
-  pointer-events: none;
-}
-
-.demo-preview__overlay {
-  position: absolute;
-  inset: 20px;
-  border-radius: 24px;
+@@ -899,75 +933,52 @@ section {
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0));
   z-index: 2;
   pointer-events: auto;
@@ -921,31 +948,8 @@ section {
   color: rgba(226, 232, 240, 0.8);
 }
 
-.demo__pagination {
-  position: static;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-.demo__pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background: rgba(148, 163, 184, 0.35);
-  opacity: 1;
-  transition: var(--transition);
-}
-
-.demo__pagination .swiper-pagination-bullet-active {
-  background: rgba(124, 92, 255, 0.85);
-}
-
 @media (min-width: 1024px) {
-  .demo__carousel {
-    padding-inline: 32px;
-  }
-
-  .demo-slide {
+  .demo-card {
     width: min(520px, 60vw);
   }
 
