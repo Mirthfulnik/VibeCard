@@ -942,14 +942,16 @@ width: 16px;
   justify-content: center;
   padding: 24px;
   text-align: center;
-  transition: opacity var(--transition);
+  transition: opacity var(--transition), visibility var(--transition);
   touch-action: pan-y;
+  visibility: visible;
 }
 
 .demo-preview__overlay.is-interacting {
   opacity: 0;
   pointer-events: none;
   cursor: grabbing;
+  visibility: hidden;
 }
 
 .demo-preview__hint {
