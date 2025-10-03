@@ -927,6 +927,8 @@ width: 16px;
   border: 0;
   border-radius: 24px;
   background: #0f172a;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
 }
 
 .demo-preview__overlay {
