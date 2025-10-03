@@ -181,15 +181,65 @@ const handleMouseEnter = () => stopAutoplay();
     };
 
     if (overlay) {
-      overlay.addEventListener('wheel', (event) => {
-        enableInteraction();
-        try {
-          frame?.contentWindow?.scrollBy({ top: event.deltaY, left: 0, behavior: 'auto' });
-        } catch (error) {
-          // Ignore cross-origin access errors
+      let lastTouchY = null;
+
+      const tryScrollFrame = (deltaY) => {
+        if (!frame || typeof deltaY !== 'number' || Number.isNaN(deltaY)) {
+          return false;
         }
-        event.preventDefault();
-      }, { passive: false });
+
+        try {
+          const frameWindow = frame.contentWindow;
+
+          if (!frameWindow || typeof frameWindow.scrollBy !== 'function') {
+            return false;
+          }
+
+          const documentElement = frameWindow.document?.documentElement;
+          const body = frameWindow.document?.body;
+          const startY =
+            frameWindow.scrollY ??
+            frameWindow.pageYOffset ??
+            documentElement?.scrollTop ??
+            body?.scrollTop ??
+            0;
+
+          frameWindow.scrollBy({ top: deltaY, left: 0, behavior: 'auto' });
+
+          const endY =
+            frameWindow.scrollY ??
+            frameWindow.pageYOffset ??
+            documentElement?.scrollTop ??
+            body?.scrollTop ??
+            0;
+
+          const difference = Math.abs(endY - startY);
+
+          return difference > Number.EPSILON;
+        } catch (error) {
+          return false;
+        }
+      };
+
+      const resetTouchTracking = () => {
+        lastTouchY = null;
+      };
+
+      overlay.addEventListener(
+        'wheel',
+        (event) => {
+          if (interactionLocked) {
+            enableInteraction();
+          }
+
+          const delegated = tryScrollFrame(event.deltaY);
+
+          if (delegated) {
+            event.preventDefault();
+          }
+        },
+        { passive: false }
+      );
 
       overlay.addEventListener('pointerdown', (event) => {
         if (event.pointerType === 'mouse') {
@@ -198,18 +248,63 @@ const handleMouseEnter = () => stopAutoplay();
         enableInteraction();
       });
 
-            overlay.addEventListener('touchstart', () => {
-        enableInteraction();
-      }, { passive: true });
+      overlay.addEventListener(
+        'touchstart',
+        (event) => {
+          if (event.touches.length) {
+            lastTouchY = event.touches[0].clientY;
+          }
+          enableInteraction();
+        },
+        { passive: true }
+      );
 
-      overlay.addEventListener('touchmove', (event) => {
-        enableInteraction();
-        event.preventDefault();
-      }, { passive: false });
+      overlay.addEventListener(
+        'touchmove',
+        (event) => {
+          if (interactionLocked) {
+            enableInteraction();
+          }
 
-      overlay.addEventListener('touchend', () => {
-        enableInteraction();
-      }, { passive: true });
+          if (!event.touches.length) {
+            return;
+          }
+
+          const currentY = event.touches[0].clientY;
+
+          if (lastTouchY === null) {
+            lastTouchY = currentY;
+            return;
+          }
+
+          const deltaY = lastTouchY - currentY;
+          lastTouchY = currentY;
+
+          const delegated = tryScrollFrame(deltaY);
+
+          if (delegated) {
+            event.preventDefault();
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener(
+        'touchend',
+        () => {
+          resetTouchTracking();
+          enableInteraction();
+        },
+        { passive: true }
+      );
+
+      overlay.addEventListener(
+        'touchcancel',
+        () => {
+          resetTouchTracking();
+        },
+        { passive: true }
+      );
     }
 
     const getActiveControl = () => controls.find((button) => button.classList.contains('is-active'));
