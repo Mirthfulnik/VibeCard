@@ -168,16 +168,28 @@ const handleMouseEnter = () => stopAutoplay();
     const panelEl = demoViewerEl.querySelector('.demo-card');
         let interactionLocked = true;
 
+    const applyInteractionConstraints = (target) => {
+      if (!target) return;
+
+      target.style.touchAction = 'pan-y';
+      target.style.overscrollBehavior = 'contain';
+    };
+
+    applyInteractionConstraints(frame);
+    applyInteractionConstraints(overlay);
+
     const disableInteraction = () => {
       if (!overlay || interactionLocked) return;
       interactionLocked = true;
       overlay.classList.remove('is-interacting');
+      applyInteractionConstraints(overlay);
     };
 
     const enableInteraction = () => {
       if (!overlay || !interactionLocked) return;
       interactionLocked = false;
       overlay.classList.add('is-interacting');
+      applyInteractionConstraints(frame);
     };
 
     if (overlay) {
