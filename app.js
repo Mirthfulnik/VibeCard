@@ -166,23 +166,18 @@ const handleMouseEnter = () => stopAutoplay();
     const titleEl = demoViewerEl.querySelector('.demo-card__title');
     const metaEl = demoViewerEl.querySelector('.demo-card__meta');
     const panelEl = demoViewerEl.querySelector('.demo-card');
-    let interactionTimeout;
+        let interactionLocked = true;
 
     const disableInteraction = () => {
-      if (!frame || !overlay) return;
-      frame.style.pointerEvents = 'none';
+      if (!overlay || interactionLocked) return;
+      interactionLocked = true;
       overlay.classList.remove('is-interacting');
-      window.clearTimeout(interactionTimeout);
     };
 
-    const enableInteraction = (duration = 1500) => {
-      if (!frame || !overlay) return;
+    const enableInteraction = () => {
+      if (!overlay || !interactionLocked) return;
+      interactionLocked = false;
       overlay.classList.add('is-interacting');
-      frame.style.pointerEvents = 'auto';
-      window.clearTimeout(interactionTimeout);
-      interactionTimeout = window.setTimeout(() => {
-        disableInteraction();
-      }, duration);
     };
 
     if (overlay) {
@@ -203,25 +198,17 @@ const handleMouseEnter = () => stopAutoplay();
         enableInteraction();
       });
 
-      overlay.addEventListener('mouseleave', () => {
-        disableInteraction();
-      });
-
-      overlay.addEventListener('touchstart', () => {
-        enableInteraction(2000);
+            overlay.addEventListener('touchstart', () => {
+        enableInteraction();
       }, { passive: true });
 
       overlay.addEventListener('touchmove', (event) => {
-        enableInteraction(2000);
+        enableInteraction();
         event.preventDefault();
       }, { passive: false });
 
       overlay.addEventListener('touchend', () => {
-        enableInteraction(1500);
-      }, { passive: true });
-
-      overlay.addEventListener('touchcancel', () => {
-        disableInteraction();
+        enableInteraction();
       }, { passive: true });
     }
 
