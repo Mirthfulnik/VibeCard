@@ -30,6 +30,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: var(--font-family);
@@ -533,7 +538,7 @@ section {
 
 @media (max-width: 768px) {
   .value__slider {
-    margin-inline: -16px;
+    margin-inline: 0;
     padding: 0 16px 48px;
     overflow-x: auto;
     overflow-y: visible;
@@ -586,7 +591,7 @@ section {
 
 @media (max-width: 560px) {
   .value__slider {
-    margin-inline: -12px;
+    margin-inline: 0;
     padding: 0 12px 44px;
   }
 
@@ -628,7 +633,7 @@ section {
   border-radius: calc(var(--radius-xl) * 1.2);
   background: rgba(15, 23, 42, 0.75);
   border: 1px solid rgba(148, 163, 184, 0.12);
-  overflow: hidden;
+  overflow: clip;
   width: min(560px, 100%);
 }
 
