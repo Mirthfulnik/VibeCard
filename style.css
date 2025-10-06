@@ -989,6 +989,7 @@ width: 16px;
   }
 
   .demo-preview__hint {
+
     font-size: 14px;
   }
 }
@@ -1014,50 +1015,10 @@ width: 16px;
 }
 
 
-.reviews__grid {
+.testimonials--gallery .testimonials__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
-}
-
-.review-card {
-  padding: 0;
-  border: none;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: relative;
-  cursor: zoom-in;
-  background: rgba(148, 163, 184, 0.12);
-  transition: var(--transition);
-}
-
-.review-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.review-card::after {
-  content: "Нажмите, чтобы увеличить";
-  position: absolute;
-  inset: auto 16px 16px 16px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.75);
-  font-size: 13px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: var(--transition);
-}
-
-.review-card:hover::after {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.review-card:hover img {
-  transform: scale(1.05);
 }
 
 .pricing__grid {
@@ -1085,45 +1046,7 @@ width: 16px;
 
 .pricing-card__label {
   font-weight: 600;
-  color: var(--color-text-muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.pricing-card__price {
-  font-size: 30px;
-  font-weight: 700;
-}
-
-.pricing-card__description {
-  margin: 0;
-  color: var(--color-text-muted);
-}
-
-.pricing-card ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 12px;
-  color: var(--color-text-muted);
-}
-
-.pricing-card ul li {
-  padding-left: 22px;
-  position: relative;
-}
-
-.pricing-card ul li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-accent);
-}
+@@ -1127,68 +1087,113 @@ width: 16px;
 
 .pricing-card--featured {
   background: linear-gradient(160deg, rgba(124, 92, 255, 0.45), rgba(79, 70, 229, 0.7));
@@ -1149,24 +1072,69 @@ width: 16px;
   color: rgba(203, 213, 225, 0.6);
 }
 
-.guarantees__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 28px;
+.testimonial-shot {
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  background: rgba(148, 163, 184, 0.12);
+  transition: var(--transition);
 }
 
-.guarantee-card {
-  padding: 32px;
-  border-radius: var(--radius-xl);
+.testimonial-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.testimonial-shot::after {
+  content: "Нажмите, чтобы увеличить";
+  position: absolute;
+  inset: auto 16px 16px 16px;
+  padding: 10px 16px;
+  border-radius: 999px;
   background: rgba(15, 23, 42, 0.75);
-  border: 1px solid rgba(148, 163, 184, 0.12);
-  text-align: center;
-  display: grid;
-  gap: 12px;
+  font-size: 13px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: var(--transition);
 }
 
-.guarantee-card__icon {
-  font-size: 32px;
+.testimonial-shot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  pointer-events: none;
+}
+
+.testimonial-shot:hover::after,
+.testimonial-shot:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonial-shot:hover img,
+.testimonial-shot:focus-visible img {
+  transform: scale(1.05);
+}
+
+.testimonial-shot:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.testimonial-shot--error {
+  cursor: not-allowed;
+}
+
+.testimonial-shot--error::after {
+  content: "Не удалось загрузить изображение";
+  background: rgba(239, 68, 68, 0.85);
 }
 
 .faq__list {
