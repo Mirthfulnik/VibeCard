@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (heroSwiper.autoplay) {
-const handleMouseEnter = () => stopAutoplay();
+      const handleMouseEnter = () => stopAutoplay();
       const handleMouseLeave = () => {
         if (!motionQuery.matches) {
           startAutoplay();
@@ -131,7 +131,7 @@ const handleMouseEnter = () => stopAutoplay();
     const destroyValueSwiper = () => {
       if (!valueSwiper) return;
       valueSwiper.destroy(true, true);
-     valueSwiper = null;
+      valueSwiper = null;
       if (typeof valueSliderEl.scrollTo === 'function') {
         valueSliderEl.scrollTo({ left: 0, behavior: 'auto' });
       } else {
@@ -155,6 +155,7 @@ const handleMouseEnter = () => stopAutoplay();
       mobileBreakpoint.addListener(handleValueSlider);
     }
   }
+
   // Demo preview controls
   const demoViewerEl = document.querySelector('.demo__viewer');
 
@@ -166,7 +167,7 @@ const handleMouseEnter = () => stopAutoplay();
     const titleEl = demoViewerEl.querySelector('.demo-card__title');
     const metaEl = demoViewerEl.querySelector('.demo-card__meta');
     const panelEl = demoViewerEl.querySelector('.demo-card');
-        let interactionLocked = true;
+    let interactionLocked = true;
 
     const applyInteractionConstraints = (target) => {
       if (!target) return;
@@ -406,7 +407,7 @@ const handleMouseEnter = () => stopAutoplay();
       burger.setAttribute('aria-expanded', String(isActive));
       mobileMenu.setAttribute('aria-hidden', String(!isActive));
       body.style.overflow = isActive ? 'hidden' : '';
-    });
+ });
 
     mobileLinks.forEach((link) => {
       link.addEventListener('click', () => {
@@ -488,6 +489,7 @@ const handleMouseEnter = () => stopAutoplay();
         chatEl.classList.add('chat--active');
       }
     };
+
 
 @@ -536,45 +558,45 @@ const handleMouseEnter = () => stopAutoplay();
     if (overlay) {
@@ -595,7 +597,7 @@ const handleMouseEnter = () => stopAutoplay();
 
   // Reveal on scroll
   const revealElements = document.querySelectorAll(
-    '.value-card, .timeline__item, .pricing-card, .guarantee-card, .review-card, .stat'
+    '.value-card, .timeline__item, .pricing-card, .guarantee-card, .testimonial-shot, .stat'
   );
 
   const observer = new IntersectionObserver(
