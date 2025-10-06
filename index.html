@@ -164,6 +164,8 @@
                             data-site="https://nikita-sinopalnikov-marketer.ru/"
                             data-title="Никита Синопальников"
                             data-meta="Коммуникационный маркетолог · 3 дня на запуск"
+                            data-preview="FirstScreen3.png"
+                            data-preview-alt="Превью визитки Никиты Синопальникова"
                             data-hint="Прокрутите, чтобы посмотреть визитку">
                             Никита
                         </button>
@@ -172,6 +174,8 @@
                             data-site="https://mirthfulnik.github.io/valentin-poslanchik/"
                             data-title="Валентин Посланчик"
                             data-meta="Юрист по предпринимательскому праву · 5 дней на запуск"
+                            data-preview="FirstScreen2.png"
+                            data-preview-alt="Превью визитки Валентина Посланчика"
                             data-hint="Прокрутите, чтобы посмотреть визитку">
                             Валентин
                         </button>
@@ -180,6 +184,8 @@
                             data-site="https://anastasiakorob.github.io/anastasiya-korob-psiholog/"
                             data-title="Анастасия Короб"
                             data-meta="Психотерапевт · 7 дней на запуск"
+                            data-preview="FirstScreen1.png"
+                            data-preview-alt="Превью визитки Анастасии Короб"
                             data-hint="Прокрутите, чтобы посмотреть визитку">
                             Анастасия
                         </button>
@@ -191,9 +197,14 @@
                         </header>
                         <div class="demo-preview">
                             <div class="demo-preview__screen">
-                                <iframe class="demo-preview__frame" title="Визитка эксперта" loading="lazy"
-                                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
-                                    allow="fullscreen"></iframe>
+                                <div class="demo-preview__stage">
+                                    <img src="FirstScreen3.png" alt="Превью визитки Никиты Синопальникова"
+                                        class="demo-preview__fallback" loading="lazy">
+                                    <iframe class="demo-preview__frame" title="Визитка Никиты Синопальникова" loading="lazy"
+                                        src="https://nikita-sinopalnikov-marketer.ru/"
+                                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                                        allow="fullscreen"></iframe>
+                                </div>
                                 <div class="demo-preview__overlay" aria-hidden="true">
                                     <span class="demo-preview__hint">Прокрутите, чтобы посмотреть визитку</span>
                                 </div>
@@ -293,7 +304,6 @@
                     </article>
                     <article class="pricing-card pricing-card--featured">
                         <div class="pricing-card__label">Стандарт</div>
-@@ -282,74 +282,50 @@
                         <p class="pricing-card__description">Помогаем структурировать смысл и сценарий</p>
                         <ul>
                             <li>Аудит экспертности и УТП</li>
