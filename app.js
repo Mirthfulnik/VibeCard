@@ -431,17 +431,39 @@ const handleMouseEnter = () => stopAutoplay();
   }
 
   // Review gallery modal
-  const reviewCards = document.querySelectorAll('.review-card');
+  const testimonialShots = document.querySelectorAll('.testimonial-shot');
   const reviewModal = document.getElementById('review-modal');
   const reviewImage = document.getElementById('review-modal-image');
 
-  reviewCards.forEach((card) => {
+  testimonialShots.forEach((card) => {
     card.addEventListener('click', () => {
       const imageSrc = card.getAttribute('data-image');
-      if (reviewModal && reviewImage && imageSrc) {
-        reviewImage.src = imageSrc;
-        showModal(reviewModal);
+
+      if (!reviewModal || !reviewImage || !imageSrc) {
+        return;
       }
+
+      const altText =
+        card.getAttribute('data-alt') ||
+        card.querySelector('img')?.getAttribute('alt') ||
+        'Отзыв эксперта';
+
+      card.classList.remove('testimonial-shot--error');
+      card.removeAttribute('aria-label');
+
+      const preloadImage = new Image();
+      preloadImage.onload = () => {
+        reviewImage.src = imageSrc;
+        reviewImage.alt = `${altText} — полноразмерный скрин переписки`;
+        showModal(reviewModal);
+      };
+
+      preloadImage.onerror = () => {
+        card.classList.add('testimonial-shot--error');
+        card.setAttribute('aria-label', 'Не удалось загрузить изображение отзыва');
+      };
+
+      preloadImage.src = imageSrc;
     });
   });
 
@@ -467,37 +489,52 @@ const handleMouseEnter = () => stopAutoplay();
       }
     };
 
-    const activateChat = () => {
-      if (chatActivated) {
-        setChatState();
-        return;
+@@ -536,45 +558,45 @@ const handleMouseEnter = () => stopAutoplay();
+    if (overlay) {
+      overlay.addEventListener('click', () => hideModal(modal));
+    }
+  });
+
+  function showModal(modal) {
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+    body.style.overflow = 'hidden';
+  }
+
+  function hideModal(modal) {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      if (!document.querySelector('.modal.show')) {
+        body.style.overflow = '';
       }
+    }, 200);
+  }
 
-      chatActivated = true;
-      setChatState();
-    };
+  // Reveal on scroll
+  const revealElements = document.querySelectorAll(
+    '.value-card, .timeline__item, .pricing-card, .guarantee-card, .testimonial-shot, .stat'
+  );
 
-    const createChatObserver = () => {
-      if (chatObserver || chatMotionQuery.matches) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
-      chatObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              activateChat();
-              observer.disconnect();
-              chatObserver = null;
-            }
-          });
-        },
-        { threshold: 0.6 }
-      );
-
-      chatObserver.observe(chatEl);
-    };
-
-    if (chatMotionQuery.matches) {
-      activateChat();
+  revealElements.forEach((el) => {
+    el.classList.add('revealable');
+    observer.observe(el);
+  });
+});
     } else {
       createChatObserver();
     }
