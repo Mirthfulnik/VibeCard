@@ -23,17 +23,32 @@
                 <a class="header__link" href="#process">Процесс</a>
                 <a class="header__link" href="#demo">Демо</a>
                 <a class="header__link" href="#pricing">Тарифы</a>
-                <a class="header__link" href="#faq">FAQ</a> 
+                <a class="header__link" href="#faq">FAQ</a>
             </nav>
             <div class="header__cta">
                 <a href="#contact" class="header__cta-link">Связаться</a>
             </div>
-            <button class="header__burger" type="button" aria-label="Открыть меню">
+            <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
+    </header>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Мобильная навигация" aria-hidden="true">
+        <div class="mobile-menu__nav">
+            <a class="mobile-menu__link" href="#hero">Главная</a>
+            <a class="mobile-menu__link" href="#value">Преимущества</a>
+            <a class="mobile-menu__link" href="#process">Процесс</a>
+            <a class="mobile-menu__link" href="#demo">Демо</a>
+            <a class="mobile-menu__link" href="#pricing">Тарифы</a>
+            <a class="mobile-menu__link" href="#faq">FAQ</a>
+            <a class="mobile-menu__link mobile-menu__link--cta" href="#contact">Связаться</a>
+        </div>
+    </nav>
+
+    <main>
         <section class="hero" id="hero">
             <div class="container hero__container">
                 <div class="hero__copy">
