@@ -2,7 +2,39 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
+  const header = document.querySelector('.header');
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  );
 
+  const updateHeaderHeight = () => {
+    if (!header) {
+      return;
+    }
+
+    const { offsetHeight } = header;
+
+    if (Number.isFinite(offsetHeight) && offsetHeight > 0) {
+      document.documentElement.style.setProperty(
+        '--header-height',
+        `${offsetHeight}px`
+      );
+    }
+  };
+
+  updateHeaderHeight();
+  window.addEventListener('load', updateHeaderHeight);
+  window.addEventListener('resize', updateHeaderHeight);
+  window.addEventListener('orientationchange', updateHeaderHeight);
+
+  const toggleHeaderState = () => {
+    if (!header) return;
+    const shouldCompact = window.scrollY > 12;
+    header.classList.toggle('header--scrolled', shouldCompact);
+  };
+
+  toggleHeaderState();
+  document.addEventListener('scroll', toggleHeaderState, { passive: true });
   // Hero carousel
   const heroCarousel = document.querySelector('.hero__carousel');
 
@@ -537,6 +569,119 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.overflow = '';
       });
     });
+  }
+  const faqItems = document.querySelectorAll('.faq__item');
+
+  if (faqItems.length) {
+    const closeItem = (item) => {
+      const button = item.querySelector('.faq__question');
+      const answer = item.querySelector('.faq__answer');
+
+      if (!button || !answer) {
+        return;
+      }
+
+      item.classList.remove('is-open');
+      button.setAttribute('aria-expanded', 'false');
+
+      if (prefersReducedMotion.matches) {
+        answer.style.height = '';
+        answer.hidden = true;
+        return;
+      }
+
+      const startHeight = answer.scrollHeight;
+      answer.style.height = `${startHeight}px`;
+
+      requestAnimationFrame(() => {
+        answer.style.height = '0px';
+      });
+    };
+
+    const recalcFaqHeights = () => {
+      faqItems.forEach((faqItem) => {
+        if (!faqItem.classList.contains('is-open')) {
+          return;
+        }
+
+        const answerEl = faqItem.querySelector('.faq__answer');
+
+        if (!answerEl) {
+          return;
+        }
+
+        answerEl.style.height = 'auto';
+        const recalculatedHeight = answerEl.scrollHeight;
+        answerEl.style.height = `${recalculatedHeight}px`;
+      });
+    };
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector('.faq__question');
+      const answer = item.querySelector('.faq__answer');
+
+      if (!button || !answer) {
+        return;
+      }
+
+      answer.hidden = true;
+      answer.style.height = '0px';
+
+      const openItem = () => {
+        item.classList.add('is-open');
+        button.setAttribute('aria-expanded', 'true');
+
+        if (prefersReducedMotion.matches) {
+          answer.hidden = false;
+          answer.style.height = '';
+          return;
+        }
+
+        answer.hidden = false;
+        answer.style.height = '0px';
+
+        requestAnimationFrame(() => {
+          const fullHeight = answer.scrollHeight;
+          answer.style.height = `${fullHeight}px`;
+        });
+      };
+
+      const handleToggle = () => {
+        const isOpen = item.classList.contains('is-open');
+
+        if (isOpen) {
+          closeItem(item);
+        } else {
+          faqItems.forEach((otherItem) => {
+            if (otherItem !== item) {
+              closeItem(otherItem);
+            }
+          });
+          openItem();
+        }
+      };
+
+      button.addEventListener('click', handleToggle);
+
+      answer.addEventListener('transitionend', (event) => {
+        if (event.propertyName !== 'height') {
+          return;
+        }
+
+        if (item.classList.contains('is-open')) {
+          answer.style.height = 'auto';
+        } else if (!prefersReducedMotion.matches) {
+          answer.hidden = true;
+          answer.style.height = '0px';
+        }
+      });
+
+    });
+
+    if (!prefersReducedMotion.matches) {
+      window.addEventListener('resize', recalcFaqHeights);
+      window.addEventListener('orientationchange', recalcFaqHeights);
+    }
   }
 
   // Telegram modal
