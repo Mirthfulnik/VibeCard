@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleValueSlider = (event) => {
       if (event.matches) {
         initValueSwiper();
+
       } else {
         destroyValueSwiper();
       }
@@ -167,6 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleEl = demoViewerEl.querySelector('.demo-card__title');
     const metaEl = demoViewerEl.querySelector('.demo-card__meta');
     const panelEl = demoViewerEl.querySelector('.demo-card');
+    const stageEl = demoViewerEl.querySelector('.demo-preview__stage');
+    const fallbackImage = demoViewerEl.querySelector('.demo-preview__fallback');
     let interactionLocked = true;
 
     const applyInteractionConstraints = (target) => {
@@ -178,6 +181,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     applyInteractionConstraints(frame);
     applyInteractionConstraints(overlay);
+
+    const markPreviewLoaded = () => {
+      if (stageEl) {
+        stageEl.classList.add('is-loaded');
+      }
+    };
+
+    const showFallbackPreview = () => {
+      if (stageEl) {
+        stageEl.classList.remove('is-loaded');
+      }
+    };
+
+    const updateFallbackPreview = (previewSrc, altText) => {
+      if (!fallbackImage) {
+        return;
+      }
+
+      if (previewSrc) {
+        fallbackImage.src = previewSrc;
+      }
+
+      if (altText) {
+        fallbackImage.alt = altText;
+      }
+    };
 
     const disableInteraction = () => {
       if (!overlay || interactionLocked) return;
@@ -324,18 +353,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const enforceSameHost = () => {
       const activeControl = getActiveControl();
-      if (!frame || !activeControl) return;
+      if (!frame || !activeControl) return false;
       const site = activeControl.getAttribute('data-site');
-      if (!site) return;
+      if (!site) return false;
       try {
         const expectedHost = new URL(site).host;
         const currentHost = new URL(frame.src).host;
         if (currentHost && currentHost !== expectedHost) {
           frame.src = site;
+          return true;
         }
       } catch (error) {
         frame.src = site;
+        return true;
       }
+      return false;
     };
 
     const setActiveControl = (button) => {
@@ -355,6 +387,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = button.getAttribute('data-title');
       const meta = button.getAttribute('data-meta');
       const hint = button.getAttribute('data-hint');
+      const preview = button.getAttribute('data-preview');
+      const previewAltAttr = button.getAttribute('data-preview-alt');
 
       if (title) {
         titleEl.textContent = title;
@@ -369,8 +403,16 @@ document.addEventListener('DOMContentLoaded', () => {
         hintEl.textContent = hint;
       }
 
-      if (site && frame.src !== site) {
+      const fallbackAlt =
+        previewAltAttr || (title ? `Превью визитки ${title}` : fallbackImage?.getAttribute('alt') || 'Превью визитки');
+
+      updateFallbackPreview(preview, fallbackAlt);
+      showFallbackPreview();
+
+      if (site) {
         frame.src = site;
+      } else {
+        frame.removeAttribute('src');
       }
 
       disableInteraction();
@@ -383,7 +425,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (frame) {
-      frame.addEventListener('load', enforceSameHost);
+      frame.addEventListener('load', () => {
+        const reloaded = enforceSameHost();
+        if (reloaded) {
+          showFallbackPreview();
+        } else {
+          markPreviewLoaded();
+        }
+      });
     }
 
     const initialControl = getActiveControl() || controls[0];
@@ -407,15 +456,35 @@ document.addEventListener('DOMContentLoaded', () => {
       burger.setAttribute('aria-expanded', String(isActive));
       mobileMenu.setAttribute('aria-hidden', String(!isActive));
       body.style.overflow = isActive ? 'hidden' : '';
- });
+    });
 
     mobileLinks.forEach((link) => {
       link.addEventListener('click', () => {
         burger.classList.remove('active');
         mobileMenu.classList.remove('open');
-        burger.setAttribute('aria-expanded', false);
-        mobileMenu.setAttribute('aria-hidden', true);
+        burger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
         body.style.overflow = '';
+      });
+    });
+  }
+
+  // Telegram modal
+  const telegramButtons = document.querySelectorAll('.telegram-btn');
+  const telegramModal = document.getElementById('telegram-modal');
+  const telegramLink = document.getElementById('telegram-link');
+
+  if (telegramButtons.length && telegramModal && telegramLink) {
+    telegramButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const url = button.getAttribute('data-url');
+        if (url) {
+          telegramLink.href = url;
+        } else {
+          telegramLink.removeAttribute('href');
+        }
+        showModal(telegramModal);
       });
     });
   }
@@ -472,12 +541,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatEl = document.querySelector('.chat');
 
   if (chatEl) {
+    chatEl.classList.add('chat--prepared');
     const chatMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const supportsIntersectionObserver = 'IntersectionObserver' in window;
     let chatActivated = false;
     let chatObserver;
 
     const setChatState = () => {
-      if (!chatActivated) return;
+      if (!chatActivated) {
+        return;
+      }
 
       if (chatMotionQuery.matches) {
         chatEl.classList.add('chat--reduced');
@@ -490,55 +563,44 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-
-@@ -536,45 +558,45 @@ const handleMouseEnter = () => stopAutoplay();
-    if (overlay) {
-      overlay.addEventListener('click', () => hideModal(modal));
-    }
-  });
-
-  function showModal(modal) {
-    modal.classList.remove('hidden');
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    body.style.overflow = 'hidden';
-  }
-
-  function hideModal(modal) {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.classList.add('hidden');
-      if (!document.querySelector('.modal.show')) {
-        body.style.overflow = '';
+    const activateChat = () => {
+      if (chatActivated) {
+        return;
       }
-    }, 200);
-  }
 
-  // Reveal on scroll
-  const revealElements = document.querySelectorAll(
-    '.value-card, .timeline__item, .pricing-card, .guarantee-card, .testimonial-shot, .stat'
-  );
+      chatActivated = true;
+      setChatState();
+    };
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
+    const observeChat = () => {
+      if (!supportsIntersectionObserver || chatObserver) {
+        return;
+      }
 
-  revealElements.forEach((el) => {
-    el.classList.add('revealable');
-    observer.observe(el);
-  });
-});
+      chatObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              activateChat();
+              if (chatObserver) {
+                chatObserver.disconnect();
+                chatObserver = null;
+              }
+            }
+          });
+        },
+        { threshold: 0.25, rootMargin: '0px 0px -10% 0px' }
+      );
+
+      chatObserver.observe(chatEl);
+    };
+
+    if (chatMotionQuery.matches) {
+      activateChat();
+    } else if (supportsIntersectionObserver) {
+      observeChat();
     } else {
-      createChatObserver();
+      activateChat();
     }
 
     const handleChatMotionChange = (event) => {
@@ -550,8 +612,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } else if (chatActivated) {
         setChatState();
-      } else {
-        createChatObserver();
+      } else if (supportsIntersectionObserver) {
+        observeChat();
       }
     };
 
@@ -600,20 +662,31 @@ document.addEventListener('DOMContentLoaded', () => {
     '.value-card, .timeline__item, .pricing-card, .guarantee-card, .testimonial-shot, .stat'
   );
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
+  if (revealElements.length) {
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const revealList = Array.from(revealElements);
 
-  revealElements.forEach((el) => {
-    el.classList.add('revealable');
-    observer.observe(el);
-  });
+    if (reduceMotionQuery.matches || !('IntersectionObserver' in window)) {
+      revealList.forEach((element) => {
+        element.classList.add('revealed');
+      });
+    } else {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      revealList.forEach((element) => {
+        element.classList.add('revealable');
+        revealObserver.observe(element);
+      });
+    }
+  }
 });
