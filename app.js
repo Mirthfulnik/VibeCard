@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!valueSwiper) return;
       valueSwiper.destroy(true, true);
       valueSwiper = null;
-      if (typeof valueSliderEl.scrollTo === 'function') {
+         if (typeof valueSliderEl.scrollTo === 'function') {
         valueSliderEl.scrollTo({ left: 0, behavior: 'auto' });
       } else {
         valueSliderEl.scrollLeft = 0;
@@ -154,6 +154,76 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileBreakpoint.addEventListener('change', handleValueSlider);
     } else if (typeof mobileBreakpoint.addListener === 'function') {
       mobileBreakpoint.addListener(handleValueSlider);
+    }
+  }
+
+  // Pricing slider (mobile only)
+  const pricingSliderEl = document.querySelector('.pricing__slider');
+
+  if (pricingSliderEl && typeof Swiper !== 'undefined') {
+    const paginationEl = pricingSliderEl.querySelector('.pricing__pagination');
+    const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+    let pricingSwiper;
+
+    const initPricingSwiper = () => {
+      if (pricingSwiper) return;
+      pricingSwiper = new Swiper(pricingSliderEl, {
+        slidesPerView: 1.05,
+        centeredSlides: true,
+        spaceBetween: 18,
+        autoHeight: true,
+        watchOverflow: true,
+        grabCursor: true,
+        keyboard: {
+          enabled: true,
+        },
+        pagination: paginationEl
+          ? {
+              el: paginationEl,
+              clickable: true,
+            }
+          : undefined,
+        breakpoints: {
+          0: {
+            slidesPerView: 1.05,
+            spaceBetween: 18,
+          },
+          480: {
+            slidesPerView: 1.18,
+            spaceBetween: 22,
+          },
+        },
+      });
+    };
+
+    const destroyPricingSwiper = () => {
+      if (!pricingSwiper) return;
+      pricingSwiper.destroy(true, true);
+      pricingSwiper = null;
+      const gridEl = pricingSliderEl.querySelector('.pricing__grid');
+      if (gridEl) {
+        if (typeof gridEl.scrollTo === 'function') {
+          gridEl.scrollTo({ left: 0, behavior: 'auto' });
+        } else {
+          gridEl.scrollLeft = 0;
+        }
+      }
+    };
+
+    const handlePricingSlider = (event) => {
+      if (event.matches) {
+        initPricingSwiper();
+      } else {
+        destroyPricingSwiper();
+      }
+    };
+
+    handlePricingSlider(mobileBreakpoint);
+
+    if (typeof mobileBreakpoint.addEventListener === 'function') {
+      mobileBreakpoint.addEventListener('change', handlePricingSlider);
+    } else if (typeof mobileBreakpoint.addListener === 'function') {
+      mobileBreakpoint.addListener(handlePricingSlider);
     }
   }
 
