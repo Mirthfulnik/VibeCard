@@ -411,7 +411,7 @@ section::after {
 
 .hero__carousel {
   position: relative;
-  width: clamp(280px, 34vw, 420px);
+  width: clamp(320px, 38vw, 460px);
   padding: clamp(12px, 2vw, 20px) 0 56px;
   overflow: visible;
 }
@@ -428,7 +428,7 @@ section::after {
   }
 
   .hero__carousel {
-    width: clamp(260px, 30vw, 360px);
+    width: clamp(320px, 34vw, 440px);
     max-width: 100%;
     overflow: hidden;
   }
@@ -439,17 +439,17 @@ section::after {
 }
 
 .hero__carousel .swiper-slide {
-  width: clamp(220px, 26vw, 320px);
+  width: clamp(280px, 34vw, 380px);
 }
 
 .hero-slide {
---hero-slide-frame: clamp(12px, 2vw, 18px);
+  --hero-slide-frame: clamp(6px, 1.4vw, 12px);
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
   border-radius: var(--radius-xl);
   padding: var(--hero-slide-frame);
-  border-radius: calc(var(--radius-xl) - 10px);
+  border-radius: calc(var(--radius-xl) - (var(--hero-slide-frame) / 2));
   overflow: hidden;
   background: var(--color-hero-surface);
   box-shadow: 0 24px 48px rgba(8, 12, 26, 0.4);
@@ -476,7 +476,7 @@ section::after {
   object-fit: cover;
   display: block;
   border-radius: calc(var(--radius-xl) - var(--hero-slide-frame));
-  transform: scale(1.12);
+  transform: scale(1.02);
   transform-origin: center;
 }
 
@@ -487,8 +487,8 @@ section::after {
   background: rgba(8, 12, 24, 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-top-left-radius: clamp(16px, 3vw, 24px);
-  border-top-right-radius: clamp(16px, 3vw, 24px);
+  border-top-left-radius: clamp(12px, 2.4vw, 20px);
+  border-top-right-radius: clamp(12px, 2.4vw, 20px);
   border-top: 1px solid rgba(148, 163, 184, 0.18);
   color: #fff;
   opacity: 0;
