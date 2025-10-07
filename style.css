@@ -1619,20 +1619,10 @@ content: none;
   gap: clamp(32px, 6vw, 52px);
   padding: clamp(36px, 6vw, 64px);
   border-radius: clamp(36px, 6vw, 60px);
-  background: linear-gradient(140deg, rgba(124, 92, 255, 0.32), rgba(79, 70, 229, 0.75)),
-    radial-gradient(circle at 85% 15%, rgba(249, 115, 22, 0.45), transparent 55%);
+  background: linear-gradient(140deg, rgba(124, 92, 255, 0.32), rgba(79, 70, 229, 0.75));
   border: 1px solid rgba(148, 163, 184, 0.18);
   box-shadow: 0 60px 120px rgba(5, 8, 26, 0.55);
   overflow: hidden;
-}
-
-.contact__card::after {
-  content: "";
-  position: absolute;
-  inset: clamp(6px, 1.8vw, 18px);
-  border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  pointer-events: none;
 }
 
 .contact__profile {
@@ -1648,10 +1638,10 @@ content: none;
   width: clamp(180px, 24vw, 240px);
   aspect-ratio: 1;
   border-radius: 50%;
-  padding: clamp(8px, 1.6vw, 12px);
-  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  box-shadow: 0 28px 60px rgba(7, 10, 32, 0.55);
+  padding: clamp(6px, 1.2vw, 10px);
+  background: rgba(124, 92, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.32);
+  box-shadow: 0 24px 48px rgba(7, 10, 32, 0.5);
   display: grid;
   place-items: center;
 }
@@ -1670,8 +1660,9 @@ content: none;
 }
 
 .contact__signature-name {
-  font-family: "Great Vibes", cursive;
-  font-size: clamp(28px, 5vw, 40px);
+  font-family: var(--font-family);
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
   color: #fff;
 }
 
@@ -1681,6 +1672,10 @@ content: none;
   max-width: 240px;
   margin: 0 auto;
   line-height: 1.5;
+}
+
+.contact__content h2 {
+  line-height: 1.15;
 }
 
 .contact__content {
