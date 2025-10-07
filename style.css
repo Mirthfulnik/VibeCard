@@ -40,7 +40,16 @@ body {
 body {
   margin: 0;
   font-family: var(--font-family);
-  background: linear-gradient(180deg, #0b1120 0%, #101a39 28%, #1a2450 52%, #2a1f4a 72%, #3c1c44 88%, #4d1634 100%);
+    background: linear-gradient(
+    180deg,
+    #0b1120 0%,
+    #101735 20%,
+    #151d40 40%,
+    #1d214a 60%,
+    #2a1e49 78%,
+    #371c45 90%,
+    #441a40 100%
+  );
   color: var(--color-text);
   line-height: 1.6;
   min-height: 100vh;
