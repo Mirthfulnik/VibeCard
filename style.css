@@ -426,6 +426,7 @@ section::after {
 }
 .hero__carousel .swiper-wrapper {
   align-items: center;
+  gap: clamp(12px, 2.2vw, 24px);
 }
 
 .hero__carousel .swiper-slide {
@@ -433,11 +434,16 @@ section::after {
 }
 
 .hero-slide {
+--hero-slide-frame: clamp(12px, 2vw, 18px);
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
+  border-radius: var(--radius-xl);
+  padding: var(--hero-slide-frame);
   border-radius: calc(var(--radius-xl) - 10px);
   overflow: hidden;
+  background: var(--color-hero-surface);
+  box-shadow: 0 24px 48px rgba(8, 12, 26, 0.4);
   background: var(--color-hero-surface);
   transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease;
   opacity: 0.35;
@@ -460,6 +466,7 @@ section::after {
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: calc(var(--radius-xl) - var(--hero-slide-frame));
 }
 
 .hero-slide__content {
