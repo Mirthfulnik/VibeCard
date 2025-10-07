@@ -467,6 +467,8 @@ section::after {
   object-fit: cover;
   display: block;
   border-radius: calc(var(--radius-xl) - var(--hero-slide-frame));
+  transform: scale(1.12);
+  transform-origin: center;
 }
 
 .hero-slide__content {
