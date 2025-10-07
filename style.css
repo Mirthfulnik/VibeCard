@@ -883,7 +883,9 @@ section::after {
 .timeline {
   position: relative;
   border-left: 2px solid rgba(148, 163, 184, 0.2);
-  margin-left: clamp(12px, 4vw, 40px);
+  margin: 0 auto;
+  max-width: 720px;
+  padding-left: clamp(12px, 4vw, 40px);
   display: grid;
   gap: 32px;
   z-index: 0;
