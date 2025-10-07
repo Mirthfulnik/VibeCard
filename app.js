@@ -45,11 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSwiper = new Swiper(heroCarousel, {
       loop: true,
       centeredSlides: true,
+      centeredSlidesBounds: true,
       slidesPerView: 'auto',
-      spaceBetween: 0,
+      spaceBetween: 24,
       grabCursor: true,
       effect: 'coverflow',
       speed: 800,
+      roundLengths: true,
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
@@ -57,15 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
         modifier: 0.9,
         slideShadows: false,
       },
-      pagination: paginationEl
-        ? {
-            el: paginationEl,
-            clickable: true,
-          }
-        : undefined,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
+      pagination: paginationEl ? { el: paginationEl, clickable: true } : undefined,
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      on: {
+        resize(swiper) {
+          swiper.update();
+          swiper.slideTo(swiper.activeIndex, 0);
+        },
+        imagesReady(swiper) {
+          swiper.update();
+          swiper.slideTo(swiper.activeIndex, 0);
+        },
       },
       breakpoints: {
         0: {
