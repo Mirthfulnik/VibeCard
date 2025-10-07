@@ -709,13 +709,63 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Privacy modal
-  const privacyLink = document.querySelector('.privacy-link');
+  const privacyLinks = document.querySelectorAll('.privacy-link');
   const privacyModal = document.getElementById('privacy-modal');
 
-  if (privacyLink && privacyModal) {
-    privacyLink.addEventListener('click', (event) => {
-      event.preventDefault();
-      showModal(privacyModal);
+  if (privacyLinks.length && privacyModal) {
+    privacyLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        showModal(privacyModal);
+      });
+    });
+  }
+
+  // Cookie consent banner
+  const cookieBanner = document.querySelector('.cookie-consent');
+
+  if (cookieBanner) {
+    const consentKey = 'vibecard-cookie-consent';
+    const consentButtons = cookieBanner.querySelectorAll('[data-consent]');
+
+    const setBannerVisibility = (isVisible) => {
+      cookieBanner.classList.toggle('cookie-consent--visible', isVisible);
+      cookieBanner.setAttribute('aria-hidden', String(!isVisible));
+    };
+
+    const storeConsent = (value) => {
+      try {
+        localStorage.setItem(consentKey, value);
+      } catch (error) {
+        // Ignore storage errors (e.g., disabled cookies)
+      }
+    };
+
+    const handleConsent = (value) => {
+      storeConsent(value);
+      setBannerVisibility(false);
+    };
+
+    setBannerVisibility(false);
+
+    let savedConsent = null;
+
+    try {
+      savedConsent = localStorage.getItem(consentKey);
+    } catch (error) {
+      savedConsent = null;
+    }
+
+    if (!savedConsent) {
+      window.setTimeout(() => setBannerVisibility(true), 400);
+    }
+
+    consentButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const consentValue = button.getAttribute('data-consent') || 'dismissed';
+        handleConsent(consentValue);
+      });
     });
   }
 
