@@ -552,13 +552,7 @@ section::after {
 }
 
 .value::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(124, 92, 255, 0.18), transparent 60%),
-    radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.18), transparent 60%);
-  opacity: 0.6;
-  pointer-events: none;
+  content: none;
 }
 
 
