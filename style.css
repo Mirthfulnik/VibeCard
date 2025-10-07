@@ -444,6 +444,9 @@ section::after {
 
 .hero-slide {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   aspect-ratio: 9 / 16;
   border-radius: var(--radius-xl);
@@ -467,13 +470,14 @@ section::after {
 }
 
 .hero-slide__image {
-  width: 100%;
+  width: auto;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
   display: block;
+  margin: 0 auto;
   border-radius: inherit;
-  transform: scale(1.2);
-  transform-origin: center;
 }
 
 .hero-slide__content {
@@ -487,6 +491,7 @@ section::after {
   border-top-right-radius: clamp(12px, 2.4vw, 20px);
   border-top: 1px solid rgba(148, 163, 184, 0.18);
   color: #fff;
+  z-index: 1;
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.5s ease, transform 0.5s ease;
