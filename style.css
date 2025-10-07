@@ -889,15 +889,9 @@ section::after {
   z-index: 0;
 }
 
+/* Removed decorative gradient backdrop to keep the process section clean */
 .timeline::before {
-  content: "";
-  position: absolute;
-  inset: -80px -40px -80px -80px;
-  background: radial-gradient(circle at 20% 20%, rgba(124, 92, 255, 0.28), transparent 70%),
-    radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.18), transparent 75%);
-  opacity: 0.45;
-  pointer-events: none;
-  z-index: -1;
+content: none;
 }
 
 .timeline__item {
