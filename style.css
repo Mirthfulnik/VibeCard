@@ -117,6 +117,17 @@ section::after {
   z-index: -1;
 }
 
+@media (max-width: 640px) {
+  section {
+    padding: clamp(56px, 18vw, 84px) 0;
+  }
+
+  section::after {
+    inset: clamp(6px, 5vw, 18px);
+    border-radius: clamp(20px, 10vw, 36px);
+  }
+}
+
 .hero::after {
   display: none;
 }
@@ -1143,11 +1154,38 @@ content: none;
 }
 
 
+.testimonials__slider {
+  position: relative;
+}
+
+.testimonials__slider .swiper-wrapper {
+  align-items: stretch;
+}
 .testimonials--gallery .testimonials__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
 }
+
+.testimonials__pagination {
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.testimonials__pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.3);
+  transition: background 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+}
+
+.testimonials__pagination .swiper-pagination-bullet-active {
+  background: rgba(124, 92, 255, 0.85);
+  transform: scale(1.2);
 
 .pricing__slider {
   position: relative;
@@ -1482,6 +1520,31 @@ content: none;
 .testimonial-shot--error::after {
   content: "Не удалось загрузить изображение";
   background: rgba(239, 68, 68, 0.85);
+}
+
+  @media (max-width: 768px) {
+  .testimonials--gallery .testimonials__grid {
+    display: flex;
+    gap: 16px;
+  }
+
+  .testimonials__slider .swiper-slide {
+    width: min(88vw, 300px);
+    display: flex;
+  }
+
+  .testimonial-shot {
+    width: 100%;
+  }
+
+  .testimonials__slider.swiper-initialized .testimonials__pagination {
+    display: flex;
+  }
+
+  .testimonial-shot::after {
+    inset: auto 12px 12px 12px;
+    font-size: 12px;
+  }
 }
 
 .faq__list {
