@@ -139,7 +139,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const paginationEl = valueSliderEl.querySelector('.value__pagination');
     const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
     let valueSwiper;
+    
+    const handleMotionChange = (event) => {
+      if (!valueSwiper || !valueSwiper.autoplay) {
+        return;
+      }
 
+      if (event.matches) {
+        valueSwiper.autoplay.stop();
+      } else {
+        valueSwiper.autoplay.start();
+      }
+    };
+    
     const initValueSwiper = () => {
       if (valueSwiper) return;
       valueSwiper = new Swiper(valueSliderEl, {
@@ -147,6 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
         centeredSlides: true,
         spaceBetween: 18,
         watchOverflow: true,
+        loop: true,
+        speed: 600,
+        autoplay: {
+          delay: 3800,
+          disableOnInteraction: false,
+        },
         pagination: paginationEl
           ? {
               el: paginationEl,
@@ -163,12 +181,29 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       });
     };
+    
+      if (prefersReducedMotion.matches && valueSwiper.autoplay) {
+        valueSwiper.autoplay.stop();
+      }
+
+      if (typeof prefersReducedMotion.addEventListener === 'function') {
+        prefersReducedMotion.addEventListener('change', handleMotionChange);
+      } else if (typeof prefersReducedMotion.addListener === 'function') {
+        prefersReducedMotion.addListener(handleMotionChange);
+      }
 
     const destroyValueSwiper = () => {
+      
+      if (typeof prefersReducedMotion.removeEventListener === 'function') {
+        prefersReducedMotion.removeEventListener('change', handleMotionChange);
+      } else if (typeof prefersReducedMotion.removeListener === 'function') {
+        prefersReducedMotion.removeListener(handleMotionChange);
+      }
+
       if (!valueSwiper) return;
       valueSwiper.destroy(true, true);
       valueSwiper = null;
-         if (typeof valueSliderEl.scrollTo === 'function') {
+      if (typeof valueSliderEl.scrollTo === 'function') {
         valueSliderEl.scrollTo({ left: 0, behavior: 'auto' });
       } else {
         valueSliderEl.scrollLeft = 0;
@@ -178,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleValueSlider = (event) => {
       if (event.matches) {
         initValueSwiper();
-
       } else {
         destroyValueSwiper();
       }
@@ -190,6 +224,102 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileBreakpoint.addEventListener('change', handleValueSlider);
     } else if (typeof mobileBreakpoint.addListener === 'function') {
       mobileBreakpoint.addListener(handleValueSlider);
+    }
+  }
+
+  const testimonialsSliderEl = document.querySelector('.testimonials__slider');
+
+  if (testimonialsSliderEl && typeof Swiper !== 'undefined') {
+    const paginationEl = testimonialsSliderEl.querySelector('.testimonials__pagination');
+    const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+    let testimonialsSwiper;
+
+    const handleMotionChange = (event) => {
+      if (!testimonialsSwiper || !testimonialsSwiper.autoplay) {
+        return;
+      }
+
+      if (event.matches) {
+        testimonialsSwiper.autoplay.stop();
+      } else {
+        testimonialsSwiper.autoplay.start();
+      }
+    };
+
+    const initTestimonialsSwiper = () => {
+      if (testimonialsSwiper) return;
+
+      testimonialsSwiper = new Swiper(testimonialsSliderEl, {
+        slidesPerView: 1.08,
+        centeredSlides: true,
+        spaceBetween: 18,
+        loop: true,
+        speed: 600,
+        watchOverflow: true,
+        autoHeight: true,
+        keyboard: {
+          enabled: true,
+        },
+        autoplay: {
+          delay: 3600,
+          disableOnInteraction: false,
+        },
+        pagination: paginationEl
+          ? {
+              el: paginationEl,
+              clickable: true,
+            }
+          : undefined,
+        breakpoints: {
+          0: {
+            slidesPerView: 1.02,
+            spaceBetween: 16,
+          },
+          480: {
+            slidesPerView: 1.1,
+            spaceBetween: 18,
+          },
+        },
+      });
+
+      if (prefersReducedMotion.matches && testimonialsSwiper.autoplay) {
+        testimonialsSwiper.autoplay.stop();
+      }
+
+      if (typeof prefersReducedMotion.addEventListener === 'function') {
+        prefersReducedMotion.addEventListener('change', handleMotionChange);
+      } else if (typeof prefersReducedMotion.addListener === 'function') {
+        prefersReducedMotion.addListener(handleMotionChange);
+      }
+    };
+
+    const destroyTestimonialsSwiper = () => {
+      if (!testimonialsSwiper) return;
+
+      if (typeof prefersReducedMotion.removeEventListener === 'function') {
+        prefersReducedMotion.removeEventListener('change', handleMotionChange);
+      } else if (typeof prefersReducedMotion.removeListener === 'function') {
+        prefersReducedMotion.removeListener(handleMotionChange);
+      }
+
+      testimonialsSwiper.destroy(true, true);
+      testimonialsSwiper = null;
+    };
+
+    const handleTestimonialsSlider = (event) => {
+      if (event.matches) {
+        initTestimonialsSwiper();
+      } else {
+        destroyTestimonialsSwiper();
+      }
+    };
+
+    handleTestimonialsSlider(mobileBreakpoint);
+
+    if (typeof mobileBreakpoint.addEventListener === 'function') {
+      mobileBreakpoint.addEventListener('change', handleTestimonialsSlider);
+    } else if (typeof mobileBreakpoint.addListener === 'function') {
+      mobileBreakpoint.addListener(handleTestimonialsSlider);
     }
   }
 
