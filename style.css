@@ -19,7 +19,7 @@
   --transition: all 0.3s ease;
   --container-width: min(1120px, 92vw);
   --font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
+    Roboto, sans-serif; 
 }
 
 *,
