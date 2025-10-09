@@ -1147,7 +1147,7 @@ content: none;
   visibility: visible;
 }
 
-.demo-preview__overlay.is-interacting {
+.demo-preview__overlay.is-active {
   opacity: 0;
   pointer-events: none;
   cursor: grabbing;
