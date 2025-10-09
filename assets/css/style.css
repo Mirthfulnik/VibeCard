@@ -17,9 +17,16 @@
   --radius-lg: 24px;
   --radius-xl: 32px;
   --transition: all 0.3s ease;
-  --container-width: min(1120px, 92vw);
+  --container-width: min(1240px, 92vw);
   --font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif; 
+  Roboto, sans-serif;
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --container-width: min(1360px, 86vw);
+  }
+} 
 }
 
 *,
@@ -103,6 +110,7 @@ main {
 section {
   position: relative;
   isolation: isolate;
+  scroll-margin-top: calc(var(--header-height) + 24px);
   padding: clamp(80px, 12vw, 120px) 0;
 }
 
@@ -143,6 +151,16 @@ section::after {
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+
+@media (min-width: 1920px) {
+  .section-title {
+    font-size: 52px;
+  }
+
+  .section-description {
+    font-size: 20px;
+  }
 }
 
 .section-description {
@@ -453,6 +471,28 @@ section::after {
   width: clamp(280px, 34vw, 380px);
 }
 
+@media (min-width: 1920px) {
+  .hero {
+    padding-top: 160px;
+  }
+
+  .hero__container {
+    gap: 120px;
+  }
+
+  .hero__title {
+    font-size: 64px;
+  }
+
+  .hero__carousel {
+    width: 520px;
+  }
+
+  .hero__carousel .swiper-slide {
+    width: 420px;
+  }
+}
+
 .hero-slide {
   position: relative;
   display: flex;
@@ -585,8 +625,35 @@ section::after {
   align-items: stretch;
 }
 
+.value__slider.swiper-initialized {
+  overflow: visible;
+}
+
+.value__slider.swiper-initialized .value__grid {
+  display: flex;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: stretch;
+}
+
+.value__slider.swiper-initialized .swiper-slide {
+  display: flex;
+  height: auto;
+  width: clamp(260px, 28vw, 340px);
+}
+
+.value__slider.swiper-initialized .value-card {
+  height: 100%;
+}
+
 .value__pagination {
   display: none;
+}
+
+.value__slider.swiper-initialized .value__pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: clamp(24px, 4vw, 32px);
 }
 
 .value-card {
@@ -629,32 +696,30 @@ section::after {
   .value__slider {
     margin-inline: 0;
     padding: 0 16px 48px;
+      }
+  
+  .value__slider:not(.swiper-initialized) {
     overflow-x: auto;
     overflow-y: visible;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
   }
 
-  .value__slider.swiper-initialized {
-    overflow-x: visible;
-    scroll-snap-type: none;
-  }
-
-  .value__grid {
+ .value__slider:not(.swiper-initialized) .value__grid {
     display: flex;
     align-items: stretch;
     gap: 16px;
   }
 
-  .value__slider .swiper-wrapper {
-    align-items: stretch;
-  }
-
-  .value__slider .swiper-slide {
+  .value__slider:not(.swiper-initialized) .swiper-slide {
     display: flex;
     height: auto;
     width: min(88vw, 320px);
     scroll-snap-align: center;
+  }
+  
+    .value__slider.swiper-initialized .swiper-slide {
+    width: min(88vw, 320px);
   }
 
   .value-card {
@@ -670,9 +735,8 @@ section::after {
     font-size: 28px;
   }
 
-  .value__pagination {
-    display: flex;
-    justify-content: center;
+  .value__slider.swiper-initialized .value__pagination {
+    
     gap: 8px;
     margin-top: 20px;
   }
@@ -692,7 +756,7 @@ section::after {
     padding: 24px;
   }
 
-   .value-card h3 {
+  .value-card h3 {
     font-size: 19px;
   }
 
@@ -1215,6 +1279,25 @@ content: none;
 
 .pricing__slider .swiper-slide {
   height: auto;
+}
+
+.pricing__slider.swiper-initialized {
+  overflow: visible;
+  padding-bottom: clamp(48px, 6vw, 72px);
+}
+
+.pricing__slider.swiper-initialized .pricing__grid {
+  display: flex;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: stretch;
+}
+
+.pricing__slider.swiper-initialized .swiper-slide {
+  width: auto;
+}
+
+.pricing__slider.swiper-initialized .pricing-card {
+  width: clamp(280px, 28vw, 360px);
 }
 
 .pricing__grid {
@@ -2216,9 +2299,13 @@ content: none;
     margin-bottom: 40px;
   }
 
-    .pricing__slider {
+  .pricing__slider {
     margin-inline: -16px;
     padding-inline: 16px;
+  }
+
+    .pricing__slider.swiper-initialized {
+    padding-bottom: 56px;
   }
 
   .pricing__grid {
@@ -2227,6 +2314,10 @@ content: none;
   }
 
   .pricing__grid .pricing-card {
+    width: min(86vw, 340px);
+  }
+
+    .pricing__slider.swiper-initialized .pricing-card {
     width: min(86vw, 340px);
   }
 
