@@ -1350,6 +1350,53 @@ content: none;
   transform: scaleX(1.12);
 }
 
+@media (min-width: 1024px) {
+  .swiper.is-static {
+    overflow: visible;
+    pointer-events: auto;
+  }
+
+  .swiper.is-static .swiper-wrapper {
+    transform: none !important;
+    transition-duration: 0ms !important;
+  }
+
+  .swiper.is-static .swiper-slide {
+    width: auto !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
+
+  .value__slider.is-static .value__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  .testimonials__slider.is-static .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    justify-items: center;
+  }
+
+  .testimonials__slider.is-static .swiper-slide {
+    width: 100% !important;
+  }
+
+  .pricing__slider.is-static .pricing__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  .pricing__slider.is-static .pricing-card {
+    width: 100%;
+  }
+}
+
 .pricing-card {
   position: relative;
   padding: 40px 36px;
