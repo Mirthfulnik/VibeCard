@@ -1525,12 +1525,15 @@ content: none;
   margin-top: auto;
   display: grid;
   gap: 18px;
-  padding: 26px;
+  padding: 26px
+  width: calc(100% - 16px);
+  margin-inline: auto;
   border-radius: 22px;
   background: rgba(11, 17, 32, 0.88);
   border: 1px solid rgba(148, 163, 184, 0.28);
   box-shadow: 0 28px 60px rgba(8, 12, 24, 0.55);
   text-align: center;
+  box-sizing: border-box;
 }
 
 .pricing-card__cta {
@@ -1548,8 +1551,9 @@ content: none;
   display: grid;
   gap: 12px;
   margin: 0;
-  padding: 0;
+  padding: 0 8px;
   list-style: none;
+  box-sizing: border-box;
 }
 
 .pricing-card__feature {
