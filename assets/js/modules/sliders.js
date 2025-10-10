@@ -171,31 +171,56 @@ const initResponsiveSlider = (element, mediaQueryString, optionsFactory, motionQ
       return;
     }
 
+    element.classList.remove('is-static');
+    
     swiperInstance = new Swiper(element, optionsFactory());
     cleanupAutoplay = manageAutoplay(swiperInstance, motionQuery, element);
   };
 
   const disable = () => {
-    if (!swiperInstance) {
-      return;
+    if (swiperInstance) {
+      if (typeof cleanupAutoplay === 'function') {
+        cleanupAutoplay();
+        cleanupAutoplay = null;
+      }
+
+      swiperInstance.destroy(true, true);
+      swiperInstance = null;
     }
 
-    if (typeof cleanupAutoplay === 'function') {
-      cleanupAutoplay();
-      cleanupAutoplay = null;
-    }
+    const orientationClasses = Array.from(element.classList).filter(
+      (className) => className !== 'swiper' && className.startsWith('swiper-')
+    );
 
-    swiperInstance.destroy(true, true);
-    swiperInstance = null;
+    orientationClasses.forEach((className) => element.classList.remove(className));
+    element.classList.add('is-static');
 
     const wrapper = element.querySelector('.swiper-wrapper');
     if (wrapper) {
+     wrapper.removeAttribute('style');
+
+      const wrapperClassesToRemove = Array.from(wrapper.classList).filter(
+        (className) => className !== 'swiper-wrapper' && className.startsWith('swiper-')
+      );
+
+      wrapperClassesToRemove.forEach((className) => wrapper.classList.remove(className));
+
       if (typeof wrapper.scrollTo === 'function') {
         wrapper.scrollTo({ left: 0, behavior: 'auto' });
       } else {
         wrapper.scrollLeft = 0;
       }
     }
+    
+    element.querySelectorAll('.swiper-slide').forEach((slide) => {
+      slide.removeAttribute('style');
+
+      const slideClassesToRemove = Array.from(slide.classList).filter(
+        (className) => className !== 'swiper-slide' && className.startsWith('swiper-')
+      );
+
+      slideClassesToRemove.forEach((className) => slide.classList.remove(className));
+    });
   };
 
   const evaluate = (query) => {
