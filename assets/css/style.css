@@ -670,6 +670,20 @@ section::after {
   height: 100%;
 }
 
+@media (min-width: 1024px) {
+  .value-card {
+    gap: 12px;
+    padding: 26px;
+    min-height: auto;
+    height: auto;
+  }
+
+  .value__slider.swiper-initialized .value-card {
+    height: auto;
+  }
+}
+
+
 .value-card:hover {
   transform: translateY(-6px);
   border-color: rgba(148, 163, 184, 0.3);
