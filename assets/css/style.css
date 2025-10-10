@@ -945,6 +945,20 @@ section::after {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .trust__chat::before,
+  .trust__chat::after {
+    animation: none;
+    transform: translate(0, 0) scale(1);
+  }
+
+  .chat__messages .chat__bubble {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .trust__quote {
   margin: 0;
   max-width: 760px;
