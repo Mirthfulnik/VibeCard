@@ -2228,6 +2228,12 @@ content: none;
   .hero__visual {
     grid-area: hero-visual;
     justify-content: center;
+    padding-left: 0;
+    overflow: visible;
+  }
+
+  .hero__carousel {
+    width: min(92vw, 440px);
   }
 
   .trust__container {
