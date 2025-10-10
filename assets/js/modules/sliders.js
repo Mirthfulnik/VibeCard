@@ -215,7 +215,7 @@ const initValueSlider = (motionQuery) => {
 
   initResponsiveSlider(
     sliderEl,
-    null,
+    '(max-width: 1023px)',
     () => ({
       slidesPerView: 1.1,
       centeredSlides: true,
@@ -262,68 +262,71 @@ const initValueSlider = (motionQuery) => {
 const initTestimonialsSlider = (motionQuery) => {
   const sliderEl = document.querySelector('.testimonials__slider');
 
-  if (!sliderEl || typeof Swiper === 'undefined') {
-    return;
-  }
+  initResponsiveSlider(
+    sliderEl,
+    '(max-width: 1023px)',
+    () => {
+      const paginationEl = sliderEl
+        ? sliderEl.querySelector('.testimonials__pagination')
+        : null;
 
-  const paginationEl = sliderEl.querySelector('.testimonials__pagination');
-
-  const testimonialsSwiper = new Swiper(sliderEl, {
-    loop: true,
-    centeredSlides: true,
-    centeredSlidesBounds: true,
-    slidesPerView: 'auto',
-    spaceBetween: 24,
-    grabCursor: true,
-    effect: 'coverflow',
-    speed: 760,
-    roundLengths: true,
-    keyboard: { enabled: true },
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 220,
-      modifier: 1,
-      slideShadows: false,
-    },
-    pagination: paginationEl
-      ? {
-          el: paginationEl,
-          clickable: true,
-        }
-      : undefined,
-    autoplay: { delay: 3800, disableOnInteraction: false },
-    on: {
-      resize(swiper) {
-        swiper.update();
-      },
-      imagesReady(swiper) {
-        swiper.update();
-      },
-    },
-    breakpoints: {
-      0: {
-        spaceBetween: 18,
-        coverflowEffect: {
-          depth: 140,
-        },
-      },
-      768: {
+      return {
+        loop: true,
+        centeredSlides: true,
+        centeredSlidesBounds: true,
+        slidesPerView: 'auto',
         spaceBetween: 24,
+        grabCursor: true,
+        effect: 'coverflow',
+        speed: 760,
+        roundLengths: true,
+        keyboard: { enabled: true },
         coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
           depth: 220,
+          modifier: 1,
+          slideShadows: false,
         },
-      },
-      1280: {
-        spaceBetween: 32,
-        coverflowEffect: {
-          depth: 260,
+        pagination: paginationEl
+          ? {
+              el: paginationEl,
+              clickable: true,
+            }
+          : undefined,
+        autoplay: { delay: 3800, disableOnInteraction: false },
+        on: {
+          resize(swiper) {
+            swiper.update();
+          },
+          imagesReady(swiper) {
+            swiper.update();
+          },
         },
-      },
+        breakpoints: {
+          0: {
+            spaceBetween: 18,
+            coverflowEffect: {
+              depth: 140,
+            },
+          },
+          768: {
+            spaceBetween: 24,
+            coverflowEffect: {
+              depth: 220,
+            },
+          },
+          1280: {
+            spaceBetween: 32,
+            coverflowEffect: {
+              depth: 260,
+            },
+          },
+        },
+      };
     },
-  });
-
-  manageAutoplay(testimonialsSwiper, motionQuery, sliderEl);
+    motionQuery
+  );
 };
 
 const initPricingSlider = (motionQuery) => {
@@ -331,7 +334,7 @@ const initPricingSlider = (motionQuery) => {
 
   initResponsiveSlider(
     sliderEl,
-    null,
+    '(max-width: 1023px)',
     () => ({
       slidesPerView: 1.05,
       centeredSlides: true,
