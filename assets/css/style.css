@@ -1365,6 +1365,14 @@ content: none;
 }
 
 @media (min-width: 1024px) {
+  .testimonials__slider {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .swiper.is-static {
     overflow: visible;
     pointer-events: auto;
@@ -1390,8 +1398,8 @@ content: none;
 
   .testimonials__slider.is-static .testimonials__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    gap: 32px;
     justify-items: center;
   }
 
