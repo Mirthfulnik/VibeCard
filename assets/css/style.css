@@ -1523,9 +1523,9 @@ content: none;
 
 .pricing-card__footer {
   margin-top: auto;
-  display: grid;
-  gap: 18px;
-  padding: 26px
+  display: flex;
+  justify-content: center;
+  padding: 26px;
   width: calc(100% - 16px);
   margin-inline: auto;
   border-radius: 22px;
@@ -1537,7 +1537,11 @@ content: none;
 }
 
 .pricing-card__cta {
-  width: 100%;
+  width: calc(100% - 16px);
+  margin: 0 auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   font-size: 15px;
   padding: 14px 20px;
   box-shadow: 0 16px 30px rgba(124, 92, 255, 0.35);
