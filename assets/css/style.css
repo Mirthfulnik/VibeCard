@@ -1537,18 +1537,25 @@ content: none;
 }
 
 .pricing-card__cta {
-  width: calc(100% - 16px);
-  margin: 0 auto;
+  width: min(240px, calc(100% - 96px));
+  margin: 16px auto 0;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   font-size: 15px;
-  padding: 14px 20px;
+  padding: 14px 24px;
   box-shadow: 0 16px 30px rgba(124, 92, 255, 0.35);
 }
 
 .pricing-card__cta:hover {
   box-shadow: 0 20px 40px rgba(124, 92, 255, 0.45);
+}
+
+@media (max-width: 640px) {
+  .pricing-card__cta {
+    width: calc(100% - 16px);
+    margin: 12px auto 0;
+  }
 }
 
 .pricing-card__features {
