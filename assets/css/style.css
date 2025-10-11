@@ -139,6 +139,18 @@ section::after {
   display: none;
 }
 
+@media (max-width: 1024px) {
+  .trust::after,
+  .demo::after,
+  .process::after,
+  .testimonials::after,
+  .pricing::after,
+  .faq::after,
+  .contact::after {
+    display: none;
+  }
+}
+
 .section-head {
   max-width: 720px;
   margin: 0 auto 56px;
