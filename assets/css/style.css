@@ -2305,45 +2305,45 @@ content: none;
   }
 
   .hero__container {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "hero-title"
-      "hero-subtitle"
-      "hero-visual"
-      "hero-stats"
-      "hero-actions";
+    display: flex;
+    flex-direction: column;
     gap: clamp(24px, 7vw, 36px);
   }
 
   .hero__copy {
-    display: contents;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 6vw, 24px);
   }
 
   .hero__title {
-    grid-area: hero-title;
+    order: 1;
   }
 
   .hero__subtitle {
-    grid-area: hero-subtitle;
+    order: 2;
   }
 
   .hero__stats {
-    grid-area: hero-stats;
+    order: 3;
   }
 
   .hero__actions {
-    grid-area: hero-actions;
+    order: 4;
   }
 
   .hero__visual {
-    grid-area: hero-visual;
+    order: 5;
+    display: flex;
     justify-content: center;
-    padding-left: 0;
+    padding-inline: clamp(8px, 4vw, 24px);
+    margin-top: clamp(8px, 4vw, 16px);
     overflow: visible;
   }
 
   .hero__carousel {
     width: min(92vw, 440px);
+    margin: 0 auto;
   }
 
   .trust__container {
