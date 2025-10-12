@@ -1690,8 +1690,8 @@ content: none;
 }
 
 .pricing__note {
-  margin: 48px auto 0;
-  padding: 14px 36px;
+  margin: clamp(20px, 4vw, 32px) auto 0;
+  padding: clamp(10px, 2.6vw, 14px) clamp(24px, 6vw, 32px);
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.45);
   background: rgba(15, 23, 42, 0.82);
