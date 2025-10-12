@@ -367,9 +367,10 @@ const initPricingSlider = (motionQuery) => {
     sliderEl,
     '(max-width: 1023px)',
     () => ({
-      slidesPerView: 1.05,
+      slidesPerView: 'auto',
       centeredSlides: true,
-      spaceBetween: 18,
+      centeredSlidesBounds: true,
+      spaceBetween: 24,
       autoHeight: true,
       watchOverflow: false,
       loop: true,
@@ -382,28 +383,10 @@ const initPricingSlider = (motionQuery) => {
       autoplay: { delay: 5200, disableOnInteraction: true },
       breakpoints: {
         0: {
-          slidesPerView: 1.02,
-          spaceBetween: 16,
+          spaceBetween: 18,
         },
-        640: {
-          slidesPerView: 1.2,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 2.1,
+        768: {
           spaceBetween: 24,
-          centeredSlides: false,
-          autoHeight: false,
-        },
-        1440: {
-          slidesPerView: 2.6,
-          spaceBetween: 28,
-          centeredSlides: false,
-        },
-        1920: {
-          slidesPerView: 2.9,
-          spaceBetween: 32,
-          centeredSlides: false,
         },
       },
     }),
