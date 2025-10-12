@@ -289,7 +289,7 @@ const initTestimonialsSlider = (motionQuery) => {
 
   initResponsiveSlider(
     sliderEl,
-    '(max-width: 1023px)',
+    '(max-width: 1279px)',
     () => {
       const paginationEl = sliderEl
         ? sliderEl.querySelector('.testimonials__pagination')
@@ -339,6 +339,12 @@ const initTestimonialsSlider = (motionQuery) => {
             spaceBetween: 24,
             coverflowEffect: {
               depth: 220,
+            },
+          },
+           1024: {
+            spaceBetween: 28,
+            coverflowEffect: {
+              depth: 240,
             },
           },
           1280: {
