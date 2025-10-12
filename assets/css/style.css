@@ -1279,18 +1279,20 @@ content: none;
 
 .testimonials__slider {
   position: relative;
-  width: min(720px, 100%);
+  width: min(880px, 100%);
   margin: 0 auto;
-  padding: clamp(12px, 2vw, 20px) 0 clamp(40px, 6vw, 64px);
+  padding: clamp(12px, 2vw, 20px) clamp(18px, 6vw, 36px)
+    clamp(40px, 6vw, 64px);
   overflow: visible;
 }
 
 .testimonials__slider .swiper-wrapper {
-  align-items: center;
+  align-items: stretch;
 }
 
 .testimonials__slider .swiper-slide {
   display: flex;
+  width: auto;
   justify-content: center;
 }
 
@@ -1303,7 +1305,8 @@ content: none;
 .testimonials__slider.swiper-initialized .testimonials__grid {
   display: flex;
   justify-content: center;
-  gap: clamp(16px, 3vw, 28px);
+  align-items: stretch;
+  gap: clamp(18px, 4vw, 32px);
 }
 
 .testimonials__pagination {
@@ -1400,9 +1403,16 @@ content: none;
 
 @media (min-width: 1024px) {
   .testimonials__slider {
+    width: min(960px, 100%);
+    padding: clamp(16px, 2vw, 28px) clamp(28px, 5vw, 48px)
+    clamp(48px, 6vw, 72px);
+  }
+
+  .testimonials__slider.is-static 
     width: 100%;
     max-width: none;
-    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1702,24 +1712,25 @@ content: none;
 }
 
 .testimonials__slider.swiper-initialized .testimonial-shot {
-  width: clamp(240px, 34vw, 320px);
-  box-shadow: 0 24px 46px rgba(8, 12, 24, 0.55);
-  opacity: 0.35;
-  filter: brightness(0.75);
-  transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease,
-    box-shadow 0.6s ease;
+  width: clamp(260px, 68vw, 360px);
+  box-shadow: 0 22px 44px rgba(8, 12, 24, 0.45);
+  opacity: 1;
+  filter: none;
+  transform: translateY(0);
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
 }
 
-.testimonials__slider.swiper-initialized .testimonial-shot.swiper-slide-prev,
-.testimonials__slider.swiper-initialized .testimonial-shot.swiper-slide-next {
-  opacity: 0.78;
-  filter: brightness(0.92);
+.testimonials__slider.swiper-initialized
+  .testimonial-shot.swiper-slide-prev,
+.testimonials__slider.swiper-initialized
+  .testimonial-shot.swiper-slide-next {
+  opacity: 1;
+  filter: none;
 }
 
 .testimonials__slider.swiper-initialized .testimonial-shot.swiper-slide-active {
-  opacity: 1;
-  filter: brightness(1);
-  transform: translateY(0) scale(1.02);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 28px 56px rgba(8, 12, 24, 0.55);
 }
 
 .testimonial-shot img {
