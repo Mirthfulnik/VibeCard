@@ -19,6 +19,25 @@ export const initFaq = ({ motionQuery } = {}) => {
 
   const reduceMotionQuery = motionQuery || window.matchMedia('(prefers-reduced-motion: reduce)');
 
+    const waitForHeightTransition = (element, callback) => {
+    if (element.__faqHeightTransitionHandler) {
+      element.removeEventListener('transitionend', element.__faqHeightTransitionHandler);
+    }
+
+    const handleTransitionEnd = (event) => {
+      if (event.target !== element || event.propertyName !== 'height') {
+        return;
+      }
+
+      element.removeEventListener('transitionend', handleTransitionEnd);
+      element.__faqHeightTransitionHandler = undefined;
+      callback();
+    };
+
+    element.__faqHeightTransitionHandler = handleTransitionEnd;
+    element.addEventListener('transitionend', handleTransitionEnd);
+  };
+  
   const closeItem = (item) => {
     const button = item.querySelector('.faq__question');
     const answer = item.querySelector('.faq__answer');
@@ -36,8 +55,19 @@ export const initFaq = ({ motionQuery } = {}) => {
       return;
     }
 
-    const startHeight = answer.scrollHeight;
+    const startHeight = answer.getBoundingClientRect().height;
+
+    if (!startHeight) {
+      answer.hidden = true;
+      answer.style.height = '';
+      return;
+    }
     answer.style.height = `${startHeight}px`;
+
+    waitForHeightTransition(answer, () => {
+      answer.hidden = true;
+      answer.style.height = '';
+    });
 
     window.requestAnimationFrame(() => {
       answer.style.height = '0px';
@@ -70,6 +100,10 @@ export const initFaq = ({ motionQuery } = {}) => {
     answer.style.height = 'auto';
     const targetHeight = answer.scrollHeight;
     answer.style.height = '0px';
+
+    waitForHeightTransition(answer, () => {
+      answer.style.height = 'auto';
+    });
 
     window.requestAnimationFrame(() => {
       answer.style.height = `${targetHeight}px`;
