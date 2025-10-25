@@ -1554,7 +1554,7 @@ content: none;
   color: rgba(248, 113, 113, 0.95);
   text-shadow: 0 0 10px rgba(248, 113, 113, 0.55);
 }
-@media (max-width: 979px) {
+@media (max-width: 980px) {
   .pricing-table__icon {
     width: 30px;
     height: 30px;
