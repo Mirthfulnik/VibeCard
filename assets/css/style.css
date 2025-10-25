@@ -1615,6 +1615,14 @@ content: none;
   box-shadow: 0 18px 42px rgba(8, 12, 24, 0.55);
 }
 
+@media (min-width: 980px) {
+  .pricing__note {
+    display: flex;
+    width: min(100%, 1100px);
+    margin-inline: auto;
+  }
+}
+
 .testimonial-shot {
   padding: 0;
   border: none;
