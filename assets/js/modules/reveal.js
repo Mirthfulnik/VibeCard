@@ -99,7 +99,7 @@ const initChatAnimation = (motionQuery) => {
 
 const initRevealOnScroll = (motionQuery) => {
   const revealElements = document.querySelectorAll(
-    '.value-card, .timeline__item, .pricing-card, .guarantee-card, .testimonial-shot, .stat'
+    '.value-card, .timeline__item, .pricing__table-wrapper, .guarantee-card, .testimonial-shot, .stat'
   );
 
   if (!revealElements.length) {
