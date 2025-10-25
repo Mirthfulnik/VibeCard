@@ -1397,12 +1397,15 @@ content: none;
   .testimonials__slider .swiper-slide {
     max-width: none;
     flex: 0 0 100%;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-inline: clamp(8px, 4vw, 24px);
   }
 
   .testimonials__slider.swiper-initialized .testimonial-shot {
-    width: 100%;
+    width: min(100%, 520px);
     aspect-ratio: 9 / 8;
+    margin-inline: auto;
   }
 }
 
