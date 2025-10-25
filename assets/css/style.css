@@ -1387,15 +1387,16 @@ content: none;
   .testimonials__slider {
     width: 100%;
     padding: clamp(16px, 6vw, 28px) 0 clamp(44px, 12vw, 72px);
+    overflow: hidden;
   }
 
   .testimonials__slider .swiper-wrapper {
-    align-items: center;
+    align-items: stretch;
   }
 
   .testimonials__slider .swiper-slide {
-    width: 100%;
-    max-width: min(92vw, 320px);
+    max-width: none;
+    flex: 0 0 100%;
     margin: 0 auto;
   }
 
