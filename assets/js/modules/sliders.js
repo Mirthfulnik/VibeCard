@@ -330,27 +330,39 @@ const initTestimonialsSlider = (motionQuery) => {
         },
         breakpoints: {
           0: {
-            spaceBetween: 18,
+            slidesPerView: 1,
+            centeredSlidesBounds: false,
+            spaceBetween: 16,
             coverflowEffect: {
-              depth: 140,
+              depth: 0,
+              modifier: 0,
             },
           },
           768: {
+            slidesPerView: 1.05,
+            centeredSlidesBounds: false,
+            spaceBetween: 20,
+            coverflowEffect: {
+              depth: 140,
+              modifier: 0.65,
+            },
+          },
+          980: {
+            slidesPerView: 'auto',
+            centeredSlidesBounds: true,
             spaceBetween: 24,
             coverflowEffect: {
               depth: 220,
-            },
-          },
-           1024: {
-            spaceBetween: 28,
-            coverflowEffect: {
-              depth: 240,
+              modifier: 1,
             },
           },
           1280: {
+            slidesPerView: 'auto',
+            centeredSlidesBounds: true,
             spaceBetween: 32,
             coverflowEffect: {
               depth: 260,
+              modifier: 1.1,
             },
           },
         },
