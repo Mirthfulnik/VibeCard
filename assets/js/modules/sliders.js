@@ -363,6 +363,10 @@ const initTestimonialsSlider = (motionQuery) => {
 const initPricingSlider = (motionQuery) => {
   const sliderEl = document.querySelector('.pricing__slider');
 
+  if (!sliderEl) {
+    return;
+  }
+  
   initResponsiveSlider(
     sliderEl,
     '(max-width: 1023px)',
