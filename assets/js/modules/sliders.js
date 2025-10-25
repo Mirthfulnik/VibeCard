@@ -333,15 +333,16 @@ const initTestimonialsSlider = (motionQuery) => {
             slidesPerView: 1,
             centeredSlides: false,
             spaceBetween: 16,
+            effect: 'slide',
             coverflowEffect: {
               depth: 0,
               modifier: 0,
             },
           },
           768: {
-            slidesPerView: 1.05,
             slidesPerView: 1,
             centeredSlides: false,
+            effect: 'slide',
             coverflowEffect: {
               depth: 140,
               modifier: 0.65,
