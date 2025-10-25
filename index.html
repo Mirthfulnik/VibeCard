@@ -263,77 +263,85 @@
                     <h2 class="section-title">Выберите формат работы</h2>
                     <p class="section-description">Стоимость рассчитываем индивидуально под задачу. Ниже — ориентиры по наполнению и срокам.</p>
                 </div>
-                <div class="pricing__slider swiper" aria-live="polite" aria-label="Форматы работы">
-                    <div class="pricing__grid swiper-wrapper">
-                        <article class="pricing-card pricing-card--base swiper-slide">
-                            <div class="pricing-card__header">
-                                <div class="pricing-card__meta">
-                                    <span class="pricing-card__tag">до 5 дней</span>
-                                    <h3 class="pricing-card__label">Base</h3>
-                                    <p class="pricing-card__description">Вы заполняете бриф, мы создаем Vibe Card</p>
-                                </div>
-                            </div>
-                            <ul class="pricing-card__features">
-                                <li class="pricing-card__feature is-muted">• Бриф-интервью</li>
-                                <li class="pricing-card__feature is-muted">• Маркетинговая упаковка</li>
-                                <li class="pricing-card__feature">• Vibe Card дизайн</li>
-                                <li class="pricing-card__feature">• Адаптивная верстка</li>
-                                <li class="pricing-card__feature">• Базовое SEO</li>
-                                <li class="pricing-card__feature">• Подключение аналитики</li>
-                                <li class="pricing-card__feature">• 10 дней поддержки</li>
-                            </ul>
-                            <div class="pricing-card__footer">
-                                <div class="pricing-card__price">от 25&nbsp;000 ₽</div>
-                            </div>
-                            <a class="btn btn--primary pricing-card__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
-                        </article>
-                        <article class="pricing-card pricing-card--featured swiper-slide">
-                            <div class="pricing-card__header">
-                                <div class="pricing-card__meta">
-                                    <span class="pricing-card__tag">до 7 дней</span>
-                                    <h3 class="pricing-card__label">Standart</h3>
-                                    <p class="pricing-card__description">Вы даете материалы, мы адаптируем их под Vibe Card</p>
-                                </div>
-                            </div>
-                            <ul class="pricing-card__features">
-                                <li class="pricing-card__feature is-muted">• Бриф-интервью</li>
-                                <li class="pricing-card__feature">• Маркетинговая упаковка</li>
-                                <li class="pricing-card__feature">• Vibe Card дизайн</li>
-                                <li class="pricing-card__feature">• Адаптивная верстка</li>
-                                <li class="pricing-card__feature">• Базовое SEO</li>
-                                <li class="pricing-card__feature">• Подключение аналитики</li>
-                                <li class="pricing-card__feature">• 20 дней поддержки</li>
-                            </ul>
-                            <div class="pricing-card__footer">
-                                <div class="pricing-card__price">от 35&nbsp;000 ₽</div>
-                            </div>
-                            <a class="btn btn--primary pricing-card__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
-                            <span class="pricing-card__badge">Популярно</span>
-                        </article>
-                        <article class="pricing-card pricing-card--premium swiper-slide">
-                            <div class="pricing-card__header">
-                                <div class="pricing-card__meta">
-                                    <span class="pricing-card__tag">до 10 дней</span>
-                                    <h3 class="pricing-card__label">Premium</h3>
-                                    <p class="pricing-card__description">Мы готовим материалы и создаем Vibe Card</p>
-                                </div>
-                            </div>
-                            <ul class="pricing-card__features">
-                                <li class="pricing-card__feature">• Бриф-интервью</li>
-                                <li class="pricing-card__feature">• Маркетинговая упаковка</li>
-                                <li class="pricing-card__feature">• Vibe Card дизайн</li>
-                                <li class="pricing-card__feature">• Адаптивная верстка</li>
-                                <li class="pricing-card__feature">• Базовое SEO</li>
-                                <li class="pricing-card__feature">• Подключение аналитики</li>
-                                <li class="pricing-card__feature">• 30 дней поддержки</li>
-                            </ul>
-                            <div class="pricing-card__footer">
-                                <div class="pricing-card__price">от 45&nbsp;000 ₽</div>
-                            </div>
-                            <a class="btn btn--primary pricing-card__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
-                        </article>
-                    </div>
-                    <div class="pricing__pagination"></div>
+                <div class="pricing__table-wrapper" role="region" aria-live="polite" aria-label="Форматы работы">
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Опции</th>
+                                <th scope="col">
+                                    <span class="pricing-table__plan">Base<span class="pricing-table__plan-meta">до 5 дней</span><span class="pricing-table__plan-desc">Вы заполняете бриф, мы создаем Vibe Card</span></span>
+                                </th>
+                                <th scope="col">
+                                    <span class="pricing-table__plan">Standart<span class="pricing-table__plan-meta">до 7 дней</span><span class="pricing-table__plan-desc">Вы даете материалы, мы адаптируем их под Vibe Card</span></span>
+                                </th>
+                                <th scope="col">
+                                    <span class="pricing-table__plan">Premium<span class="pricing-table__plan-meta">до 10 дней</span><span class="pricing-table__plan-desc">Мы готовим материалы и создаем Vibe Card</span></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Бриф-интервью</th>
+                                <td data-state="no"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Нет</span></td>
+                                <td data-state="no"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Нет</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Маркетинговая упаковка</th>
+                                <td data-state="no"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Нет</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Vibe Card дизайн</th>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Адаптивная верстка</th>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Базовое SEO</th>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Подключение аналитики</th>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Дней поддержки</th>
+                                <td><span class="pricing-table__text">10</span></td>
+                                <td><span class="pricing-table__text">20</span></td>
+                                <td><span class="pricing-table__text">30</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Стоимость</th>
+                                <td><span class="pricing-table__price">от 25&nbsp;000 ₽</span></td>
+                                <td><span class="pricing-table__price">от 35&nbsp;000 ₽</span></td>
+                                <td><span class="pricing-table__price">от 45&nbsp;000 ₽</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="sr-only">Связаться</th>
+                                <td>
+                                    <a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <p class="pricing__note">*Не является публичной офертой</p>
