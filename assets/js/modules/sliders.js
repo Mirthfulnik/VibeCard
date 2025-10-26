@@ -408,61 +408,48 @@ const initTestimonialsSlider = (motionQuery) => {
         },
       },
       breakpoints: {
-        0: {
-          slidesPerView: 1.15,
-          centeredSlides: true,
-          spaceBetween: 20,
-          centeredSlidesBounds: true,
-          effect: 'coverflow',
-          coverflowEffect: {
+  0: {
+    slidesPerView: 1,
+    centeredSlides: true,
+    centeredSlidesBounds: true,
+    spaceBetween: 0,
+    effect: 'slide', // <-- можно так, без coverflow на очень маленьких
+  },
+  768: {
+    slidesPerView: 1,
+    centeredSlides: true,
+    centeredSlidesBounds: true,
+    spaceBetween: 0,
+    effect: 'slide',
+  },
+  980: {
+    slidesPerView: 'auto',
+    centeredSlidesBounds: true,
+    spaceBetween: 24,
+    effect: 'coverflow',
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 220,
+      modifier: 1,
+      slideShadows: false,
+    },
+  },
+  1280: {
+    slidesPerView: 'auto',
+    centeredSlidesBounds: true,
+    spaceBetween: 32,
+    effect: 'coverflow',
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 260,
+      modifier: 1.1,
+      slideShadows: false,
+    },
+  },
+}
 
-            rotate: 0,
-            stretch: 0,
-            modifier: 0,
-            slideShadows: false,
-          },
-        },
-        768: {
-          slidesPerView: 1.2,
-          centeredSlides: true,
-          centeredSlidesBounds: true,
-          spaceBetween: 22,
-          effect: 'coverflow',
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 180,
-            modifier: 0.95,
-            slideShadows: false,
-          },
-        },
-        980: {
-          slidesPerView: 'auto',
-          centeredSlidesBounds: true,
-          spaceBetween: 24,
-          effect: 'coverflow',
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 220,
-            modifier: 1,
-            slideShadows: false,
-          },
-        },
-        1280: {
-          slidesPerView: 'auto',
-          centeredSlidesBounds: true,
-          spaceBetween: 32,
-          effect: 'coverflow',
-          coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 260,
-            modifier: 1.1,
-            slideShadows: false,
-          },
-        },
-      },
     };
   };
 
