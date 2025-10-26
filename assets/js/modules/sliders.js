@@ -294,9 +294,10 @@ const initTestimonialsSlider = (motionQuery) => {
       const paginationEl = sliderEl
         ? sliderEl.querySelector('.testimonials__pagination')
         : null;
+            const isCompactView = window.matchMedia('(max-width: 979px)').matches;
 
       return {
-        loop: true,
+        loop: !isCompactView,
         centeredSlides: true,
         centeredSlidesBounds: true,
         slidesPerView: 'auto',
@@ -312,8 +313,17 @@ const initTestimonialsSlider = (motionQuery) => {
               clickable: true,
             }
           : undefined,
-        autoplay: { delay: 3800, disableOnInteraction: false },
+        autoplay: isCompactView
+          ? false
+          : { delay: 3800, disableOnInteraction: false },
         on: {
+                    init(swiper) {
+            if (isCompactView) {
+              swiper.slideTo(0, 0);
+            } else if (typeof swiper.slideToLoop === 'function') {
+              swiper.slideToLoop(0, 0, false);
+            }
+          },
           resize(swiper) {
             swiper.update();
           },
