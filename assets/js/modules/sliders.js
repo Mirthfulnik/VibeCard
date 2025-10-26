@@ -164,7 +164,7 @@ const initResponsiveSlider = (
 
   if (!mediaQueryString) {
     const swiperInstance = new Swiper(element, optionsFactory());
-const cleanupAutoplay = manageAutoplay(swiperInstance, motionQuery, element);
+    const cleanupAutoplay = manageAutoplay(swiperInstance, motionQuery, element);
     return {
       getSwiper: () => swiperInstance,
       enable: () => swiperInstance,
@@ -211,7 +211,7 @@ const cleanupAutoplay = manageAutoplay(swiperInstance, motionQuery, element);
 
     const wrapper = element.querySelector('.swiper-wrapper');
     if (wrapper) {
-     wrapper.removeAttribute('style');
+      wrapper.removeAttribute('style');
 
       const wrapperClassesToRemove = Array.from(wrapper.classList).filter(
         (className) => className !== 'swiper-wrapper' && className.startsWith('swiper-')
@@ -396,7 +396,7 @@ const initTestimonialsSlider = (motionQuery) => {
         init(swiper) {
           if (typeof swiper.slideToLoop === 'function') {
             swiper.slideToLoop(0, 0, false);
-             } else {
+          } else {
             swiper.slideTo(0, 0);
           }
         },
@@ -408,7 +408,7 @@ const initTestimonialsSlider = (motionQuery) => {
         },
       },
       breakpoints: {
-         0: {
+        0: {
           slidesPerView: 1,
           centeredSlides: true,
           centeredSlidesBounds: true,
@@ -451,9 +451,9 @@ const initTestimonialsSlider = (motionQuery) => {
             slideShadows: false,
           },
         },
-      },   
-  );
-};
+      },
+    };
+  };
 
 const initPricingSlider = (motionQuery) => {
   const sliderEl = document.querySelector('.pricing__slider');
