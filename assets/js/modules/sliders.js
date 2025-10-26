@@ -359,6 +359,10 @@ const initValueSlider = (motionQuery) => {
 const initTestimonialsSlider = (motionQuery) => {
   const sliderEl = document.querySelector('.testimonials__slider');
 
+  if (!sliderEl || sliderEl.classList.contains('is-static')) {
+    return null;
+  }
+
   const compactQuery = window.matchMedia('(max-width: 979px)');
 
   const buildOptions = () => {
@@ -455,7 +459,7 @@ const initTestimonialsSlider = (motionQuery) => {
     };
   };
 
-  if (!sliderEl || typeof Swiper === 'undefined') {
+  if (typeof Swiper === 'undefined') {
     return null;
   }
 
