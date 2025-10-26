@@ -1914,6 +1914,7 @@ content: none;
   background: rgba(15, 23, 42, 0.75);
   font-size: 13px;
   opacity: 0;
+  color: #ffffff;
   transform: translateY(8px);
   transition: var(--transition);
 }
@@ -1940,6 +1941,13 @@ content: none;
 .testimonial-shot:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 4px;
+}
+
+@media (pointer: coarse) {
+  .testimonial-shot::after {
+    content: none;
+    display: none;
+  }
 }
 
 .testimonial-shot--error {
