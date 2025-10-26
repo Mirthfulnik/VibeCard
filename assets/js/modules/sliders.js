@@ -151,34 +151,48 @@ const initHeroSlider = (motionQuery) => {
   manageAutoplay(heroSwiper, motionQuery, heroCarousel);
 };
 
-const initResponsiveSlider = (element, mediaQueryString, optionsFactory, motionQuery) => {
+const initResponsiveSlider = (
+  element,
+  mediaQueryString,
+  optionsFactory,
+  motionQuery,
+  lifecycle = {}
+) => {
   if (!element || typeof Swiper === 'undefined') {
     return;
   }
 
   if (!mediaQueryString) {
     const swiperInstance = new Swiper(element, optionsFactory());
-    manageAutoplay(swiperInstance, motionQuery, element);
-    return;
+const cleanupAutoplay = manageAutoplay(swiperInstance, motionQuery, element);
+    return {
+      getSwiper: () => swiperInstance,
+      enable: () => swiperInstance,
+      disable: () => {},
+      destroy: () => {
+        if (typeof cleanupAutoplay === 'function') {
+          cleanupAutoplay();
+        }
+        swiperInstance.destroy(true, true);
+      },
+      mediaQuery: null,
+      isEnabled: () => true,
+    };
   }
 
   const mediaQuery = window.matchMedia(mediaQueryString);
   let swiperInstance = null;
   let cleanupAutoplay = null;
-
-  const enable = () => {
-    if (swiperInstance) {
-      return;
-    }
-
-    element.classList.remove('is-static');
-    
-    swiperInstance = new Swiper(element, optionsFactory());
-    cleanupAutoplay = manageAutoplay(swiperInstance, motionQuery, element);
-  };
+  let cleanupLifecycle = null;
+  const { onEnabled, onDisabled } = lifecycle || {};
 
   const disable = () => {
     if (swiperInstance) {
+      if (typeof cleanupLifecycle === 'function') {
+        cleanupLifecycle();
+        cleanupLifecycle = null;
+      }
+      
       if (typeof cleanupAutoplay === 'function') {
         cleanupAutoplay();
         cleanupAutoplay = null;
@@ -221,6 +235,51 @@ const initResponsiveSlider = (element, mediaQueryString, optionsFactory, motionQ
 
       slideClassesToRemove.forEach((className) => slide.classList.remove(className));
     });
+    if (typeof onDisabled === 'function') {
+      onDisabled();
+    }
+  };
+
+  const enable = ({ force = false } = {}) => {
+    if (swiperInstance && !force) {
+      return swiperInstance;
+    }
+
+    if (swiperInstance && force) {
+      if (typeof cleanupLifecycle === 'function') {
+        cleanupLifecycle();
+        cleanupLifecycle = null;
+      }
+
+      if (typeof cleanupAutoplay === 'function') {
+        cleanupAutoplay();
+        cleanupAutoplay = null;
+      }
+
+      swiperInstance.destroy(true, true);
+      swiperInstance = null;
+    }
+
+    element.classList.remove('is-static');
+
+    swiperInstance = new Swiper(element, optionsFactory());
+    cleanupAutoplay = manageAutoplay(swiperInstance, motionQuery, element);
+
+    if (typeof onEnabled === 'function') {
+      const lifecycleCleanup = onEnabled({
+        swiper: swiperInstance,
+        element,
+        mediaQuery,
+        enable: (params) => enable(params),
+        disable,
+      });
+
+      if (typeof lifecycleCleanup === 'function') {
+        cleanupLifecycle = lifecycleCleanup;
+      }
+    }
+
+    return swiperInstance;
   };
 
   const evaluate = (query) => {
@@ -233,6 +292,19 @@ const initResponsiveSlider = (element, mediaQueryString, optionsFactory, motionQ
 
   evaluate(mediaQuery);
   addMediaListener(mediaQuery, evaluate);
+
+
+  return {
+    getSwiper: () => swiperInstance,
+    enable,
+    disable,
+    destroy: () => {
+      removeMediaListener(mediaQuery, evaluate);
+      disable();
+    },
+    mediaQuery,
+    isEnabled: () => Boolean(swiperInstance),
+  };  
 };
 
 const initValueSlider = (motionQuery) => {
@@ -287,109 +359,125 @@ const initValueSlider = (motionQuery) => {
 const initTestimonialsSlider = (motionQuery) => {
   const sliderEl = document.querySelector('.testimonials__slider');
 
+  const compactQuery = window.matchMedia('(max-width: 979px)');
+
+  const buildOptions = (isCompactView) => {
+    const paginationEl = sliderEl
+      ? sliderEl.querySelector('.testimonials__pagination')
+      : null;
+
+    return {
+      loop: !isCompactView,
+      centeredSlides: true,
+      centeredSlidesBounds: true,
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      grabCursor: true,
+      effect: 'slide',
+      speed: 760,
+      roundLengths: true,
+      keyboard: { enabled: true },
+      pagination: paginationEl
+        ? {
+            el: paginationEl,
+            clickable: true,
+          }
+        : undefined,
+      autoplay: isCompactView
+        ? false
+        : { delay: 3800, disableOnInteraction: false },
+      on: {
+        init(swiper) {
+          if (isCompactView) {
+            swiper.slideTo(0, 0);
+          } else if (typeof swiper.slideToLoop === 'function') {
+            swiper.slideToLoop(0, 0, false);
+          }
+        },
+        resize(swiper) {
+          swiper.update();
+        },
+                imagesReady(swiper) {
+          swiper.update();
+        },
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          centeredSlides: true,
+          spaceBetween: 20,
+          centeredSlidesBounds: true,
+          effect: 'slide',
+          coverflowEffect: {
+            depth: 0,
+            rotate: 0,
+            stretch: 0,
+            modifier: 0,
+            slideShadows: false,
+          },
+                 },
+        768: {
+          slidesPerView: 1,
+          centeredSlides: true,
+          centeredSlidesBounds: true,
+          spaceBetween: 24,
+          effect: 'slide',
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 140,
+            modifier: 0.65,
+            slideShadows: false,
+          },
+                  },
+        980: {
+          slidesPerView: 'auto',
+          centeredSlidesBounds: true,
+          spaceBetween: 24,
+          effect: 'coverflow',
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 220,
+            modifier: 1,
+            slideShadows: false,
+          },
+        },
+        1280: {
+          slidesPerView: 'auto',
+          centeredSlidesBounds: true,
+          spaceBetween: 32,
+          effect: 'coverflow',
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 260,
+            modifier: 1.1,
+            slideShadows: false,
+          },
+        },
+      },
+    };
+  };
+
   initResponsiveSlider(
     sliderEl,
     '(max-width: 1279px)',
-    () => {
-      const paginationEl = sliderEl
-        ? sliderEl.querySelector('.testimonials__pagination')
-        : null;
-            const isCompactView = window.matchMedia('(max-width: 979px)').matches;
+    () => buildOptions(compactQuery.matches),
+    motionQuery,
+    {
+      onEnabled: ({ enable }) => {
+        const handleCompactChange = () => {
+          enable({ force: true });
+        };
 
-      return {
-        loop: !isCompactView,
-        centeredSlides: true,
-        centeredSlidesBounds: true,
-        slidesPerView: 'auto',
-        spaceBetween: 24,
-        grabCursor: true,
-        effect: 'slide',
-        speed: 760,
-        roundLengths: true,
-        keyboard: { enabled: true },
-        pagination: paginationEl
-          ? {
-              el: paginationEl,
-              clickable: true,
-            }
-          : undefined,
-        autoplay: isCompactView
-          ? false
-          : { delay: 3800, disableOnInteraction: false },
-        on: {
-                    init(swiper) {
-            if (isCompactView) {
-              swiper.slideTo(0, 0);
-            } else if (typeof swiper.slideToLoop === 'function') {
-              swiper.slideToLoop(0, 0, false);
-            }
-          },
-          resize(swiper) {
-            swiper.update();
-          },
-          imagesReady(swiper) {
-            swiper.update();
-          },
-        },
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-            centeredSlides: true,
-            spaceBetween: 20,
-            centeredSlidesBounds: true,
-            effect: 'slide',
-            coverflowEffect: {
-              depth: 0,
-              rotate: 0,
-              stretch: 0,
-              modifier: 0,
-              slideShadows: false,
-            },
-          },
-          768: {
-            slidesPerView: 1,
-            centeredSlides: true,
-            centeredSlidesBounds: true,
-            spaceBetween: 24,
-            effect: 'slide',
-            coverflowEffect: {
-              rotate: 0,
-              stretch: 0,
-              depth: 140,
-              modifier: 0.65,
-              slideShadows: false,
-            },
-          },
-          980: {
-            slidesPerView: 'auto',
-            centeredSlidesBounds: true,
-            spaceBetween: 24,
-            effect: 'coverflow',
-            coverflowEffect: {
-              rotate: 0,
-              stretch: 0,
-              depth: 220,
-              modifier: 1,
-              slideShadows: false,
-            },
-          },
-          1280: {
-            slidesPerView: 'auto',
-            centeredSlidesBounds: true,
-            spaceBetween: 32,
-            effect: 'coverflow',
-            coverflowEffect: {
-              rotate: 0,
-              stretch: 0,
-              depth: 260,
-              modifier: 1.1,
-              slideShadows: false,
-            },
-          },
-        },
-      };
-    },
-    motionQuery
+        addMediaListener(compactQuery, handleCompactChange);
+
+        return () => {
+          removeMediaListener(compactQuery, handleCompactChange);
+        };
+      },
+    }
   );
 };
 
