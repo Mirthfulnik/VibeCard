@@ -408,69 +408,50 @@ const initTestimonialsSlider = (motionQuery) => {
         },
       },
       breakpoints: {
-  0: {
-    slidesPerView: 1,
-    centeredSlides: true,
-    centeredSlidesBounds: true,
-    spaceBetween: 0,
-    effect: 'slide', // <-- можно так, без coverflow на очень маленьких
-  },
-  768: {
-    slidesPerView: 1,
-    centeredSlides: true,
-    centeredSlidesBounds: true,
-    spaceBetween: 0,
-    effect: 'slide',
-  },
-  980: {
-    slidesPerView: 'auto',
-    centeredSlidesBounds: true,
-    spaceBetween: 24,
-    effect: 'coverflow',
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 220,
-      modifier: 1,
-      slideShadows: false,
-    },
-  },
-  1280: {
-    slidesPerView: 'auto',
-    centeredSlidesBounds: true,
-    spaceBetween: 32,
-    effect: 'coverflow',
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 260,
-      modifier: 1.1,
-      slideShadows: false,
-    },
-  },
-}
-
-    };
-  };
-
-  initResponsiveSlider(
-    sliderEl,
-    '(max-width: 1279px)',
-    () => buildOptions(),
-    motionQuery,
-    {
-      onEnabled: ({ enable }) => {
-        const handleCompactChange = () => {
-          enable({ force: true });
-        };
-
-        addMediaListener(compactQuery, handleCompactChange);
-
-        return () => {
-          removeMediaListener(compactQuery, handleCompactChange);
-        };
-      },
-    }
+         0: {
+          slidesPerView: 1,
+          centeredSlides: true,
+          centeredSlidesBounds: true,
+          spaceBetween: 0,
+          effect: 'slide',
+        },
+        640: {
+          spaceBetween: 12,
+        },
+        768: {
+          slidesPerView: 1,
+          centeredSlides: true,
+          centeredSlidesBounds: true,
+          spaceBetween: 16,
+          effect: 'slide',
+        },
+        980: {
+          slidesPerView: 'auto',
+          centeredSlidesBounds: true,
+          spaceBetween: 24,
+          effect: 'coverflow',
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 220,
+            modifier: 1,
+            slideShadows: false,
+          },
+        },
+        1280: {
+          slidesPerView: 'auto',
+          centeredSlidesBounds: true,
+          spaceBetween: 32,
+          effect: 'coverflow',
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 260,
+            modifier: 1.1,
+            slideShadows: false,
+          },
+        },
+      },   
   );
 };
 
