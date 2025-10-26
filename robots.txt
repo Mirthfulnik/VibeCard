@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.vibecard.ru/sitemap.xml
+Host: www.vibecard.ru
