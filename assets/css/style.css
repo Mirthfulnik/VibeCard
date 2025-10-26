@@ -1208,6 +1208,9 @@ content: none;
   border-radius: 24px;
   overflow: hidden;
   background: #0f172a;
+  display: flex;
+  justify-content: center;
+  scrollbar-gutter: stable both-edges;
 }
 
 .demo-preview__fallback {
@@ -1225,6 +1228,8 @@ content: none;
 .demo-preview__frame {
   display: block;
   width: 100%;
+  max-width: min(414px, 100%);
+  flex: 0 0 min(414px, 100%);
   height: clamp(520px, 70vh, 860px);
   max-height: 920px;
   border: 0;
