@@ -1403,9 +1403,13 @@ content: none;
   }
 
   .testimonials__slider.swiper-initialized .testimonial-shot {
-    width: min(100%, 520px);
-    aspect-ratio: 9 / 8;
+    width: min(100%, 420px);
+    aspect-ratio: 9 / 16;
     margin-inline: auto;
+  }
+  
+  .testimonials__slider.swiper-initialized .testimonial-shot img {
+    border-radius: calc(var(--radius-lg) - 2px);
   }
 }
 
