@@ -455,6 +455,69 @@ const initTestimonialsSlider = (motionQuery) => {
     };
   };
 
+  if (!sliderEl || typeof Swiper === 'undefined') {
+    return null;
+  }
+
+  const applyCompactState = () => {
+    if (compactQuery && compactQuery.matches) {
+      sliderEl.classList.add('is-compact');
+    } else {
+      sliderEl.classList.remove('is-compact');
+    }
+  };
+
+  let controller = null;
+
+  const handleCompactChange = () => {
+    applyCompactState();
+
+    if (controller && typeof controller.getSwiper === 'function') {
+      const swiperInstance = controller.getSwiper();
+
+      if (swiperInstance && typeof swiperInstance.update === 'function') {
+        swiperInstance.update();
+      }
+    }
+  };
+
+  applyCompactState();
+
+  controller = initResponsiveSlider(
+    sliderEl,
+    null,
+    () => buildOptions(),
+    motionQuery
+  );
+
+  if (compactQuery) {
+    addMediaListener(compactQuery, handleCompactChange);
+  }
+
+  if (!controller || typeof controller !== 'object') {
+    return controller;
+  }
+
+  const originalDestroy =
+    typeof controller.destroy === 'function' ? controller.destroy.bind(controller) : null;
+
+  controller.destroy = (...args) => {
+    if (compactQuery) {
+      removeMediaListener(compactQuery, handleCompactChange);
+    }
+
+    sliderEl.classList.remove('is-compact');
+
+    if (originalDestroy) {
+      return originalDestroy(...args);
+    }
+
+    return undefined;
+  };
+
+  return controller;
+};
+
 const initPricingSlider = (motionQuery) => {
   const sliderEl = document.querySelector('.pricing__slider');
 
