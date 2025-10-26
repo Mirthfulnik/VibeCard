@@ -361,19 +361,20 @@ const initTestimonialsSlider = (motionQuery) => {
 
   const compactQuery = window.matchMedia('(max-width: 979px)');
 
-  const buildOptions = (isCompactView) => {
+  const buildOptions = () => {
     const paginationEl = sliderEl
       ? sliderEl.querySelector('.testimonials__pagination')
       : null;
 
     return {
-      loop: !isCompactView,
+      loop: true,
+      watchOverflow: true,
       centeredSlides: true,
       centeredSlidesBounds: true,
       slidesPerView: 'auto',
       spaceBetween: 24,
       grabCursor: true,
-      effect: 'slide',
+      effect: 'coverflow',
       speed: 760,
       roundLengths: true,
       keyboard: { enabled: true },
@@ -383,53 +384,58 @@ const initTestimonialsSlider = (motionQuery) => {
             clickable: true,
           }
         : undefined,
-      autoplay: isCompactView
-        ? false
-        : { delay: 3800, disableOnInteraction: false },
+      autoplay: { delay: 4600, disableOnInteraction: false },
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 220,
+        modifier: 1,
+        slideShadows: false,
+      },
       on: {
         init(swiper) {
-          if (isCompactView) {
-            swiper.slideTo(0, 0);
-          } else if (typeof swiper.slideToLoop === 'function') {
+          if (typeof swiper.slideToLoop === 'function') {
             swiper.slideToLoop(0, 0, false);
+             } else {
+            swiper.slideTo(0, 0);
           }
         },
         resize(swiper) {
           swiper.update();
         },
-                imagesReady(swiper) {
+        imagesReady(swiper) {
           swiper.update();
         },
       },
       breakpoints: {
         0: {
-          slidesPerView: 1,
+          slidesPerView: 1.15,
           centeredSlides: true,
           spaceBetween: 20,
           centeredSlidesBounds: true,
-          effect: 'slide',
+          effect: 'coverflow',
           coverflowEffect: {
-            depth: 0,
+
             rotate: 0,
             stretch: 0,
             modifier: 0,
             slideShadows: false,
           },
-                 },
+        },
         768: {
-          slidesPerView: 1,
+          slidesPerView: 1.2,
           centeredSlides: true,
           centeredSlidesBounds: true,
-          spaceBetween: 24,
-          effect: 'slide',
+          spaceBetween: 22,
+          effect: 'coverflow',
           coverflowEffect: {
             rotate: 0,
             stretch: 0,
-            depth: 140,
-            modifier: 0.65,
+            depth: 180,
+            modifier: 0.95,
             slideShadows: false,
           },
-                  },
+        },
         980: {
           slidesPerView: 'auto',
           centeredSlidesBounds: true,
@@ -463,7 +469,7 @@ const initTestimonialsSlider = (motionQuery) => {
   initResponsiveSlider(
     sliderEl,
     '(max-width: 1279px)',
-    () => buildOptions(compactQuery.matches),
+    () => buildOptions(),
     motionQuery,
     {
       onEnabled: ({ enable }) => {
