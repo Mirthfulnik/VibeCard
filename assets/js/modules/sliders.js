@@ -324,9 +324,9 @@ const initTestimonialsSlider = (motionQuery) => {
         breakpoints: {
           0: {
             slidesPerView: 1,
-            centeredSlides: false,
-            spaceBetween: 16,
-            centeredSlidesBounds: false,
+            centeredSlides: true,
+            spaceBetween: 20,
+            centeredSlidesBounds: true,
             effect: 'slide',
             coverflowEffect: {
               depth: 0,
@@ -338,8 +338,9 @@ const initTestimonialsSlider = (motionQuery) => {
           },
           768: {
             slidesPerView: 1,
-            centeredSlides: false,
-            centeredSlidesBounds: false,
+            centeredSlides: true,
+            centeredSlidesBounds: true,
+            spaceBetween: 24,
             effect: 'slide',
             coverflowEffect: {
               rotate: 0,
