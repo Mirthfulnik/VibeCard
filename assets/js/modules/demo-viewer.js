@@ -70,39 +70,75 @@ export const initDemoViewer = () => {
     overlay?.classList.add('is-active');
   };
 
+  const forceVerticalScroll = () => {
+    if (!frame || !frame.contentWindow) {
+      return;
+    }
+
+    try {
+      const iframeDocument = frame.contentDocument || frame.contentWindow.document;
+
+      if (!iframeDocument) {
+        return;
+      }
+
+      const { documentElement, body } = iframeDocument;
+
+      if (documentElement) {
+        documentElement.style.overflowX = 'hidden';
+        documentElement.style.width = '100%';
+      }
+
+      if (body) {
+        body.style.overflowX = 'hidden';
+        body.style.width = '100%';
+      }
+    } catch (error) {
+      // Ignore cross-origin access errors
+    }
+  };
+
   const tryScrollFrame = (deltaY) => {
     if (!frame || !frame.contentWindow) {
       return false;
     }
 
-    const iframeDocument = frame.contentDocument || frame.contentWindow.document;
+    try {
+      const iframeDocument = frame.contentDocument || frame.contentWindow.document;
 
-    if (!iframeDocument) {
+      if (!iframeDocument) {
+        return false;
+      }
+
+      const scrollElement = iframeDocument.scrollingElement || iframeDocument.documentElement;
+
+      if (!scrollElement) {
+        return false;
+      }
+
+      if (typeof scrollElement.scrollLeft === 'number' && scrollElement.scrollLeft !== 0) {
+        scrollElement.scrollLeft = 0;
+      }
+
+      const targetScrollTop = scrollElement.scrollTop + deltaY;
+
+      if (targetScrollTop <= 0) {
+        scrollElement.scrollTop = 0;
+        return scrollElement.scrollTop !== 0;
+      }
+
+      const maxScrollTop = scrollElement.scrollHeight - scrollElement.clientHeight;
+
+      if (targetScrollTop >= maxScrollTop) {
+        scrollElement.scrollTop = maxScrollTop;
+        return scrollElement.scrollTop !== maxScrollTop;
+      }
+
+      scrollElement.scrollTop = targetScrollTop;
+      return true;
+    } catch (error) {
       return false;
     }
-
-    const scrollElement = iframeDocument.scrollingElement || iframeDocument.documentElement;
-
-    if (!scrollElement) {
-      return false;
-    }
-
-    const targetScrollTop = scrollElement.scrollTop + deltaY;
-
-    if (targetScrollTop <= 0) {
-      scrollElement.scrollTop = 0;
-      return scrollElement.scrollTop !== 0;
-    }
-
-    const maxScrollTop = scrollElement.scrollHeight - scrollElement.clientHeight;
-
-    if (targetScrollTop >= maxScrollTop) {
-      scrollElement.scrollTop = maxScrollTop;
-      return scrollElement.scrollTop !== maxScrollTop;
-    }
-
-    scrollElement.scrollTop = targetScrollTop;
-    return true;
   };
 
   const resetTouchTracking = () => {
@@ -284,6 +320,7 @@ export const initDemoViewer = () => {
       showFallbackPreview();
     } else {
       markPreviewLoaded();
+      forceVerticalScroll();
     }
   });
 
