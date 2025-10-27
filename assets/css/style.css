@@ -1776,6 +1776,44 @@ content: none;
   }
 }
 
+@media (max-width: 640px) {
+  .pricing-table__icon {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+  }
+
+  .pricing-table__icon::before {
+    content: "❌";
+    color: initial;
+    text-shadow: none;
+  }
+
+  .pricing-table td[data-state="yes"] .pricing-table__icon {
+    background: none;
+    box-shadow: none;
+  }
+
+  .pricing-table td[data-state="yes"] .pricing-table__icon::before {
+    content: "✅";
+    color: initial;
+    text-shadow: none;
+  }
+
+  .pricing-table td[data-state="no"] .pricing-table__icon {
+    background: none;
+    box-shadow: none;
+  }
+
+  .pricing-table td[data-state="no"] .pricing-table__icon::before {
+    color: initial;
+    text-shadow: none;
+  }
+}
+
 .pricing-table tbody th:nth-child(1) {
   background: transparent;
 }
