@@ -1298,20 +1298,23 @@ content: none;
 
   .demo-preview__screen {
     padding: 14px;
-    width: min(414px, 100vw);
+    width: 100%;
+    max-width: 414px;
     margin-inline: auto;
     padding: 14px 0;
     border-radius: 24px;
   }
 
   .demo-preview__stage {
-    width: min(414px, 100vw);
+    width: 100%;
+    max-width: 414px;
     border-radius: 18px;
   }
 
   .demo-preview__frame {
-    width: min(414px, 100vw);
-    flex: 0 0 min(414px, 100vw);
+    width: 100%;
+    max-width: 414px;
+    flex: 0 0 100%;
     height: clamp(460px, 76vh, 760px);
   }
 
