@@ -1121,6 +1121,12 @@ content: none;
   gap: 12px;
 }
 
+@media (max-width: 767px) {
+  #demo-tab-valentin {
+    display: none;
+  }
+}
+
 @media (max-width: 979px) {
   .demo__control:nth-child(1) {
     order: 1;
