@@ -60,18 +60,20 @@ export const initDemoViewer = () => {
     }
   };
 
-  
+
+   const setOverlayAnimationState = (isAnimated) => {
+    if (!overlay) {
+      return;
+    }
+
+    overlay.classList.toggle('is-animated', isAnimated);
+  };
+
   const disableInteraction = () => {
     interactionLocked = true;
     shouldAnimateOverlay = true;
     overlay?.classList.remove('is-active');
     setOverlayAnimationState(true);
-  };
-
-    overlay.classList.toggle('is-animated', isAnimated);
-  };
-    overlay?.classList.remove('is-active');
-    
   };
 
   const enableInteraction = () => {
