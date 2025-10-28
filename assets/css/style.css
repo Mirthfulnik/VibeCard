@@ -1317,14 +1317,14 @@ content: none;
   background-size: 28px 28px;
 }
 
-.demo-preview__gesture-text {
+.demo-preview__gesture-text,
 .demo-preview__hint {
   font-size: 15px;
   font-weight: 600;
-    letter-spacing: 0.01em;
+  letter-spacing: 0.01em;
   color: inherit;
   max-width: 220px;
-}
+  text-align: center;
 
 @keyframes demo-preview-gesture-breathe {
   0%,
@@ -1385,6 +1385,7 @@ content: none;
     border-radius: 18px;
     padding: 18px;
   }
+  
     .demo-preview__gesture-icon {
     width: 52px;
     height: 52px;
@@ -1392,7 +1393,7 @@ content: none;
     background-size: 26px 26px;
   }
 
-  .demo-preview__gesture-text {
+  .demo-preview__gesture-text,
 
   .demo-preview__hint {
     font-size: 14px;
