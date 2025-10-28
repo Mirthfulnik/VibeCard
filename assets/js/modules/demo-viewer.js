@@ -17,7 +17,7 @@ export const initDemoViewer = () => {
   const controls = Array.from(viewerEl.querySelectorAll('.demo__control'));
   const frame = viewerEl.querySelector('.demo-preview__frame');
   const overlay = viewerEl.querySelector('.demo-preview__overlay');
-  const hintEl = viewerEl.querySelector('.demo-preview__hint');
+  const hintEl = viewerEl.querySelector('.demo-preview__gesture-text');
   const titleEl = viewerEl.querySelector('.demo-card__title');
   const metaEl = viewerEl.querySelector('.demo-card__meta');
   const panelEl = viewerEl.querySelector('.demo-card');
@@ -30,7 +30,7 @@ export const initDemoViewer = () => {
 
   let interactionLocked = true;
   let lastTouchY = null;
-
+  let shouldAnimateOverlay = true;
   applyInteractionConstraints(frame);
   applyInteractionConstraints(overlay);
 
@@ -60,14 +60,27 @@ export const initDemoViewer = () => {
     }
   };
 
+  
   const disableInteraction = () => {
     interactionLocked = true;
+    shouldAnimateOverlay = true;
     overlay?.classList.remove('is-active');
+    setOverlayAnimationState(true);
+  };
+
+    overlay.classList.toggle('is-animated', isAnimated);
+  };
+    overlay?.classList.remove('is-active');
+    
   };
 
   const enableInteraction = () => {
     interactionLocked = false;
     overlay?.classList.add('is-active');
+    if (shouldAnimateOverlay) {
+      shouldAnimateOverlay = false;
+      setOverlayAnimationState(false);
+    }
   };
 
   const forceVerticalScroll = () => {
