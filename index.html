@@ -1,16 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Card — вайб-визитки для экспертов</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon-vc.ico">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Yandex.Metrika counter -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="#0b1120" name="theme-color"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="dark" name="color-scheme"/>
+<title>Vibe Card — вайб-визитки для экспертов</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet"/>
+<link href="assets/icons/favicon-vc.ico" rel="icon" type="image/x-icon"/>
+<link href="style.css" rel="stylesheet"/>
+<meta content="fe8de2d6b96cb3e9" name="yandex-verification">
+<meta content="eFq_krJSdNTQ-Vqg5BYyyi4qMmKpmdS6B1Dvwe0GJlY" name="google-site-verification">
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -21,537 +24,508 @@
 
     ym(104858333, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/104858333" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img alt="" src="https://mc.yandex.ru/watch/104858333" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-</head>
+<!-- Top.Mail.Ru counter -->
+<script type="text/javascript">
+var _tmr = window._tmr || (window._tmr = []);
+_tmr.push({id: "3712240", type: "pageView", start: (new Date()).getTime()});
+(function (d, w, id) {
+  if (d.getElementById(id)) return;
+  var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+  ts.src = "https://top-fwz1.mail.ru/js/code.js";
+  var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+  if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+})(document, window, "tmr-code");
+</script>
+<noscript><div><img alt="Top.Mail.Ru" src="https://top-fwz1.mail.ru/counter?id=3712240;js=na" style="position:absolute;left:-9999px;"/></div></noscript>
+<!-- /Top.Mail.Ru counter -->
+</meta></meta></head>
 <body>
-    <header class="header" id="top">
-        <div class="container header__container">
-            <a href="#hero" class="header__brand" aria-label="Vibe Card">
-                <span class="header__brand-text">Vibe Card</span>
-            </a>
-            <nav class="header__nav" aria-label="Главная навигация">
-                <a class="header__link" href="#hero">Главная</a>
-                <a class="header__link" href="#demo">Демо</a>
-                <a class="header__link" href="#process">Процесс</a>
-                <a class="header__link" href="#pricing">Тарифы</a>
-                <a class="header__link" href="#faq">FAQ</a>
-            </nav>
-            <div class="header__cta">
-                <a href="#contact" class="header__cta-link">Связаться</a>
-            </div>
-            <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Мобильная навигация" aria-hidden="true">
-        <div class="mobile-menu__nav">
-            <a class="mobile-menu__link" href="#hero">Главная</a>
-            <a class="mobile-menu__link" href="#demo">Демо</a>
-            <a class="mobile-menu__link" href="#process">Процесс</a>
-            <a class="mobile-menu__link" href="#pricing">Тарифы</a>
-            <a class="mobile-menu__link" href="#faq">FAQ</a>
-            <a class="mobile-menu__link mobile-menu__link--cta" href="#contact">Связаться</a>
-        </div>
-    </nav>
-
-    <main>
-        <section class="hero" id="hero">
-            <div class="container hero__container">
-                <div class="hero__copy">
-                    <h1 class="hero__title">Создаём вайб‑визитки для экспертов&nbsp;за 5&nbsp;дней</h1>
-                    <p class="hero__subtitle">Эстетичная презентация ваших кейсов на любом устройстве клиента</p>
-                    <div class="hero__stats">
-                        <div class="stat">
-                            <span class="stat__value">5–10 дней</span>
-                            <span class="stat__label">от брифа до публикации</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat__value">40%</span>
-                            <span class="stat__label">рост доверия клиентов</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat__value">до 30 дней</span>
-                            <span class="stat__label">технической поддержки</span>
-                        </div>
-                    </div>
-                    <div class="hero__actions">
-                        <a class="btn btn--primary telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Обсудить задачу</a>
-                        <a class="btn btn--ghost telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Получить бриф</a>
-                    </div>
-                </div>
-                <div class="hero__visual">
-                    <div class="hero__carousel swiper" aria-live="polite">
-                        <div class="swiper-wrapper">
-                            <article class="hero-slide swiper-slide">
-                                <img src="assets/images/FirstScreen1.png" alt="Визитка эксперта Анастасии Короб" class="hero-slide__image" loading="eager" decoding="async" fetchpriority="high">
-                                <div class="hero-slide__content">
-                                    <h3 class="hero-slide__title">Психотерапевт</h3>
-                                    <p class="hero-slide__meta">Запуск: 3 дня</p>
-                                </div>
-                            </article>
-                            <article class="hero-slide swiper-slide">
-                                <img src="assets/images/FirstScreen2.png" alt="Визитка эксперта Валентина Посланчика" class="hero-slide__image" loading="lazy" decoding="async">
-                                 <div class="hero-slide__content">
-                                    <h3 class="hero-slide__title">Юрист</h3>
-                                    <p class="hero-slide__meta">Запуск: 5 дней</p>
-                                </div>
-                            </article>
-                            <article class="hero-slide swiper-slide">
-                                <img src="assets/images/FirstScreen3.png" alt="Визитка эксперта Никиты Синопальникова" class="hero-slide__image" loading="lazy" decoding="async">
-                                <div class="hero-slide__content">
-                                    <h3 class="hero-slide__title">Маркетолог</h3>
-                                    <p class="hero-slide__meta">Запуск: 10 дней</p>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="hero__pagination"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="trust" aria-label="Аргументы доверия">
-            <div class="container trust__container">
-                <h2 class="trust__title">Рассказывайте о себе и делитесь кейсами легко</h2>
-                                <div class="trust__chat" aria-label="Переписка в мессенджере между Полиной и Никитой">
-                    <div class="chat" aria-live="polite">
-                        <div class="chat__header">Полина · Форум ВМК</div>
-                        <div class="chat__messages">
-                            <div class="chat__bubble chat__bubble--polina"><span class="chat__author">Полина:</span> Никита, привет! Пришлёте портфолио?</div>
-                            <div class="chat__bubble chat__bubble--nikita"><span class="chat__author">Никита:</span> Здравствуйте! Конечно — <span class="chat__link">https://nikita-sinopalnikov-marketer.ru/</span></div>
-                            <div class="chat__bubble chat__bubble--polina"><span class="chat__author">Полина:</span> Вау! Такой подачи ещё не видела.</div>
-                            <div class="chat__bubble chat__bubble--nikita"><span class="chat__author">Никита:</span> Давайте обсудим детали и созвонимся завтра в 10:00?</div>
-                            <div class="chat__bubble chat__bubble--polina" aria-label="Полина отправила эмодзи большого пальца вверх">👍</div>
-                        </div>
-                    </div>
-                </div>
-                <blockquote class="trust__quote">С Vibe Card клиент видит ваш опыт, продукты и контакты за пару скроллов.</blockquote>
-            </div>
-        </section>
-
-        <section class="demo" id="demo">
-            <div class="container">
-                <div class="section-head">
-                    <h2 class="section-title section-title--stack">
-                        <span class="section-title__line">Оцените удобство</span>
-                        <span class="section-title__line">Vibe Card</span>
-                    </h2>
-                    <p class="section-description">Выберите визитку и посмотрите, как выглядит экспертная упаковка ваших коллег.</p>
-                </div>
-                <div class="demo__viewer" aria-live="polite">
-                    <div class="demo__controls" role="tablist" aria-label="Выбор визитки">
-                        <button class="demo__control is-active" type="button" role="tab" aria-selected="true" tabindex="0"
-                            id="demo-tab-nikita" aria-controls="demo-panel"
-                            data-site="https://nikita-sinopalnikov-marketer.ru/"
-                            data-title="Никита Синопальников"
-                            data-meta="Коммуникационный маркетолог · 3 дня на запуск"
-                            data-preview="assets/images/FirstScreen3.png"
-                            data-preview-alt="Превью визитки Никиты Синопальникова"
-                            data-hint="Прокрутите, чтобы посмотреть визитку">
+<header class="header" id="top">
+<div class="container header__container">
+<a aria-label="Vibe Card" class="header__brand" href="#hero">
+<span class="header__brand-text">Vibe Card</span>
+</a>
+<nav aria-label="Главная навигация" class="header__nav">
+<a class="header__link" href="#hero">Главная</a>
+<a class="header__link" href="#demo">Демо</a>
+<a class="header__link" href="#process">Процесс</a>
+<a class="header__link" href="#pricing">Тарифы</a>
+<a class="header__link" href="#faq">FAQ</a>
+</nav>
+<div class="header__cta">
+<a class="header__cta-link" href="#contact">Связаться</a>
+</div>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Открыть меню" class="header__burger" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+</header>
+<nav aria-hidden="true" aria-label="Мобильная навигация" class="mobile-menu" id="mobile-menu">
+<div class="mobile-menu__nav">
+<a class="mobile-menu__link" href="#hero">Главная</a>
+<a class="mobile-menu__link" href="#demo">Демо</a>
+<a class="mobile-menu__link" href="#process">Процесс</a>
+<a class="mobile-menu__link" href="#pricing">Тарифы</a>
+<a class="mobile-menu__link" href="#faq">FAQ</a>
+<a class="mobile-menu__link mobile-menu__link--cta" href="#contact">Связаться</a>
+</div>
+</nav>
+<main>
+<section class="hero" id="hero">
+<div class="container hero__container">
+<div class="hero__copy">
+<h1 class="hero__title">Создаём вайб‑визитки для экспертов за 5 дней</h1>
+<p class="hero__subtitle">Эстетичная презентация ваших кейсов на любом устройстве клиента</p>
+<div class="hero__stats">
+<div class="stat">
+<span class="stat__value">5–10 дней</span>
+<span class="stat__label">от брифа до публикации</span>
+</div>
+<div class="stat">
+<span class="stat__value">40%</span>
+<span class="stat__label">рост доверия клиентов</span>
+</div>
+<div class="stat">
+<span class="stat__value">до 30 дней</span>
+<span class="stat__label">технической поддержки</span>
+</div>
+</div>
+<div class="hero__actions">
+<a class="btn btn--primary telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Обсудить задачу</a>
+<a class="btn btn--ghost telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Получить бриф</a>
+</div>
+</div>
+<div class="hero__visual">
+<div aria-live="polite" class="hero__carousel swiper">
+<div class="swiper-wrapper">
+<article class="hero-slide swiper-slide">
+<img alt="Визитка эксперта Анастасии Короб" class="hero-slide__image" decoding="async" fetchpriority="high" loading="eager" src="assets/images/FirstScreen1.png"/>
+<div class="hero-slide__content">
+<h3 class="hero-slide__title">Психотерапевт</h3>
+<p class="hero-slide__meta">Запуск: 3 дня</p>
+</div>
+</article>
+<article class="hero-slide swiper-slide">
+<img alt="Визитка эксперта Валентина Посланчика" class="hero-slide__image" decoding="async" loading="lazy" src="assets/images/FirstScreen2.png"/>
+<div class="hero-slide__content">
+<h3 class="hero-slide__title">Юрист</h3>
+<p class="hero-slide__meta">Запуск: 5 дней</p>
+</div>
+</article>
+<article class="hero-slide swiper-slide">
+<img alt="Визитка эксперта Никиты Синопальникова" class="hero-slide__image" decoding="async" loading="lazy" src="assets/images/FirstScreen3.png"/>
+<div class="hero-slide__content">
+<h3 class="hero-slide__title">Маркетолог</h3>
+<p class="hero-slide__meta">Запуск: 10 дней</p>
+</div>
+</article>
+</div>
+<div class="hero__pagination"></div>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Аргументы доверия" class="trust">
+<div class="container trust__container">
+<h2 class="trust__title">Рассказывайте о себе и делитесь кейсами легко</h2>
+<div aria-label="Переписка в мессенджере между Полиной и Никитой" class="trust__chat">
+<div aria-live="polite" class="chat">
+<div class="chat__header">Полина · Форум ВМК</div>
+<div class="chat__messages">
+<div class="chat__bubble chat__bubble--polina"><span class="chat__author">Полина:</span> Никита, привет! Пришлёте портфолио?</div>
+<div class="chat__bubble chat__bubble--nikita"><span class="chat__author">Никита:</span> Здравствуйте! Конечно — <span class="chat__link">https://nikita-sinopalnikov-marketer.ru/</span></div>
+<div class="chat__bubble chat__bubble--polina"><span class="chat__author">Полина:</span> Вау! Такой подачи ещё не видела.</div>
+<div class="chat__bubble chat__bubble--nikita"><span class="chat__author">Никита:</span> Давайте обсудим детали и созвонимся завтра в 10:00?</div>
+<div aria-label="Полина отправила эмодзи большого пальца вверх" class="chat__bubble chat__bubble--polina">👍</div>
+</div>
+</div>
+</div>
+<blockquote class="trust__quote">С Vibe Card клиент видит ваш опыт, продукты и контакты за пару скроллов.</blockquote>
+</div>
+</section>
+<section class="demo" id="demo">
+<div class="container">
+<div class="section-head">
+<h2 class="section-title section-title--stack">
+<span class="section-title__line">Оцените удобство</span>
+<span class="section-title__line">Vibe Card</span>
+</h2>
+<p class="section-description">Выберите визитку и посмотрите, как выглядит экспертная упаковка ваших коллег.</p>
+</div>
+<div aria-live="polite" class="demo__viewer">
+<div aria-label="Выбор визитки" class="demo__controls" role="tablist">
+<button aria-controls="demo-panel" aria-selected="true" class="demo__control is-active" data-hint="Прокрутите, чтобы посмотреть визитку" data-meta="Коммуникационный маркетолог · 3 дня на запуск" data-preview="assets/images/FirstScreen3.png" data-preview-alt="Превью визитки Никиты Синопальникова" data-site="https://nikita-sinopalnikov-marketer.ru/" data-title="Никита Синопальников" id="demo-tab-nikita" role="tab" tabindex="0" type="button">
                             Никита
                         </button>
-                        <button class="demo__control" type="button" role="tab" aria-selected="false" tabindex="-1"
-                            id="demo-tab-valentin" aria-controls="demo-panel"
-                            data-site="https://mirthfulnik.github.io/valentin-poslanchik/"
-                            data-title="Валентин Посланчик"
-                            data-meta="Юрист по предпринимательскому праву · 5 дней на запуск"
-                            data-preview="assets/images/FirstScreen2.png"
-                            data-preview-alt="Превью визитки Валентина Посланчика"
-                            data-hint="Прокрутите, чтобы посмотреть визитку">
+<button aria-controls="demo-panel" aria-selected="false" class="demo__control" data-hint="Прокрутите, чтобы посмотреть визитку" data-meta="Юрист по предпринимательскому праву · 5 дней на запуск" data-preview="assets/images/FirstScreen2.png" data-preview-alt="Превью визитки Валентина Посланчика" data-site="https://mirthfulnik.github.io/valentin-poslanchik/" data-title="Валентин Посланчик" id="demo-tab-valentin" role="tab" tabindex="-1" type="button">
                             Валентин
                         </button>
-                        <button class="demo__control" type="button" role="tab" aria-selected="false" tabindex="-1"
-                            id="demo-tab-anastasia" aria-controls="demo-panel"
-                            data-site="https://anastasiakorob.github.io/anastasiya-korob-psiholog/"
-                            data-title="Анастасия Короб"
-                            data-meta="Психотерапевт · 7 дней на запуск"
-                            data-preview="assets/images/FirstScreen1.png"
-                            data-preview-alt="Превью визитки Анастасии Короб"
-                            data-hint="Прокрутите, чтобы посмотреть визитку">
+<button aria-controls="demo-panel" aria-selected="false" class="demo__control" data-hint="Прокрутите, чтобы посмотреть визитку" data-meta="Психотерапевт · 7 дней на запуск" data-preview="assets/images/FirstScreen1.png" data-preview-alt="Превью визитки Анастасии Короб" data-site="https://anastasiakorob.github.io/anastasiya-korob-psiholog/" data-title="Анастасия Короб" id="demo-tab-anastasia" role="tab" tabindex="-1" type="button">
                             Анастасия
                         </button>
-                    </div>
-                    <article class="demo-card" role="tabpanel" id="demo-panel" aria-labelledby="demo-tab-nikita">
-                        <header class="demo-card__header">
-                            <h3 class="demo-card__title">Никита Синопальников</h3>
-                            <p class="demo-card__meta">Коммуникационный маркетолог · 3 дня на запуск</p>
-                        </header>
-                        <div class="demo-preview">
-                            <div class="demo-preview__screen">
-                                <div class="demo-preview__stage">
-                                    <img src="assets/images/FirstScreen3.png" alt="Превью визитки Никиты Синопальникова"
-                                        class="demo-preview__fallback" loading="lazy" decoding="async">
-                                    <iframe class="demo-preview__frame" title="Визитка Никиты Синопальникова" loading="lazy"
-                                        src="https://nikita-sinopalnikov-marketer.ru/"
-                                        sandbox="allow-scripts allow-same-origin"
-                                        allow="fullscreen"></iframe>
-                                </div>
-                                <div class="demo-preview__overlay" aria-hidden="true">
-                                                                        <div class="demo-preview__gesture">
-                                        <span class="demo-preview__gesture-icon" aria-hidden="true"></span>
-                                        <span class="demo-preview__gesture-text">Прокрутите, чтобы посмотреть визитку</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="process" id="process">
-            <div class="container">
-                <div class="section-head">
-                    <h2 class="section-title">Через 5–10 дней вы уже делитесь своей вайб‑визиткой</h2>
-                    <p class="section-description">Проводим интервью, упаковываем экспертность, запускаем визитку и сопровождаем после запуска.</p>
-                </div>
-                <div class="timeline">
-                    <div class="timeline__item">
-                        <div class="timeline__count">01</div>
-                        <div>
-                            <h3>Бриф</h3>
-                            <p>Проводим интервью, собираем ключевую маркетинговую информацию или помогаем ее сформулировать.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__count">02</div>
-                        <div>
-                            <h3>Проект</h3>
-                            <p>Формируем структуру вайб-визитки и визуальное направление, согласуем с вами.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__count">03</div>
-                        <div>
-                            <h3>Разработка</h3>
-                            <p>Создаём адаптивную визитку, интегрируем нужные сервисы и тестируем на разных устройствах.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__count">04</div>
-                        <div>
-                            <h3>Тест</h3>
-                            <p>Показываем прототип, проверяем сценарии и корректируем на основе обратной связи.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__count">05</div>
-                        <div>
-                            <h3>Запуск</h3>
-                            <p>Публикуем вайб-визитку, подключаем аналитику и сопровождаем в течение периода поддержки.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonials testimonials--gallery" id="testimonials">
-            <div class="container">
-                <div class="section-head">
-                    <h2 class="section-title">Выберите формат работы</h2>
-                    <p class="section-description">Стоимость рассчитываем индивидуально под задачу. Ниже — ориентиры по наполнению и срокам.</p>
-                </div>
-                <div class="pricing__table-wrapper" role="region" aria-live="polite" aria-label="Форматы работы">
-                    <table class="pricing-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Опции</th>
-                                <th scope="col">
-                                    <span class="pricing-table__plan">Base<span class="pricing-table__plan-meta">до 5 дней</span><span class="pricing-table__plan-desc">Вы заполняете бриф, мы создаем Vibe Card</span></span>
-                                </th>
-                                <th scope="col">
-                                    <span class="pricing-table__plan">Standart<span class="pricing-table__plan-meta">до 7 дней</span><span class="pricing-table__plan-desc">Вы даете материалы, мы адаптируем их под Vibe Card</span></span>
-                                </th>
-                                <th scope="col">
-                                    <span class="pricing-table__plan">Premium<span class="pricing-table__plan-meta">до 10 дней</span><span class="pricing-table__plan-desc">Мы готовим материалы и создаем Vibe Card</span></span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Бриф-интервью</th>
-                                <td data-state="no"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Нет</span></td>
-                                <td data-state="no"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Нет</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Маркетинговая упаковка</th>
-                                <td data-state="no"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Нет</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Vibe Card-дизайн</th>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Адаптивная верстка</th>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Базовое SEO</th>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Подключение аналитики</th>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                                <td data-state="yes"><span class="pricing-table__icon" aria-hidden="true"></span><span class="sr-only">Да</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Дней поддержки</th>
-                                <td><span class="pricing-table__text">10</span></td>
-                                <td><span class="pricing-table__text">20</span></td>
-                                <td><span class="pricing-table__text">30</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Стоимость</th>
-                                <td><span class="pricing-table__price">от 25&nbsp;000 ₽</span></td>
-                                <td><span class="pricing-table__price">от 35&nbsp;000 ₽</span></td>
-                                <td><span class="pricing-table__price">от 45&nbsp;000 ₽</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="sr-only">Связаться</th>
-                                <td>
-                                    <a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
-                                </td>
-                                <td>
-                                    <a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
-                                </td>
-                                <td>
-                                    <a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p class="pricing__note">*Не является публичной офертой</p>
-            </div>
-        </section>
-
-
-        <section class="faq" id="faq">
-            <div class="container">
-                <div class="section-head">
-                    <h2 class="section-title">Частые вопросы</h2>
-                </div>
-                              <div class="faq__list" role="list">
-                    <article class="faq__item" role="listitem">
-                        <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
-                            <div class="faq__question-text">
-                                <h3>Сколько времени занимает создание вайб-визитки?</h3>
-                            </div>
-                            <span class="faq__icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="faq__answer" id="faq-answer-1" hidden>
-                            <h4>Стандартное время разработки составляет 5-10 рабочих дней с момента утверждения технического задания и получения материалов фирменного стиля.</h4>
-                        </div>
-                    </article>
-                    <article class="faq__item" role="listitem">
-                        <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
-                            <div class="faq__question-text">
-                                <h3>Что входит в стоимость разработки?</h3>
-                            </div>
-                            <span class="faq__icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="faq__answer" id="faq-answer-2" hidden>
-                            <h4>В стоимость входит: «Vibe Card» дизайн, адаптивная верстка, базовая SEO-настройка, подключение счетчика сервиса Яндекс.Метрика. Расходы на покупку домена и хостинга рассчитываются отдельно.</h4>
-                        </div>
-                    </article>
-                          <article class="faq__item" role="listitem">
-                        <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
-                            <div class="faq__question-text">
-                                <h3>Можно ли вносить правки в готовый сайт?</h3>
-                            </div>
-                            <span class="faq__icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="faq__answer" id="faq-answer-3" hidden>
-                            <h4>Да, в течение гарантийного периода (10, 20 и 30 дней в зависимости от тарифа) мы бесплатно можем изменить текст или изображения. Технические изменения обсуждаются отдельно.</h4>
-                        </div>
-                    </article>
-                    <article class="faq__item" role="listitem">
-                        <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-4">
-                            <div class="faq__question-text">
-                                <h3>Нужно ли мне покупать хостинг и домен?</h3>
-                            </div>
-                            <span class="faq__icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="faq__answer" id="faq-answer-4" hidden>
-                            <h4>Домен и хостинг приобретаются отдельно. Мы поможем выбрать подходящие варианты и возьмем на себя все технические настройки.</h4>
-                        </div>
-                    </article>
-                    <article class="faq__item" role="listitem">
-                        <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-5">
-                            <div class="faq__question-text">
-                                <h3>Будет ли сайт отображаться на мобильных устройствах?</h3>
-                            </div>
-                            <span class="faq__icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="faq__answer" id="faq-answer-5" hidden>
-                            <h4>Да, все наши сайты создаются с адаптивной версткой и корректно отображаются на компьютерах, планшетах и смартфонах.</h4>
-                        </div>
-                    </article>
-                    <article class="faq__item" role="listitem">
-                        <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-6">
-                            <div class="faq__question-text">
-                                <h3>Предоставляете ли вы техническую поддержку?</h3>
-                            </div>
-                            <span class="faq__icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="faq__answer" id="faq-answer-6" hidden>
-                            <h4>Да, техническая поддержка входит в стоимость разработки. Срок поддержки зависит от выбранного тарифа: от 10 до 30 дней.</h4>
-                        </div>
-                    </article>
-                    <article class="faq__item" role="listitem">
-                        <button class="faq__question" type="button" aria-expanded="false" aria-controls="faq-answer-7">
-                            <div class="faq__question-text">
-                                <h3>Можно ли интегрировать сайт с социальными сетями?</h3>
-                            </div>
-                            <span class="faq__icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="faq__answer" id="faq-answer-7" hidden>
-                            <h4>Конечно! Мы можем интегрировать ваш сайт с популярными социальными сетями: ВКонтакте, Telegram и другими.</h4>
-                        </div>
-                    </article>
-                </div>
-                <div class="faq__cta">
-                    <a class="btn btn--primary telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Задать вопрос</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact" id="contact">
-            <div class="container contact__container">
-                <div class="contact__card">
-                    <div class="contact__profile">
-                        <div class="contact__avatar">
-                            <img src="assets/images/photo.webp" alt="Никита Синопальников" loading="lazy" decoding="async">
-                        </div>
-                        <div class="contact__signature" aria-label="Никита Синопальников — Вайб-разработчик, коммуникационный маркетолог, основатель Vibe Card">
-                            <span class="contact__signature-name">Никита Синопальников</span>
-                            <span class="contact__signature-role">Вайб-разработчик, коммуникационный маркетолог, основатель Vibe Card</span>
-                        </div>
-                    </div>
-                    <div class="contact__content">
-                        <h2>Мы упаковываем опыт экспертов быстро, элегантно, эффективно.</h2>
-                        <p>Расскажите, какие задачи стоят перед вами.</p>
-                        <div class="contact__cta">
-                            <a class="btn btn--primary btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Рассказать</a>
-                            <a class="btn btn--ghost btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Получить бриф</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-        <div class="container footer__top">
-            <div class="footer__promo">
-                <div class="footer__promo-badge">
-                    <img src="assets/images/logo.webp" alt="Иконка Телеграм-канала «Уже летим»" loading="lazy" decoding="async">
-                </div>
-                <div class="footer__promo-content">
-                    <p class="footer__promo-eyebrow">Телеграм‑канал</p>
-                    <h2 class="footer__promo-title">«Уже летим 🚀»</h2>
-                    <p class="footer__promo-text">Кейсы, инсайты по упаковке и продвижению продуктов</p>
-                </div>
-                <a class="footer__promo-link" href="https://t.me/+alx6mct28mQzOTA6" target="_blank" rel="noopener">
-                    <span class="footer__promo-link-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21.6 2.4L2.7 10.3c-1.3.54-1.3 2.2.06 2.6l4.55 1.42 1.78 5.8c.41 1.33 2.08 1.5 2.76.27l2.67-4.94 4.97 3.65c1.14.84 2.74.21 3.05-1.2l3.04-13.7c.33-1.46-1.04-2.69-2.58-2.1z" fill="currentColor"/>
-                        </svg>
-                    </span>
-                    <span class="footer__promo-link-text">Перейти в Telegram</span>
-                </a>
-            </div>
-        </div>
-    <footer class="footer">
-        <div class="container footer__container">
-            <a class="footer__brand" href="#hero" aria-label="Вернуться на первый экран">
-                <span>Vibe Card</span>
-        </a>
-            <div class="footer__links">
-                <a href="#" class="privacy-link">Политика конфиденциальности</a>
-            </div>
-        </div>
-    </footer>
-
-    <section class="cookie-consent" aria-live="polite" aria-hidden="true">
-        <div class="cookie-consent__content">
-            <p class="cookie-consent__message">
+</div>
+<article aria-labelledby="demo-tab-nikita" class="demo-card" id="demo-panel" role="tabpanel">
+<header class="demo-card__header">
+<h3 class="demo-card__title">Никита Синопальников</h3>
+<p class="demo-card__meta">Коммуникационный маркетолог · 3 дня на запуск</p>
+</header>
+<div class="demo-preview">
+<div class="demo-preview__screen">
+<div class="demo-preview__stage">
+<img alt="Превью визитки Никиты Синопальникова" class="demo-preview__fallback" decoding="async" loading="lazy" src="assets/images/FirstScreen3.png"/>
+<iframe allow="fullscreen" class="demo-preview__frame" loading="lazy" sandbox="allow-scripts allow-same-origin" src="https://nikita-sinopalnikov-marketer.ru/" title="Визитка Никиты Синопальникова"></iframe>
+</div>
+<div aria-hidden="true" class="demo-preview__overlay">
+<span class="demo-preview__hint">Прокрутите, чтобы посмотреть визитку</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="process" id="process">
+<div class="container">
+<div class="section-head">
+<h2 class="section-title">Через 5–10 дней вы уже делитесь своей вайб‑визиткой</h2>
+<p class="section-description">Проводим интервью, упаковываем экспертность, запускаем визитку и сопровождаем после запуска.</p>
+</div>
+<div class="timeline">
+<div class="timeline__item">
+<div class="timeline__count">01</div>
+<div>
+<h3>Бриф</h3>
+<p>Проводим интервью, собираем ключевую маркетинговую информацию или помогаем ее сформулировать.</p>
+</div>
+</div>
+<div class="timeline__item">
+<div class="timeline__count">02</div>
+<div>
+<h3>Проект</h3>
+<p>Формируем структуру вайб-визитки и визуальное направление, согласуем с вами.</p>
+</div>
+</div>
+<div class="timeline__item">
+<div class="timeline__count">03</div>
+<div>
+<h3>Разработка</h3>
+<p>Создаём адаптивную визитку, интегрируем нужные сервисы и тестируем на разных устройствах.</p>
+</div>
+</div>
+<div class="timeline__item">
+<div class="timeline__count">04</div>
+<div>
+<h3>Тест</h3>
+<p>Показываем прототип, проверяем сценарии и корректируем на основе обратной связи.</p>
+</div>
+</div>
+<div class="timeline__item">
+<div class="timeline__count">05</div>
+<div>
+<h3>Запуск</h3>
+<p>Публикуем вайб-визитку, подключаем аналитику и сопровождаем в течение периода поддержки.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="testimonials testimonials--gallery" id="testimonials">
+<div class="container">
+<div class="section-head">
+<h2 class="section-title">Выберите формат работы</h2>
+<p class="section-description">Стоимость рассчитываем индивидуально под задачу. Ниже — ориентиры по наполнению и срокам.</p>
+</div>
+<div aria-label="Форматы работы" aria-live="polite" class="pricing__table-wrapper" role="region">
+<table class="pricing-table">
+<thead>
+<tr>
+<th scope="col">Опции</th>
+<th scope="col">
+<span class="pricing-table__plan">Base<span class="pricing-table__plan-meta">до 5 дней</span><span class="pricing-table__plan-desc">Вы заполняете бриф, мы создаем Vibe Card</span></span>
+</th>
+<th scope="col">
+<span class="pricing-table__plan">Standart<span class="pricing-table__plan-meta">до 7 дней</span><span class="pricing-table__plan-desc">Вы даете материалы, мы адаптируем их под Vibe Card</span></span>
+</th>
+<th scope="col">
+<span class="pricing-table__plan">Premium<span class="pricing-table__plan-meta">до 10 дней</span><span class="pricing-table__plan-desc">Мы готовим материалы и создаем Vibe Card</span></span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Бриф-интервью</th>
+<td data-state="no"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Нет</span></td>
+<td data-state="no"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Нет</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+</tr>
+<tr>
+<th scope="row">Маркетинговая упаковка</th>
+<td data-state="no"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Нет</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+</tr>
+<tr>
+<th scope="row">Vibe Card-дизайн</th>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+</tr>
+<tr>
+<th scope="row">Адаптивная верстка</th>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+</tr>
+<tr>
+<th scope="row">Базовое SEO</th>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+</tr>
+<tr>
+<th scope="row">Подключение аналитики</th>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+<td data-state="yes"><span aria-hidden="true" class="pricing-table__icon"></span><span class="sr-only">Да</span></td>
+</tr>
+<tr>
+<th scope="row">Дней поддержки</th>
+<td><span class="pricing-table__text">10</span></td>
+<td><span class="pricing-table__text">20</span></td>
+<td><span class="pricing-table__text">30</span></td>
+</tr>
+<tr>
+<th scope="row">Стоимость</th>
+<td><span class="pricing-table__price">от 25 000 ₽</span></td>
+<td><span class="pricing-table__price">от 35 000 ₽</span></td>
+<td><span class="pricing-table__price">от 45 000 ₽</span></td>
+</tr>
+<tr>
+<th class="sr-only" scope="row">Связаться</th>
+<td>
+<a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
+</td>
+<td>
+<a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
+</td>
+<td>
+<a class="btn btn--primary pricing-table__cta telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Спросить подробности</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="pricing__note">*Не является публичной офертой</p>
+</div>
+</section>
+<section class="faq" id="faq">
+<div class="container">
+<div class="section-head">
+<h2 class="section-title">Частые вопросы</h2>
+</div>
+<div class="faq__list" role="list">
+<article class="faq__item" role="listitem">
+<button aria-controls="faq-answer-1" aria-expanded="false" class="faq__question" type="button">
+<div class="faq__question-text">
+<h3>Сколько времени занимает создание вайб-визитки?</h3>
+</div>
+<span aria-hidden="true" class="faq__icon"></span>
+</button>
+<div class="faq__answer" hidden="" id="faq-answer-1">
+<h4>Стандартное время разработки составляет 5-10 рабочих дней с момента утверждения технического задания и получения материалов фирменного стиля.</h4>
+</div>
+</article>
+<article class="faq__item" role="listitem">
+<button aria-controls="faq-answer-2" aria-expanded="false" class="faq__question" type="button">
+<div class="faq__question-text">
+<h3>Что входит в стоимость разработки?</h3>
+</div>
+<span aria-hidden="true" class="faq__icon"></span>
+</button>
+<div class="faq__answer" hidden="" id="faq-answer-2">
+<h4>В стоимость входит: «Vibe Card» дизайн, адаптивная верстка, базовая SEO-настройка, подключение счетчика сервиса Яндекс.Метрика. Расходы на покупку домена и хостинга рассчитываются отдельно.</h4>
+</div>
+</article>
+<article class="faq__item" role="listitem">
+<button aria-controls="faq-answer-3" aria-expanded="false" class="faq__question" type="button">
+<div class="faq__question-text">
+<h3>Можно ли вносить правки в готовый сайт?</h3>
+</div>
+<span aria-hidden="true" class="faq__icon"></span>
+</button>
+<div class="faq__answer" hidden="" id="faq-answer-3">
+<h4>Да, в течение гарантийного периода (10, 20 и 30 дней в зависимости от тарифа) мы бесплатно можем изменить текст или изображения. Технические изменения обсуждаются отдельно.</h4>
+</div>
+</article>
+<article class="faq__item" role="listitem">
+<button aria-controls="faq-answer-4" aria-expanded="false" class="faq__question" type="button">
+<div class="faq__question-text">
+<h3>Нужно ли мне покупать хостинг и домен?</h3>
+</div>
+<span aria-hidden="true" class="faq__icon"></span>
+</button>
+<div class="faq__answer" hidden="" id="faq-answer-4">
+<h4>Домен и хостинг приобретаются отдельно. Мы поможем выбрать подходящие варианты и возьмем на себя все технические настройки.</h4>
+</div>
+</article>
+<article class="faq__item" role="listitem">
+<button aria-controls="faq-answer-5" aria-expanded="false" class="faq__question" type="button">
+<div class="faq__question-text">
+<h3>Будет ли сайт отображаться на мобильных устройствах?</h3>
+</div>
+<span aria-hidden="true" class="faq__icon"></span>
+</button>
+<div class="faq__answer" hidden="" id="faq-answer-5">
+<h4>Да, все наши сайты создаются с адаптивной версткой и корректно отображаются на компьютерах, планшетах и смартфонах.</h4>
+</div>
+</article>
+<article class="faq__item" role="listitem">
+<button aria-controls="faq-answer-6" aria-expanded="false" class="faq__question" type="button">
+<div class="faq__question-text">
+<h3>Предоставляете ли вы техническую поддержку?</h3>
+</div>
+<span aria-hidden="true" class="faq__icon"></span>
+</button>
+<div class="faq__answer" hidden="" id="faq-answer-6">
+<h4>Да, техническая поддержка входит в стоимость разработки. Срок поддержки зависит от выбранного тарифа: от 10 до 30 дней.</h4>
+</div>
+</article>
+<article class="faq__item" role="listitem">
+<button aria-controls="faq-answer-7" aria-expanded="false" class="faq__question" type="button">
+<div class="faq__question-text">
+<h3>Можно ли интегрировать сайт с социальными сетями?</h3>
+</div>
+<span aria-hidden="true" class="faq__icon"></span>
+</button>
+<div class="faq__answer" hidden="" id="faq-answer-7">
+<h4>Конечно! Мы можем интегрировать ваш сайт с популярными социальными сетями: ВКонтакте, Telegram и другими.</h4>
+</div>
+</article>
+</div>
+<div class="faq__cta">
+<a class="btn btn--primary telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Задать вопрос</a>
+</div>
+</div>
+</section>
+<section class="contact" id="contact">
+<div class="container contact__container">
+<div class="contact__card">
+<div class="contact__profile">
+<div class="contact__avatar">
+<img alt="Никита Синопальников" decoding="async" loading="lazy" src="assets/images/photo.webp"/>
+</div>
+<div aria-label="Никита Синопальников — Вайб-разработчик, коммуникационный маркетолог, основатель Vibe Card" class="contact__signature">
+<span class="contact__signature-name">Никита Синопальников</span>
+<span class="contact__signature-role">Вайб-разработчик, коммуникационный маркетолог, основатель Vibe Card</span>
+</div>
+</div>
+<div class="contact__content">
+<h2>Мы упаковываем опыт экспертов быстро, элегантно, эффективно.</h2>
+<p>Расскажите, какие задачи стоят перед вами.</p>
+<div class="contact__cta">
+<a class="btn btn--primary btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Рассказать</a>
+<a class="btn btn--ghost btn--lg telegram-btn" data-url="https://t.me/nikitasinopalnikov" href="#">Получить бриф</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div class="container footer__top">
+<div class="footer__promo">
+<div class="footer__promo-badge">
+<img alt="Иконка Телеграм-канала «Уже летим»" decoding="async" loading="lazy" src="assets/images/logo.webp"/>
+</div>
+<div class="footer__promo-content">
+<p class="footer__promo-eyebrow">Телеграм‑канал</p>
+<h2 class="footer__promo-title">«Уже летим 🚀»</h2>
+<p class="footer__promo-text">Кейсы, инсайты по упаковке и продвижению продуктов</p>
+</div>
+<a class="footer__promo-link" href="https://t.me/+alx6mct28mQzOTA6" rel="noopener" target="_blank">
+<span aria-hidden="true" class="footer__promo-link-icon">
+<svg fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.6 2.4L2.7 10.3c-1.3.54-1.3 2.2.06 2.6l4.55 1.42 1.78 5.8c.41 1.33 2.08 1.5 2.76.27l2.67-4.94 4.97 3.65c1.14.84 2.74.21 3.05-1.2l3.04-13.7c.33-1.46-1.04-2.69-2.58-2.1z" fill="currentColor"></path>
+</svg>
+</span>
+<span class="footer__promo-link-text">Перейти в Telegram</span>
+</a>
+</div>
+</div>
+<footer class="footer">
+<div class="container footer__container">
+<a aria-label="Вернуться на первый экран" class="footer__brand" href="#hero">
+<span>Vibe Card</span>
+</a>
+<div class="footer__links">
+<a class="privacy-link" href="#">Политика конфиденциальности</a>
+</div>
+</div>
+</footer>
+<section aria-hidden="true" aria-live="polite" class="cookie-consent">
+<div class="cookie-consent__content">
+<p class="cookie-consent__message">
                 Наш сайт становится лучше благодаря «печенькам». Остаётесь с нами — значит, вы ими делитесь.
                 Подробности — в
                 <a class="cookie-consent__link privacy-link" href="#privacy-title">Политике «печенек»</a>.
                 Спасибо за угощение!
             </p>
-            <div class="cookie-consent__actions">
-                <button class="btn btn--primary cookie-consent__button" type="button" data-consent="accept">
+<div class="cookie-consent__actions">
+<button class="btn btn--primary cookie-consent__button" data-consent="accept" type="button">
                     Да, угощайтесь
                 </button>
-                <button class="btn btn--ghost cookie-consent__button" type="button" data-consent="decline">
+<button class="btn btn--ghost cookie-consent__button" data-consent="decline" type="button">
                     Оставлю себе
                 </button>
-            </div>
-        </div>
-    </section>
-    
-    <div class="modal hidden" id="telegram-modal" role="dialog" aria-modal="true" aria-labelledby="telegram-title">
-        <div class="modal__overlay"></div>
-        <div class="modal__content">
-            <button class="modal__close" aria-label="Закрыть модальное окно">&times;</button>
-            <div class="modal__body">
-                <h3 id="telegram-title">Связаться в Telegram</h3>
-                <p>Откроем Telegram и продолжим обсуждение задачи? Ответим на вопросы и пришлём бриф.</p>
-                <div class="modal__buttons">
-                    <a href="#" class="btn btn--primary" target="_blank" rel="noopener" id="telegram-link">Перейти в Telegram</a>
-                    <button class="btn btn--ghost modal-close-btn" type="button">Отмена</button>
-                </div>
-                                <p class="modal__note">Нажимая кнопку "Перейти в Telegram", вы соглашаетесь с <a href="#" class="modal__note-link privacy-link">политикой конфиденциальности</a>.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal hidden" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
-        <div class="modal__overlay"></div>
-        <div class="modal__content modal__content--large">
-            <button class="modal__close" aria-label="Закрыть модальное окно">&times;</button>
-            <div class="modal__body">
-                <h3 id="privacy-title">Политика конфиденциальности</h3>
-                <div class="privacy-content">
-                    <p><strong>Политика в отношении обработки персональных данных</strong></p>
-                    <p>Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности.</p>
-                    <p>Оператор: Синопальников Никита Сергеевич (самозанятый).</p>
-                    <p>Политика применяется ко всей информации, которую оператор может получить о посетителях сайта https://www.vibecard.ru/.</p>
-                    <p>Цель обработки персональных данных — информирование пользователя посредством мессенджеров и отправки электронных писем, а также предоставление доступа к сервисам и информации сайта.</p>
-                    <p>Персональные данные, которые обрабатываются: фамилия, имя, отчество, номер телефона, адрес электронной почты, дополнительные данные, указанные пользователем.</p>
-                    <p>Пользователь может получить разъяснения по вопросам обработки персональных данных, обратившись к оператору по электронному адресу. Изменения политики вступают в силу с момента публикации новой версии.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal hidden" id="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
-        <div class="modal__overlay"></div>
-        <div class="modal__content modal__content--image">
-            <button class="modal__close" aria-label="Закрыть модальное окно">&times;</button>
-            <div class="modal__body modal__body--image">
-                <img src="" alt="Просмотр отзыва" id="review-modal-image">
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
+</div>
+</div>
+</section>
+<div aria-labelledby="telegram-title" aria-modal="true" class="modal hidden" id="telegram-modal" role="dialog">
+<div class="modal__overlay"></div>
+<div class="modal__content">
+<button aria-label="Закрыть модальное окно" class="modal__close">×</button>
+<div class="modal__body">
+<h3 id="telegram-title">Связаться в Telegram</h3>
+<p>Откроем Telegram и продолжим обсуждение задачи? Ответим на вопросы и пришлём бриф.</p>
+<div class="modal__buttons">
+<a class="btn btn--primary" href="#" id="telegram-link" rel="noopener" target="_blank">Перейти в Telegram</a>
+<button class="btn btn--ghost modal-close-btn" type="button">Отмена</button>
+</div>
+<p class="modal__note">Нажимая кнопку "Перейти в Telegram", вы соглашаетесь с <a class="modal__note-link privacy-link" href="#">политикой конфиденциальности</a>.</p>
+</div>
+</div>
+</div>
+<div aria-labelledby="privacy-title" aria-modal="true" class="modal hidden" id="privacy-modal" role="dialog">
+<div class="modal__overlay"></div>
+<div class="modal__content modal__content--large">
+<button aria-label="Закрыть модальное окно" class="modal__close">×</button>
+<div class="modal__body">
+<h3 id="privacy-title">Политика конфиденциальности</h3>
+<div class="privacy-content">
+<p><strong>Политика в отношении обработки персональных данных</strong></p>
+<p>Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности.</p>
+<p>Оператор: Синопальников Никита Сергеевич (самозанятый).</p>
+<p>Политика применяется ко всей информации, которую оператор может получить о посетителях сайта https://www.vibecard.ru/.</p>
+<p>Цель обработки персональных данных — информирование пользователя посредством мессенджеров и отправки электронных писем, а также предоставление доступа к сервисам и информации сайта.</p>
+<p>Персональные данные, которые обрабатываются: фамилия, имя, отчество, номер телефона, адрес электронной почты, дополнительные данные, указанные пользователем.</p>
+<p>Пользователь может получить разъяснения по вопросам обработки персональных данных, обратившись к оператору по электронному адресу. Изменения политики вступают в силу с момента публикации новой версии.</p>
+</div>
+</div>
+</div>
+</div>
+<div aria-labelledby="review-modal-title" aria-modal="true" class="modal hidden" id="review-modal" role="dialog">
+<div class="modal__overlay"></div>
+<div class="modal__content modal__content--image">
+<button aria-label="Закрыть модальное окно" class="modal__close">×</button>
+<div class="modal__body modal__body--image">
+<img alt="Просмотр отзыва" id="review-modal-image" src=""/>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script defer="True" src="main.js"></script>
 </body>
 </html>
